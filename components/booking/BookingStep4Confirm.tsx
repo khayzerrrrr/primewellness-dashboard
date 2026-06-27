@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/contexts/AuthContext";
-import { createAppointment } from "@/lib/firebase/firestore-service";
+import { createAppointment, updateAppointmentGoogleEventId } from "@/lib/firebase/firestore-service";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import type { Service, Doctor } from "@/types";
 
@@ -52,18 +52,46 @@ export function BookingStep4Confirm({ bookingData, onUpdate, onBack, onSuccess }
 
     setLoading(true);
     try {
-      const { bookingNumber } = await createAppointment({
+      const { id: appointmentId, bookingNumber } = await createAppointment({
         patientId: user?.uid || "guest",
         patientName: bookingData.patientName,
+        patientEmail: bookingData.patientEmail || user?.email || undefined,
+        patientPhone: bookingData.patientPhone,
         doctorId: bookingData.doctor.id,
         doctorName: bookingData.doctor.fullName,
         serviceId: bookingData.service.id,
         serviceName: bookingData.service.name,
+        servicePrice: bookingData.service.price,
+        serviceDuration: bookingData.service.duration,
         date: bookingData.date,
         timeSlot: bookingData.timeSlot,
         notes: bookingData.notes,
         status: "pending",
       });
+
+      // Sync to Google Calendar (non-blocking)
+      try {
+        const calRes = await fetch("/api/calendar/event", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            appointmentId,
+            bookingNumber,
+            patientName: bookingData.patientName,
+            patientEmail: bookingData.patientEmail || user?.email || undefined,
+            doctorName: bookingData.doctor.fullName,
+            serviceName: bookingData.service.name,
+            date: bookingData.date.toISOString(),
+            timeSlot: bookingData.timeSlot,
+            durationMinutes: bookingData.service.duration,
+            notes: bookingData.notes || undefined,
+          }),
+        });
+        if (calRes.ok) {
+          const { eventId } = await calRes.json();
+          if (eventId) await updateAppointmentGoogleEventId(appointmentId, eventId);
+        }
+      } catch {}
 
       // Send WhatsApp notification
       try {

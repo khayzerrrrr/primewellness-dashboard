@@ -115,17 +115,21 @@ export interface Appointment {
   bookingNumber: string;
   patientId: string;
   patientName: string;
+  patientEmail?: string;
+  patientPhone?: string;
   doctorId: string;
   doctorName: string;
   serviceId: string;
   serviceName: string;
   servicePrice?: number;
+  serviceDuration?: number;
   date: Date;
   timeSlot: string;
   status: AppointmentStatus;
   notes?: string;
   voucherId?: string;
   voucherSessionUsed?: boolean;
+  googleEventId?: string;
   createdAt: Date;
   updatedAt: Date;
 }

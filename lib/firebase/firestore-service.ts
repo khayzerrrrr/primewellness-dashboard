@@ -495,6 +495,13 @@ export async function createAppointment(
   return { id: docRef.id, bookingNumber };
 }
 
+export async function updateAppointmentGoogleEventId(id: string, googleEventId: string) {
+  await updateDoc(doc(db, FIRESTORE_COLLECTIONS.appointments, id), {
+    googleEventId,
+    updatedAt: serverTimestamp(),
+  });
+}
+
 export async function updateAppointmentStatus(
   id: string,
   status: Appointment["status"],
