@@ -1,0 +1,152 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function getRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function hasRole(roles) {
+      return isAuth() && getRole() in roles;
+    }
+
+    function isOwnerOrAdmin() {
+      return hasRole(['owner', 'super_admin']);
+    }
+
+    function isStaff() {
+      return hasRole(['owner', 'super_admin', 'manager', 'front_office', 'therapist']);
+    }
+
+    // ── Users ────────────────────────────────────────────────────────────
+    match /users/{userId} {
+      allow read: if isAuth() && (request.auth.uid == userId || isOwnerOrAdmin());
+      allow create: if isAuth();
+      allow update: if isAuth() && (request.auth.uid == userId || isOwnerOrAdmin());
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Patients ─────────────────────────────────────────────────────────
+    match /patients/{patientId} {
+      allow read: if isStaff() || (isAuth() && resource.data.userId == request.auth.uid);
+      allow create: if isStaff() || isAuth();
+      allow update: if isStaff();
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Doctors / Therapists ─────────────────────────────────────────────
+    match /doctors/{doctorId} {
+      allow read: if isAuth();
+      allow write: if isOwnerOrAdmin() || hasRole(['manager']);
+    }
+
+    // ── Appointments ─────────────────────────────────────────────────────
+    match /appointments/{id} {
+      allow read: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid)
+        || (isAuth() && resource.data.doctorId == request.auth.uid);
+      allow create: if isAuth();
+      allow update: if isStaff()
+        || (isAuth() && resource.data.doctorId == request.auth.uid);
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Medical Records ──────────────────────────────────────────────────
+    match /medical_records/{id} {
+      allow read: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid);
+      allow create: if hasRole(['owner', 'super_admin', 'manager', 'therapist']);
+      allow update: if hasRole(['owner', 'super_admin', 'manager', 'therapist']);
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Invoices ─────────────────────────────────────────────────────────
+    match /invoices/{id} {
+      allow read: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid);
+      allow create: if isStaff();
+      allow update: if isStaff();
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Payments ─────────────────────────────────────────────────────────
+    match /payments/{id} {
+      allow read: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid);
+      allow create: if isStaff();
+      allow update: if isOwnerOrAdmin();
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Services ─────────────────────────────────────────────────────────
+    match /services/{id} {
+      allow read: if isAuth();
+      allow write: if isOwnerOrAdmin() || hasRole(['manager']);
+    }
+
+    // ── Vouchers ─────────────────────────────────────────────────────────
+    match /vouchers/{id} {
+      allow read: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid);
+      allow create: if isAuth();
+      allow update: if isStaff()
+        || (isAuth() && resource.data.patientId == request.auth.uid);
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Commissions ──────────────────────────────────────────────────────
+    match /commissions/{id} {
+      allow read: if isOwnerOrAdmin() || hasRole(['manager'])
+        || (isAuth() && resource.data.therapistId == request.auth.uid);
+      allow create: if isStaff();
+      allow update: if isOwnerOrAdmin() || hasRole(['manager']);
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── Attendance ───────────────────────────────────────────────────────
+    match /attendance/{id} {
+      allow read: if isStaff();
+      allow create: if isStaff();
+      allow update: if isOwnerOrAdmin() || hasRole(['manager'])
+        || (isAuth() && resource.data.userId == request.auth.uid);
+      allow delete: if isOwnerOrAdmin();
+    }
+
+    // ── SOP ──────────────────────────────────────────────────────────────
+    match /sop/{id} {
+      allow read: if isStaff();
+      allow write: if isOwnerOrAdmin() || hasRole(['manager']);
+    }
+
+    // ── Settings ─────────────────────────────────────────────────────────
+    match /settings/{id} {
+      allow read: if isStaff();
+      allow write: if isOwnerOrAdmin();
+    }
+
+    // ── Notifications ────────────────────────────────────────────────────
+    match /notifications/{id} {
+      allow read: if isAuth() && (
+        resource.data.userId == request.auth.uid || isOwnerOrAdmin()
+      );
+      allow create: if isStaff();
+      allow update: if isAuth() && resource.data.userId == request.auth.uid;
+      allow delete: if isAuth() && resource.data.userId == request.auth.uid;
+    }
+
+    // ── Public (landing page) ────────────────────────────────────────────
+    match /testimonials/{id} {
+      allow read: if true;
+      allow write: if isOwnerOrAdmin();
+    }
+
+    match /faq/{id} {
+      allow read: if true;
+      allow write: if isOwnerOrAdmin();
+    }
+  }
+}
