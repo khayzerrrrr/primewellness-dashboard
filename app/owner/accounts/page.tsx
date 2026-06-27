@@ -56,10 +56,19 @@ export default function AccountManagementPage() {
     setLoading(true);
     try {
       const snap = await getDocs(query(collection(db, "users"), orderBy("createdAt", "desc")));
-      setUsers(snap.docs.map((d) => ({
-        id: d.id, ...d.data(),
-        createdAt: d.data().createdAt?.toDate?.() ?? new Date(),
-      })) as AppUser[]);
+      setUsers(snap.docs.map((d) => {
+        const data = d.data();
+        return {
+          id: d.id,
+          email: data.email ?? "",
+          displayName: data.displayName ?? "",
+          role: (data.role ?? "patient") as UserRole,
+          isActive: data.isActive ?? false,
+          createdAt: data.createdAt?.toDate?.() ?? new Date(),
+          createdBy: data.createdBy,
+          phone: data.phone,
+        };
+      }));
     } catch { setUsers([]); }
     setLoading(false);
   };
@@ -96,7 +105,9 @@ export default function AccountManagementPage() {
 
   const filtered = users.filter((u) => {
     const matchRole = filterRole === "all" || u.role === filterRole;
-    const matchSearch = !search || u.displayName?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase());
+    const name = u.displayName ?? "";
+    const email = u.email ?? "";
+    const matchSearch = !search || name.toLowerCase().includes(search.toLowerCase()) || email.toLowerCase().includes(search.toLowerCase());
     return matchRole && matchSearch;
   });
 
