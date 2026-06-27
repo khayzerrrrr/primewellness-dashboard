@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -13,7 +13,7 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 import { getInvoices, getPatients, getDoctors } from "@/lib/firebase/firestore-service";
 import type { Invoice } from "@/types";
 
-const COLORS = ["#1a2744", "#0d9488", "#f59e0b", "#8b5cf6", "#ef4444", "#06b6d4"];
+const COLORS = ["#0A1628", "#0d9488", "#f59e0b", "#8b5cf6", "#ef4444", "#06b6d4"];
 
 function getDate(inv: Invoice): Date | null {
   const d = (inv.date as unknown as { toDate?: () => Date })?.toDate?.() ?? inv.date as Date;
@@ -129,7 +129,7 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Laporan Bisnis</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Laporan Bisnis</h1>
           <p className="text-gray-500 text-sm">Analisis pendapatan dan performa klinik</p>
         </div>
         <Button onClick={handleExport} disabled={exporting} variant="outline" size="sm" className="gap-2">
@@ -142,7 +142,7 @@ export default function ReportsPage() {
       <div className="flex gap-2">
         {[{ label: "7 Hari", value: "week" }, { label: "Bulan Ini", value: "month" }, { label: "Tahun Ini", value: "year" }].map((p) => (
           <button key={p.value} onClick={() => setPeriod(p.value as typeof period)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${period === p.value ? "bg-[#1a2744] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${period === p.value ? "bg-[#0A1628] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
             {p.label}
           </button>
         ))}
@@ -161,7 +161,7 @@ export default function ReportsPage() {
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${k.color}`}>
                 <k.icon className="w-5 h-5" />
               </div>
-              {loading ? <Skeleton className="h-7 w-24" /> : <p className="text-xl font-bold text-[#1a2744]">{k.value}</p>}
+              {loading ? <Skeleton className="h-7 w-24" /> : <p className="text-xl font-bold text-[#0A1628]">{k.value}</p>}
               <p className="text-sm text-gray-500 mt-1">{k.label}</p>
             </CardContent>
           </Card>
@@ -173,7 +173,7 @@ export default function ReportsPage() {
         {/* Revenue Bar Chart */}
         <Card className="border-0 shadow-sm lg:col-span-2">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base font-semibold text-[#1a2744]">Pendapatan per {period === "year" ? "Bulan" : "Hari"}</CardTitle>
+            <CardTitle className="text-base font-semibold text-[#0A1628]">Pendapatan per {period === "year" ? "Bulan" : "Hari"}</CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? <Skeleton className="h-56 w-full" /> : revenueChartData.length === 0 ? (
@@ -185,7 +185,7 @@ export default function ReportsPage() {
                   <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                   <YAxis tickFormatter={fmt} tick={{ fontSize: 11 }} width={60} />
                   <Tooltip formatter={(v: number) => formatCurrency(v)} />
-                  <Bar dataKey="value" fill="#1a2744" radius={[4, 4, 0, 0]} name="Pendapatan" />
+                  <Bar dataKey="value" fill="#0A1628" radius={[4, 4, 0, 0]} name="Pendapatan" />
                 </BarChart>
               </ResponsiveContainer>
             )}
@@ -195,7 +195,7 @@ export default function ReportsPage() {
         {/* Service Pie */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base font-semibold text-[#1a2744]">Pendapatan per Layanan</CardTitle>
+            <CardTitle className="text-base font-semibold text-[#0A1628]">Pendapatan per Layanan</CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? <Skeleton className="h-56 w-full" /> : serviceData.length === 0 ? (
@@ -228,7 +228,7 @@ export default function ReportsPage() {
       {/* 6-month trend */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold text-[#1a2744]">Tren Pendapatan 6 Bulan Terakhir</CardTitle>
+          <CardTitle className="text-base font-semibold text-[#0A1628]">Tren Pendapatan 6 Bulan Terakhir</CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? <Skeleton className="h-48 w-full" /> : (
@@ -248,10 +248,10 @@ export default function ReportsPage() {
       {/* Transaction table */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-2 flex flex-row items-center justify-between">
-          <CardTitle className="text-base font-semibold text-[#1a2744]">Transaksi ({periodInvoices.length})</CardTitle>
+          <CardTitle className="text-base font-semibold text-[#0A1628]">Transaksi ({periodInvoices.length})</CardTitle>
           <div className="flex gap-3 text-xs text-gray-500">
-            <span>Total Pasien: <strong className="text-[#1a2744]">{totalPatients}</strong></span>
-            <span>Terapis: <strong className="text-[#1a2744]">{totalTherapists}</strong></span>
+            <span>Total Pasien: <strong className="text-[#0A1628]">{totalPatients}</strong></span>
+            <span>Terapis: <strong className="text-[#0A1628]">{totalTherapists}</strong></span>
           </div>
         </CardHeader>
         <CardContent>
@@ -286,7 +286,7 @@ export default function ReportsPage() {
                     })}
                   </tbody>
                   <tfoot>
-                    <tr className="bg-[#1a2744] text-white">
+                    <tr className="bg-[#0A1628] text-white">
                       <td colSpan={4} className="py-2.5 px-3 font-semibold text-sm">Total</td>
                       <td className="py-2.5 px-3 text-right font-bold">{formatCurrency(periodRevenue)}</td>
                     </tr>
@@ -308,7 +308,7 @@ export default function ReportsPage() {
                     </div>
                   );
                 })}
-                <div className="bg-[#1a2744] text-white rounded-xl p-3 flex items-center justify-between">
+                <div className="bg-[#0A1628] text-white rounded-xl p-3 flex items-center justify-between">
                   <p className="font-semibold text-sm">Total ({periodInvoices.length} transaksi)</p>
                   <p className="font-bold">{formatCurrency(periodRevenue)}</p>
                 </div>

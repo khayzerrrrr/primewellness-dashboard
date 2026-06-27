@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { FileText, Search } from "lucide-react";
@@ -68,7 +68,7 @@ export default function AdminMedicalRecordsPage() {
                   <div>
                     <p className="text-xs text-gray-400 mb-1">Keluhan / Diagnosa</p>
                     <p className="text-gray-600">{record.chiefComplaint}</p>
-                    <p className="text-teal-600 font-medium">{record.diagnosis}</p>
+                    <p className="text-[#1B3A6B] font-medium">{record.diagnosis}</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 mb-1">Tindakan</p>

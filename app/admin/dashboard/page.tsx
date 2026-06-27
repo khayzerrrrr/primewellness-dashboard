@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Users, Calendar, TrendingUp, DollarSign } from "lucide-react";
@@ -98,7 +98,7 @@ export default function AdminDashboardPage() {
                 <tbody>
                   {todayApps.map((app) => (
                     <tr key={app.id} className="border-b border-gray-50 hover:bg-gray-50">
-                      <td className="py-3 text-teal-600 font-mono text-xs">{app.bookingNumber}</td>
+                      <td className="py-3 text-[#1B3A6B] font-mono text-xs">{app.bookingNumber}</td>
                       <td className="py-3 font-medium text-slate-800">{app.patientName}</td>
                       <td className="py-3 text-gray-600">{app.doctorName}</td>
                       <td className="py-3 text-gray-600">{app.timeSlot}</td>

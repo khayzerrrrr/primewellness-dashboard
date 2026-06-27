@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#1a2744] text-white py-12">
+    <footer className="bg-[#0A1628] text-white py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}

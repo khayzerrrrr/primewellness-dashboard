@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Bell } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -7,12 +7,12 @@ import { collection, query, where, onSnapshot, orderBy, limit } from "firebase/f
 import { db } from "@/lib/firebase/config";
 
 const THEME: Record<string, { bg: string; label: string; emoji: string }> = {
-  owner:        { bg: "#1a2744", label: "Dashboard Owner",   emoji: "👑" },
-  super_admin:  { bg: "#1a2744", label: "Super Admin",       emoji: "⚡" },
-  manager:      { bg: "#185fa5", label: "Dashboard Manager", emoji: "📋" },
-  front_office: { bg: "#0f6e56", label: "Front Office",      emoji: "🏥" },
-  therapist:    { bg: "#533ab7", label: "Terapis",           emoji: "🌿" },
-  patient:      { bg: "#1a2744", label: "Selamat datang,",   emoji: "👋" },
+  owner:        { bg: "#0A1628", label: "Dashboard Owner",   emoji: "👑" },
+  super_admin:  { bg: "#0A1628", label: "Super Admin",       emoji: "⚡" },
+  manager:      { bg: "#1B3A6B", label: "Dashboard Manager", emoji: "📋" },
+  front_office: { bg: "#1B3A6B", label: "Front Office",      emoji: "🏥" },
+  therapist:    { bg: "#2563EB", label: "Terapis",           emoji: "🌿" },
+  patient:      { bg: "#0A1628", label: "Selamat datang,",   emoji: "👋" },
 };
 
 export function MobileHeader() {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useForm, type Resolver } from "react-hook-form";
@@ -96,7 +96,7 @@ export default function DoctorMedicalRecordsPage() {
         <h1 className="text-2xl font-bold text-slate-900">Rekam Medis</h1>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-teal-600 hover:bg-teal-700 text-white gap-2">
+            <Button className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2">
               <Plus className="w-4 h-4" />
               Tambah Rekam Medis
             </Button>
@@ -154,7 +154,7 @@ export default function DoctorMedicalRecordsPage() {
                 <Label>Catatan Dokter</Label>
                 <Textarea {...register("doctorNotes")} rows={2} />
               </div>
-              <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white" disabled={saving}>
+              <Button type="submit" className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white" disabled={saving}>
                 {saving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Menyimpan...</> : "Simpan Rekam Medis"}
               </Button>
             </form>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Ticket, CheckCircle, XCircle, Clock, Search } from "lucide-react";
@@ -106,7 +106,7 @@ export default function FrontOfficeVouchersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Voucher Pasien</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Voucher Pasien</h1>
           <p className="text-gray-500 text-sm">Konfirmasi pembelian paket sesi terapi</p>
         </div>
         {pendingCount > 0 && (
@@ -140,7 +140,7 @@ export default function FrontOfficeVouchersPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari nama pasien..."
-            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
           />
         </div>
         <select
@@ -183,7 +183,7 @@ export default function FrontOfficeVouchersPage() {
                     <div className="min-w-0">
                       <p className="font-medium text-slate-800 text-sm">{v.patientName}</p>
                       <p className="text-xs text-gray-500">{v.packageName} · {v.totalSessions} sesi</p>
-                      <p className="text-xs font-medium text-[#1a2744] mt-0.5">{formatCurrency(v.price)}</p>
+                      <p className="text-xs font-medium text-[#0A1628] mt-0.5">{formatCurrency(v.price)}</p>
                       <p className="text-xs text-gray-400">Dipesan: {formatDate(v.purchasedAt, "dd MMM yyyy HH:mm")}</p>
                     </div>
                   </div>

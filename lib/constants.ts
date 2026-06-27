@@ -1,4 +1,4 @@
-export const DEFAULT_COMMISSION_RATE = 15; // % default komisi terapis
+﻿export const DEFAULT_COMMISSION_RATE = 15; // % default komisi terapis
 
 // ── Clinic Contact Info ───────────────────────────────────────────────────────
 export const CLINIC_INFO = {
@@ -34,8 +34,8 @@ export const THERAPIST_SPECIALIZATIONS = [
 ] as const;
 
 export const COLORS = {
-  primary: "#1a2744",
-  secondary: "#0F766E",
+  primary: "#0A1628",
+  secondary: "#1B3A6B",
   accent: "#E65100",
   background: "#F8FAFC",
   text: "#0F172A",

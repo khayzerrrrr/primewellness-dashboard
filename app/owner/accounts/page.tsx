@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { UserPlus, Shield, Trash2, ToggleLeft, ToggleRight, Search } from "lucide-react";
@@ -35,7 +35,7 @@ const ROLE_COLORS: Record<string, string> = {
   owner: "bg-red-100 text-red-700",
   super_admin: "bg-purple-100 text-purple-700",
   manager: "bg-blue-100 text-blue-700",
-  front_office: "bg-teal-100 text-teal-700",
+  front_office: "bg-blue-100 text-[#0A1628]",
   therapist: "bg-green-100 text-green-700",
   patient: "bg-gray-100 text-gray-700",
 };
@@ -115,10 +115,10 @@ export default function AccountManagementPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Manajemen Akun</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Manajemen Akun</h1>
           <p className="text-gray-500 text-sm">Kelola akun karyawan dan pengguna</p>
         </div>
-        <Button className="bg-[#1a2744] hover:bg-[#2a3a60]" onClick={() => setShowForm(!showForm)}>
+        <Button className="bg-[#0A1628] hover:bg-[#1B3A6B]" onClick={() => setShowForm(!showForm)}>
           <UserPlus className="w-4 h-4 mr-2" />
           Buat Akun Baru
         </Button>
@@ -126,9 +126,9 @@ export default function AccountManagementPage() {
 
       {/* Create Form */}
       {showForm && (
-        <Card className="border border-[#1a2744]/20 shadow-sm">
+        <Card className="border border-[#0A1628]/20 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base text-[#0A1628] flex items-center gap-2">
               <Shield className="w-5 h-5" />
               Buat Akun Karyawan Baru
             </CardTitle>
@@ -141,7 +141,7 @@ export default function AccountManagementPage() {
                   value={form.displayName}
                   onChange={(e) => setForm({ ...form, displayName: e.target.value })}
                   placeholder="Nama lengkap karyawan"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
                 />
               </div>
               <div>
@@ -151,7 +151,7 @@ export default function AccountManagementPage() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="email@primewellness.id"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ export default function AccountManagementPage() {
                 <select
                   value={form.role}
                   onChange={(e) => setForm({ ...form, role: e.target.value as UserRole })}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
                 >
                   {STAFF_ROLES.map((r) => <option key={r} value={r}>{ROLE_LABELS[r]}</option>)}
                   {currentRole === "owner" && <option value="super_admin">Super Admin</option>}
@@ -171,7 +171,7 @@ export default function AccountManagementPage() {
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   placeholder="08xxxxxxxxxx"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
                 />
               </div>
             </div>
@@ -180,7 +180,7 @@ export default function AccountManagementPage() {
             </p>
             <div className="flex gap-2 justify-end mt-4">
               <Button variant="outline" onClick={() => setShowForm(false)}>Batal</Button>
-              <Button className="bg-[#1a2744] hover:bg-[#2a3a60]" onClick={handleCreate} disabled={saving}>
+              <Button className="bg-[#0A1628] hover:bg-[#1B3A6B]" onClick={handleCreate} disabled={saving}>
                 {saving ? "Membuat..." : "Buat Akun"}
               </Button>
             </div>
@@ -196,13 +196,13 @@ export default function AccountManagementPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari nama atau email..."
-            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
           />
         </div>
         <select
           value={filterRole}
           onChange={(e) => setFilterRole(e.target.value)}
-          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
         >
           <option value="all">Semua Role</option>
           {Object.entries(ROLE_LABELS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
@@ -212,7 +212,7 @@ export default function AccountManagementPage() {
       {/* User Table */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base text-[#1a2744]">Daftar Akun ({filtered.length})</CardTitle>
+          <CardTitle className="text-base text-[#0A1628]">Daftar Akun ({filtered.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
@@ -286,7 +286,7 @@ export default function AccountManagementPage() {
               <div className="md:hidden space-y-2">
                 {filtered.map((u) => (
                   <div key={u.id} className="bg-gray-50 rounded-xl p-3 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#1a2744] flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#0A1628] flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-sm font-bold">{(u.displayName || u.email || "?").charAt(0).toUpperCase()}</span>
                     </div>
                     <div className="flex-1 min-w-0">

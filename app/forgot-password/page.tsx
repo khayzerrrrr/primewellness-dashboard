@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -6,7 +6,8 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowLeft, Heart, Loader2, Mail } from "lucide-react";
+import { ArrowLeft, Loader2, Mail } from "lucide-react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,21 +48,19 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-teal-700 font-bold text-2xl">
-            <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
-              <Heart className="w-5 h-5 text-white" />
-            </div>
-            Prime Wellness
+          <Link href="/" className="inline-flex flex-col items-center gap-2">
+            <Image src="/logo.png" alt="Prime Wellness" width={90} height={90} className="object-contain" priority />
+            <span className="font-bold text-xl text-[#0A1628]">Prime Wellness</span>
           </Link>
         </div>
 
         <Card className="border-0 shadow-lg">
           <CardHeader className="space-y-1 text-center pb-6">
-            <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="w-8 h-8 text-teal-600" />
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Mail className="w-8 h-8 text-[#1B3A6B]" />
             </div>
             <CardTitle className="text-2xl font-bold text-slate-900">
               {t("forgotPasswordTitle")}
@@ -78,7 +77,7 @@ export default function ForgotPasswordPage() {
                 </div>
                 <p className="text-gray-700 mb-6">{t("resetEmailSent")}</p>
                 <Link href="/sign-in">
-                  <Button className="bg-teal-600 hover:bg-teal-700 text-white gap-2">
+                  <Button className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2">
                     <ArrowLeft className="w-4 h-4" />
                     {t("backToLogin")}
                   </Button>
@@ -102,7 +101,7 @@ export default function ForgotPasswordPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                  className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white"
                   disabled={loading}
                 >
                   {loading ? (
@@ -115,7 +114,7 @@ export default function ForgotPasswordPage() {
                   )}
                 </Button>
 
-                <Link href="/sign-in" className="flex items-center justify-center gap-2 text-sm text-teal-600 hover:text-teal-700 mt-4">
+                <Link href="/sign-in" className="flex items-center justify-center gap-2 text-sm text-[#1B3A6B] hover:text-[#0A1628] mt-4">
                   <ArrowLeft className="w-4 h-4" />
                   {t("backToLogin")}
                 </Link>

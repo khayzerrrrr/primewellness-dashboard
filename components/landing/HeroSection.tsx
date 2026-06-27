@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -28,13 +28,13 @@ export function HeroSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#1a2744]/10 text-[#1a2744] px-4 py-2 rounded-full text-sm font-medium border border-[#1a2744]/20">
+            <div className="inline-flex items-center gap-2 bg-[#0A1628]/10 text-[#0A1628] px-4 py-2 rounded-full text-sm font-medium border border-[#0A1628]/20">
               <Leaf className="w-4 h-4 text-green-600" />
               Where TCM meets biotechnology
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-[#1a2744]">Prime Wellness</span>
+              <span className="text-[#0A1628]">Prime Wellness</span>
               <br />
               <span className="text-2xl md:text-3xl font-semibold text-gray-500 tracking-wide">
                 THERAPY & RELIEFY
@@ -50,7 +50,7 @@ export function HeroSection() {
               <Link href="/booking">
                 <Button
                   size="lg"
-                  className="bg-[#1a2744] hover:bg-[#2a3a60] text-white px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto shadow-lg"
+                  className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto shadow-lg"
                 >
                   <Calendar className="w-5 h-5" />
                   Booking Sekarang
@@ -60,7 +60,7 @@ export function HeroSection() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-2 border-[#1a2744] text-[#1a2744] hover:bg-[#1a2744]/5 px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto"
+                  className="border-2 border-[#0A1628] text-[#0A1628] hover:bg-[#0A1628]/5 px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto"
                 >
                   Daftar Sekarang
                   <ArrowRight className="w-5 h-5" />
@@ -71,11 +71,11 @@ export function HeroSection() {
 
           {/* Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-[#1a2744] to-[#2a3a60] rounded-3xl p-8 shadow-2xl">
+            <div className="bg-gradient-to-br from-[#0A1628] to-[#1B3A6B] rounded-3xl p-8 shadow-2xl">
               <div className="bg-white rounded-2xl p-6 space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#1a2744]/10 rounded-full flex items-center justify-center">
-                    <Calendar className="w-5 h-5 text-[#1a2744]" />
+                  <div className="w-10 h-10 bg-[#0A1628]/10 rounded-full flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-[#0A1628]" />
                   </div>
                   <div>
                     <p className="font-semibold text-slate-800">Jadwal Terapi Hari Ini</p>

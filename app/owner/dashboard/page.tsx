@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Users, UserCheck, Calendar, DollarSign, TrendingUp, Receipt, Ticket, ArrowUpRight } from "lucide-react";
@@ -56,12 +56,12 @@ export default function OwnerDashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Owner Dashboard</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Owner Dashboard</h1>
           <p className="text-gray-500 text-sm mt-1">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
         </div>
         <div className="text-right">
           <p className="text-sm text-gray-500">Selamat datang,</p>
-          <p className="font-semibold text-[#1a2744]">{user?.displayName || "Owner"}</p>
+          <p className="font-semibold text-[#0A1628]">{user?.displayName || "Owner"}</p>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function OwnerDashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           { label: "Pendapatan Hari Ini", value: stats.todayRevenue, color: "from-blue-500 to-blue-600" },
-          { label: "Pendapatan Bulan Ini", value: monthlyRevenue, color: "from-[#1a2744] to-[#2a3a60]" },
+          { label: "Pendapatan Bulan Ini", value: monthlyRevenue, color: "from-[#0A1628] to-[#1B3A6B]" },
           { label: "Pendapatan Tahun Ini", value: yearlyRevenue, color: "from-green-600 to-green-700" },
         ].map((r) => (
           <div key={r.label} className={`bg-gradient-to-br ${r.color} rounded-2xl p-6 text-white`}>
@@ -102,7 +102,7 @@ export default function OwnerDashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#1a2744]">
+            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#0A1628]">
               <Receipt className="w-5 h-5" />
               Ringkasan Invoice
             </CardTitle>
@@ -114,7 +114,7 @@ export default function OwnerDashboardPage() {
                   { label: "Total Invoice", value: invoices.length, color: "text-slate-700" },
                   { label: "Invoice Lunas", value: paidInvoices.length, color: "text-green-600" },
                   { label: "Invoice Belum Bayar", value: unpaidCount, color: "text-yellow-600" },
-                  { label: "Total Pendapatan", value: formatCurrency(totalRevenue), color: "text-[#1a2744] font-bold" },
+                  { label: "Total Pendapatan", value: formatCurrency(totalRevenue), color: "text-[#0A1628] font-bold" },
                 ].map((item) => (
                   <div key={item.label} className="flex justify-between items-center py-2 border-b border-gray-50 last:border-0">
                     <span className="text-gray-600 text-sm">{item.label}</span>
@@ -128,7 +128,7 @@ export default function OwnerDashboardPage() {
 
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#1a2744]">
+            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#0A1628]">
               <TrendingUp className="w-5 h-5" />
               Target Bisnis
             </CardTitle>
@@ -144,11 +144,11 @@ export default function OwnerDashboardPage() {
                   <div key={t.label}>
                     <div className="flex justify-between text-sm mb-1">
                       <span className="text-gray-600">{t.label}</span>
-                      <span className="font-medium text-[#1a2744]">{pct}%</span>
+                      <span className="font-medium text-[#0A1628]">{pct}%</span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[#1a2744] to-blue-500 rounded-full transition-all"
+                        className="h-full bg-gradient-to-r from-[#0A1628] to-blue-500 rounded-full transition-all"
                         style={{ width: `${pct}%` }}
                       />
                     </div>

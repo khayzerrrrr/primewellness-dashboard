@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { Printer, X } from "lucide-react";
@@ -28,18 +28,18 @@ export function InvoicePrint({ invoice, onClose }: Props) {
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Segoe UI',Arial,sans-serif; color:#0f172a; background:#fff; padding:32px; }
-    .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; border-bottom:2px solid #1a2744; padding-bottom:16px; }
+    .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; border-bottom:2px solid #0A1628; padding-bottom:16px; }
     .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
     .info-box { background:#f8fafc; border-radius:8px; padding:12px; }
     .info-box-label { font-size:10px; text-transform:uppercase; color:#94a3b8; font-weight:600; letter-spacing:0.05em; margin-bottom:4px; }
     .info-box-value { font-size:13px; font-weight:500; color:#0f172a; }
-    .table-header { background:#1a2744; color:#fff; display:grid; grid-template-columns:1fr 80px 120px; padding:10px 16px; border-radius:8px 8px 0 0; }
+    .table-header { background:#0A1628; color:#fff; display:grid; grid-template-columns:1fr 80px 120px; padding:10px 16px; border-radius:8px 8px 0 0; }
     .table-header span { font-size:11px; font-weight:600; }
     .table-row { display:grid; grid-template-columns:1fr 80px 120px; padding:12px 16px; border-bottom:1px solid #f1f5f9; }
     .table-row span { font-size:13px; }
     .total-section { margin-top:16px; }
     .total-line { display:flex; justify-content:space-between; padding:6px 0; font-size:13px; color:#64748b; }
-    .grand-total { display:flex; justify-content:space-between; padding:14px 16px; background:#1a2744; border-radius:8px; margin-top:8px; }
+    .grand-total { display:flex; justify-content:space-between; padding:14px 16px; background:#0A1628; border-radius:8px; margin-top:8px; }
     .grand-total .label { font-size:14px; font-weight:600; color:#fff; }
     .grand-total .value { font-size:18px; font-weight:700; color:#fff; }
     .payment-box { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px; margin-top:16px; }
@@ -71,7 +71,7 @@ export function InvoicePrint({ invoice, onClose }: Props) {
         <div className="flex items-center justify-between p-4 border-b border-gray-100 sticky top-0 bg-white z-10">
           <h2 className="font-semibold text-slate-800">Preview Invoice</h2>
           <div className="flex gap-2">
-            <Button onClick={handlePrint} className="bg-[#1a2744] hover:bg-[#2a3a60] gap-2">
+            <Button onClick={handlePrint} className="bg-[#0A1628] hover:bg-[#1B3A6B] gap-2">
               <Printer className="w-4 h-4" />
               Cetak / PDF
             </Button>
@@ -82,15 +82,15 @@ export function InvoicePrint({ invoice, onClose }: Props) {
         {/* Printable content */}
         <div ref={printRef} className="p-6">
           {/* Header */}
-          <div className="flex justify-between items-start mb-6 pb-5 border-b-2 border-[#1a2744]">
+          <div className="flex justify-between items-start mb-6 pb-5 border-b-2 border-[#0A1628]">
             <div>
-              <p className="text-xl font-bold text-[#1a2744]">Prime Wellness</p>
+              <p className="text-xl font-bold text-[#0A1628]">Prime Wellness</p>
               <p className="text-xs text-gray-500">{CLINIC_INFO.address}</p>
               <p className="text-xs text-gray-400 mt-0.5">WA: {CLINIC_INFO.phone} · {CLINIC_INFO.email}</p>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold text-[#1a2744]">INVOICE</p>
-              <p className="text-xs font-mono text-teal-600 mt-1">{invoice.invoiceNumber}</p>
+              <p className="text-2xl font-bold text-[#0A1628]">INVOICE</p>
+              <p className="text-xs font-mono text-[#1B3A6B] mt-1">{invoice.invoiceNumber}</p>
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full mt-1 inline-block ${
                 invoice.status === "paid" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
               }`}>
@@ -119,7 +119,7 @@ export function InvoicePrint({ invoice, onClose }: Props) {
           <div className="mb-4">
             <p className="text-xs text-gray-400 uppercase font-semibold tracking-wide mb-2">Detail Layanan</p>
             <div className="border border-gray-100 rounded-xl overflow-hidden">
-              <div className="bg-[#1a2744] text-white grid grid-cols-12 px-4 py-2.5">
+              <div className="bg-[#0A1628] text-white grid grid-cols-12 px-4 py-2.5">
                 <span className="col-span-7 text-xs font-semibold">Layanan</span>
                 <span className="col-span-2 text-center text-xs font-semibold">Qty</span>
                 <span className="col-span-3 text-right text-xs font-semibold">Harga</span>
@@ -146,7 +146,7 @@ export function InvoicePrint({ invoice, onClose }: Props) {
                 <span>- {formatCurrency(invoice.discount)}</span>
               </div>
             )}
-            <div className="flex justify-between bg-[#1a2744] text-white rounded-xl px-4 py-3">
+            <div className="flex justify-between bg-[#0A1628] text-white rounded-xl px-4 py-3">
               <span className="font-semibold">TOTAL</span>
               <span className="text-xl font-bold">{formatCurrency(invoice.total)}</span>
             </div>

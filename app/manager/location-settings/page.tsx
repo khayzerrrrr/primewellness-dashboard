@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { MapPin, Navigation, Save, CheckCircle, Info, Camera, Users } from "lucide-react";
@@ -113,20 +113,20 @@ export default function LocationSettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Setup Lokasi Absensi</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Setup Lokasi Absensi</h1>
         <p className="text-gray-500 text-sm">Konfigurasi geofencing dan verifikasi foto karyawan</p>
       </div>
 
       {/* Geofencing Setup */}
-      <Card className="border-0 shadow-sm border-l-4 border-l-teal-500">
+      <Card className="border-0 shadow-sm border-l-4 border-l-[#2563EB]">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-teal-600" />
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-[#1B3A6B]" />
             Pengaturan Geofencing Klinik
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-start gap-2 text-xs text-teal-700 bg-teal-50 px-3 py-2 rounded-lg">
+          <div className="flex items-start gap-2 text-xs text-[#0A1628] bg-blue-50 px-3 py-2 rounded-lg">
             <Info className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>
               Karyawan FO dan Terapis hanya bisa clock-in jika berada dalam radius yang ditentukan dari koordinat ini.
@@ -139,32 +139,32 @@ export default function LocationSettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Nama/Alamat Lokasi</label>
               <input value={attLoc.address} onChange={(e) => setAttLoc((p) => ({ ...p, address: e.target.value }))}
                 placeholder="Contoh: Klinik Prime Wellness — Jl. Wahidin 207"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
               <input type="number" step="0.000001" value={attLoc.latitude}
                 onChange={(e) => setAttLoc((p) => ({ ...p, latitude: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
               <input type="number" step="0.000001" value={attLoc.longitude}
                 onChange={(e) => setAttLoc((p) => ({ ...p, longitude: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Radius Toleransi (meter)</label>
               <input type="number" min={50} max={1000} value={attLoc.radiusMeters}
                 onChange={(e) => setAttLoc((p) => ({ ...p, radiusMeters: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
               <p className="text-xs text-gray-400 mt-1">Disarankan 100–200 meter untuk klinik</p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Toleransi Keterlambatan (menit)</label>
               <input type="number" min={0} max={60} value={attLoc.lateAfterMinutes}
                 onChange={(e) => setAttLoc((p) => ({ ...p, lateAfterMinutes: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
               <p className="text-xs text-gray-400 mt-1">Clock-in setelah 08:{String(attLoc.lateAfterMinutes).padStart(2,"0")} → &quot;Terlambat&quot;</p>
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function LocationSettingsPage() {
 
           <div className="flex flex-wrap gap-3">
             <Button variant="outline" onClick={handleGetGPS} disabled={gettingGeo}
-              className="gap-2 border-teal-500 text-teal-700 hover:bg-teal-50">
+              className="gap-2 border-[#2563EB] text-[#0A1628] hover:bg-blue-50">
               <Navigation className="w-4 h-4" />
               {gettingGeo ? "Mengambil GPS..." : "Gunakan GPS Perangkat Ini"}
             </Button>
@@ -193,7 +193,7 @@ export default function LocationSettingsPage() {
           </div>
 
           <Button onClick={handleSave} disabled={saving}
-            className={`gap-2 ${saved ? "bg-green-600 hover:bg-green-700" : "bg-[#1a2744] hover:bg-[#2a3a60]"}`}>
+            className={`gap-2 ${saved ? "bg-green-600 hover:bg-green-700" : "bg-[#0A1628] hover:bg-[#1B3A6B]"}`}>
             {saved ? <><CheckCircle className="w-4 h-4" /> Tersimpan!</> : <><Save className="w-4 h-4" /> {saving ? "Menyimpan..." : "Simpan Pengaturan Lokasi"}</>}
           </Button>
         </CardContent>
@@ -202,7 +202,7 @@ export default function LocationSettingsPage() {
       {/* Photo Verification */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
             <Camera className="w-5 h-5 text-purple-600" />
             Verifikasi Foto Absensi
             {pendingRecs.length > 0 && (

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { CreditCard, CheckCircle, XCircle, Upload, Search, Eye } from "lucide-react";
@@ -99,12 +99,12 @@ export default function PaymentPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Proses Pembayaran</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Proses Pembayaran</h1>
         <p className="text-gray-500 text-sm">Konfirmasi pembayaran cash, transfer, atau QRIS dari pasien</p>
       </div>
 
       {/* Bank Info */}
-      <Card className="border-0 bg-[#1a2744] text-white shadow-sm">
+      <Card className="border-0 bg-[#0A1628] text-white shadow-sm">
         <CardContent className="p-5">
           <p className="text-white/70 text-sm mb-3 font-medium">Rekening Klinik</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -141,7 +141,7 @@ export default function PaymentPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari nama pasien atau no. invoice..."
-            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
           />
         </div>
         <select
@@ -184,12 +184,12 @@ export default function PaymentPage() {
                     {filtered.map((inv) => (
                       <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50">
                         <td className="py-3 px-4">
-                          <p className="font-mono text-xs text-teal-600">{inv.invoiceNumber}</p>
+                          <p className="font-mono text-xs text-[#1B3A6B]">{inv.invoiceNumber}</p>
                           <p className="text-xs text-gray-400">{getInvDate(inv) ? formatDate(getInvDate(inv)!, "dd MMM yyyy") : "—"}</p>
                         </td>
                         <td className="py-3 px-4 font-medium text-slate-800">{inv.patientName}</td>
                         <td className="py-3 px-4 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
-                        <td className="py-3 px-4 font-bold text-[#1a2744]">{formatCurrency(inv.total)}</td>
+                        <td className="py-3 px-4 font-bold text-[#0A1628]">{formatCurrency(inv.total)}</td>
                         <td className="py-3 px-4">
                           <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                             inv.status === "paid" ? "bg-green-100 text-green-700" :
@@ -203,7 +203,7 @@ export default function PaymentPage() {
                           {inv.status === "unpaid" ? (
                             <Button
                               size="sm"
-                              className="bg-[#1a2744] hover:bg-[#2a3a60] text-white text-xs h-7"
+                              className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-7"
                               onClick={() => setSelectedInvoice(inv)}
                             >
                               Konfirmasi
@@ -226,7 +226,7 @@ export default function PaymentPage() {
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
                         <p className="font-semibold text-slate-800 text-sm">{inv.patientName}</p>
-                        <p className="text-xs font-mono text-teal-600">{inv.invoiceNumber}</p>
+                        <p className="text-xs font-mono text-[#1B3A6B]">{inv.invoiceNumber}</p>
                         <p className="text-xs text-gray-400">{getInvDate(inv) ? formatDate(getInvDate(inv)!, "dd MMM yyyy") : "—"}</p>
                       </div>
                       <span className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${
@@ -239,11 +239,11 @@ export default function PaymentPage() {
                     </div>
                     <p className="text-xs text-gray-500 mb-3 truncate">{inv.serviceName || "—"}</p>
                     <div className="flex items-center justify-between">
-                      <p className="font-bold text-[#1a2744] text-base">{formatCurrency(inv.total)}</p>
+                      <p className="font-bold text-[#0A1628] text-base">{formatCurrency(inv.total)}</p>
                       {inv.status === "unpaid" && (
                         <Button
                           size="sm"
-                          className="bg-[#1a2744] hover:bg-[#2a3a60] text-white text-xs h-8"
+                          className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-8"
                           onClick={() => setSelectedInvoice(inv)}
                         >
                           Konfirmasi Pembayaran
@@ -263,12 +263,12 @@ export default function PaymentPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <Card className="w-full max-w-md border-0 shadow-2xl">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-[#1a2744]">Konfirmasi Pembayaran</CardTitle>
+              <CardTitle className="text-base text-[#0A1628]">Konfirmasi Pembayaran</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-gray-50 rounded-xl p-4">
                 <p className="text-xs text-gray-500 mb-1">Invoice</p>
-                <p className="font-mono font-bold text-[#1a2744]">{selectedInvoice.invoiceNumber}</p>
+                <p className="font-mono font-bold text-[#0A1628]">{selectedInvoice.invoiceNumber}</p>
                 <p className="font-medium text-slate-800 mt-2">{selectedInvoice.patientName}</p>
                 <p className="text-2xl font-bold text-green-700 mt-2">{formatCurrency(selectedInvoice.total)}</p>
               </div>
@@ -281,7 +281,7 @@ export default function PaymentPage() {
                       key={m}
                       onClick={() => setPayMethod(m)}
                       className={`p-3 rounded-xl border-2 text-sm font-medium transition-colors ${
-                        payMethod === m ? "border-[#1a2744] bg-[#1a2744]/5 text-[#1a2744]" : "border-gray-200 text-gray-600 hover:border-gray-300"
+                        payMethod === m ? "border-[#0A1628] bg-[#0A1628]/5 text-[#0A1628]" : "border-gray-200 text-gray-600 hover:border-gray-300"
                       }`}
                     >
                       {METHOD_LABELS[m]}
@@ -297,7 +297,7 @@ export default function PaymentPage() {
                     value={proofUrl}
                     onChange={(e) => setProofUrl(e.target.value)}
                     placeholder="https://..."
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
                   />
                   <p className="text-xs text-gray-400 mt-1">Paste URL bukti transfer dari WhatsApp/Google Drive</p>
                 </div>

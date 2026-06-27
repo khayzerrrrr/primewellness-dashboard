@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -70,7 +70,7 @@ export default function PatientProfilePage() {
         <CardHeader>
           <div className="flex items-center gap-4">
             <Avatar className="w-16 h-16">
-              <AvatarFallback className="bg-teal-600 text-white text-xl">
+              <AvatarFallback className="bg-[#1B3A6B] text-white text-xl">
                 {getInitials(displayName)}
               </AvatarFallback>
             </Avatar>
@@ -102,7 +102,7 @@ export default function PatientProfilePage() {
             </div>
             <Button
               type="submit"
-              className="bg-teal-600 hover:bg-teal-700 text-white gap-2"
+              className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2"
               disabled={saving}
             >
               {saving ? (

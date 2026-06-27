@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -55,7 +55,8 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Prime Wellness" />
-        <meta name="theme-color" content="#1a2744" />
+        <meta name="theme-color" content="#0A1628" />
+        <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>

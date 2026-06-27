@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { UserCheck, Plus, Pencil, ToggleLeft, ToggleRight, Percent, Award, X } from "lucide-react";
@@ -133,10 +133,10 @@ export default function AdminDoctorsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Terapis ({doctors.length})</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Terapis ({doctors.length})</h1>
           <p className="text-gray-500 text-sm">Kelola data terapis klinik</p>
         </div>
-        <Button className="bg-[#1a2744] hover:bg-[#2a3a60] gap-2" onClick={openCreate}>
+        <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] gap-2" onClick={openCreate}>
           <Plus className="w-4 h-4" />
           Tambah Terapis
         </Button>
@@ -155,12 +155,12 @@ export default function AdminDoctorsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {doctors.map((d) => (
             <Card key={d.id} className={`border-0 shadow-sm overflow-hidden ${!d.isActive ? "opacity-60" : ""}`}>
-              <div className="h-1.5 bg-gradient-to-r from-[#1a2744] to-blue-400" />
+              <div className="h-1.5 bg-gradient-to-r from-[#0A1628] to-blue-400" />
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Avatar className="w-12 h-12 flex-shrink-0">
-                      <AvatarFallback className="bg-[#1a2744] text-white font-bold">
+                      <AvatarFallback className="bg-[#0A1628] text-white font-bold">
                         {getInitials(d.fullName)}
                       </AvatarFallback>
                     </Avatar>
@@ -189,7 +189,7 @@ export default function AdminDoctorsPage() {
                   <p>{d.phone}</p>
                   {d.email && <p>{d.email}</p>}
                   {d.certificationNumber && (
-                    <p className="text-[#1a2744] font-mono flex items-center gap-1">
+                    <p className="text-[#0A1628] font-mono flex items-center gap-1">
                       <Award className="w-3 h-3" />
                       {d.certificationNumber}
                     </p>
@@ -237,7 +237,7 @@ export default function AdminDoctorsPage() {
       <Dialog open={open} onOpenChange={(o) => { setOpen(o); }}>
         <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-[#1a2744]">
+            <DialogTitle className="text-[#0A1628]">
               {editTarget ? "Edit Data Terapis" : "Tambah Terapis Baru"}
             </DialogTitle>
           </DialogHeader>
@@ -248,27 +248,27 @@ export default function AdminDoctorsPage() {
                 <label className="text-sm font-medium text-gray-700 block mb-1">Nama Lengkap *</label>
                 <input required value={form.fullName} onChange={(e) => set("fullName", e.target.value)}
                   placeholder="Nama lengkap terapis"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">No. HP *</label>
                   <input required value={form.phone} onChange={(e) => set("phone", e.target.value)}
                     placeholder="08xxxxxxxxxx"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Email</label>
                   <input type="email" value={form.email} onChange={(e) => set("email", e.target.value)}
                     placeholder="email@..."
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
                 </div>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">No. Sertifikat / Izin Praktik</label>
                 <input value={form.certificationNumber} onChange={(e) => set("certificationNumber", e.target.value)}
                   placeholder="Contoh: CERT-TCM-2024-XXXX"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
             </div>
 
@@ -288,8 +288,8 @@ export default function AdminDoctorsPage() {
                       onClick={() => toggleSpec(spec)}
                       className={`text-xs px-3 py-1.5 rounded-full border-2 transition-colors font-medium ${
                         selected
-                          ? "border-[#1a2744] bg-[#1a2744] text-white"
-                          : "border-gray-200 text-gray-600 hover:border-[#1a2744] hover:text-[#1a2744]"
+                          ? "border-[#0A1628] bg-[#0A1628] text-white"
+                          : "border-gray-200 text-gray-600 hover:border-[#0A1628] hover:text-[#0A1628]"
                       }`}
                     >
                       {selected && <span className="mr-1">✓</span>}
@@ -299,7 +299,7 @@ export default function AdminDoctorsPage() {
                 })}
               </div>
               {form.specializations.length > 0 && (
-                <p className="text-xs text-[#1a2744] mt-2 font-medium">
+                <p className="text-xs text-[#0A1628] mt-2 font-medium">
                   {form.specializations.length} keahlian dipilih
                 </p>
               )}
@@ -310,7 +310,7 @@ export default function AdminDoctorsPage() {
               <label className="text-sm font-medium text-gray-700 block mb-1">Bio / Deskripsi Singkat</label>
               <textarea value={form.bio} onChange={(e) => set("bio", e.target.value)}
                 rows={3} placeholder="Pengalaman, latar belakang terapi..."
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
             </div>
 
             {/* Commission Rate */}
@@ -338,7 +338,7 @@ export default function AdminDoctorsPage() {
             <Button
               type="submit"
               disabled={saving}
-              className="w-full bg-[#1a2744] hover:bg-[#2a3a60] h-11"
+              className="w-full bg-[#0A1628] hover:bg-[#1B3A6B] h-11"
             >
               {saving ? "Menyimpan..." : editTarget ? "Perbarui Data Terapis" : "Tambah Terapis"}
             </Button>

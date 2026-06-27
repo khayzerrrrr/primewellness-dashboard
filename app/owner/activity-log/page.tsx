@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import {
@@ -28,8 +28,8 @@ const ACTION_META: Record<string, { icon: React.ElementType; color: string; labe
   confirm_payment:     { icon: CheckCircle2, color: "bg-emerald-100 text-emerald-600", label: "Konfirmasi Pembayaran" },
   create_patient:      { icon: UserPlus,     color: "bg-purple-100 text-purple-600", label: "Daftar Pasien" },
   update_patient:      { icon: Pencil,       color: "bg-purple-50 text-purple-500",  label: "Update Pasien" },
-  create_service:      { icon: Settings,     color: "bg-teal-100 text-teal-600",     label: "Tambah Layanan" },
-  update_service:      { icon: Pencil,       color: "bg-teal-50 text-teal-500",      label: "Update Layanan" },
+  create_service:      { icon: Settings,     color: "bg-blue-100 text-[#1B3A6B]",     label: "Tambah Layanan" },
+  update_service:      { icon: Pencil,       color: "bg-blue-50 text-[#2563EB]",      label: "Update Layanan" },
   delete_service:      { icon: Trash2,       color: "bg-red-100 text-red-500",       label: "Hapus Layanan" },
   create_sop:          { icon: FileText,     color: "bg-indigo-100 text-indigo-600", label: "Buat SOP" },
   update_sop:          { icon: Pencil,       color: "bg-indigo-50 text-indigo-500",  label: "Update SOP" },
@@ -158,7 +158,7 @@ export default function ActivityLogPage() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Log Aktivitas Karyawan</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Log Aktivitas Karyawan</h1>
           <p className="text-gray-500 text-sm">Rekam jejak semua aksi yang dilakukan staf</p>
         </div>
         <Button onClick={load} variant="outline" size="sm" disabled={loading} className="gap-1.5">
@@ -170,8 +170,8 @@ export default function ActivityLogPage() {
       {/* Stats bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: "Total Log", value: logs.length, color: "bg-[#1a2744] text-white" },
-          { label: "Hari Ini", value: totalToday, color: "bg-teal-50 text-teal-700" },
+          { label: "Total Log", value: logs.length, color: "bg-[#0A1628] text-white" },
+          { label: "Hari Ini", value: totalToday, color: "bg-blue-50 text-[#0A1628]" },
           { label: "Ditampilkan", value: filtered.length, color: "bg-blue-50 text-blue-700" },
           { label: "Staff Aktif", value: new Set(logs.map((l) => l.userId)).size, color: "bg-purple-50 text-purple-700" },
         ].map((s) => (
@@ -202,7 +202,7 @@ export default function ActivityLogPage() {
           <Filter className="w-3.5 h-3.5" />
           Filter
           {(roleFilter !== "all" || resourceFilter !== "all" || dateFrom || dateTo) && (
-            <span className="w-2 h-2 bg-teal-500 rounded-full" />
+            <span className="w-2 h-2 bg-[#2563EB] rounded-full" />
           )}
         </Button>
       </div>
@@ -252,7 +252,7 @@ export default function ActivityLogPage() {
                     key={n}
                     onClick={() => setLimitCount(n)}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                      limitCount === n ? "bg-[#1a2744] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      limitCount === n ? "bg-[#0A1628] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
                   >
                     {n} log

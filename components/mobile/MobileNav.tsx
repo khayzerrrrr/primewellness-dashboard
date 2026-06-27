@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,12 +54,12 @@ const NAV_CONFIG: Record<string, NavItem[]> = {
 };
 
 const THEME_COLOR: Record<string, string> = {
-  owner: "#1a2744",
-  super_admin: "#1a2744",
-  manager: "#185fa5",
-  front_office: "#0f6e56",
+  owner: "#0A1628",
+  super_admin: "#0A1628",
+  manager: "#1B3A6B",
+  front_office: "#1B3A6B",
   therapist: "#533ab7",
-  patient: "#1a2744",
+  patient: "#0A1628",
 };
 
 export function MobileNav() {
@@ -67,7 +67,7 @@ export function MobileNav() {
   const pathname = usePathname();
   const role = (userData?.role as string) || "patient";
   const items = NAV_CONFIG[role] || NAV_CONFIG.patient;
-  const color = THEME_COLOR[role] || "#1a2744";
+  const color = THEME_COLOR[role] || "#0A1628";
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-100 safe-bottom">

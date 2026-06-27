@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Users, Search } from "lucide-react";
@@ -89,7 +89,7 @@ export default function AdminPatientsPage() {
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-3">
                       <Avatar className="w-8 h-8">
-                        <AvatarFallback className="bg-teal-600 text-white text-xs">
+                        <AvatarFallback className="bg-[#1B3A6B] text-white text-xs">
                           {getInitials(p.fullName)}
                         </AvatarFallback>
                       </Avatar>
@@ -126,7 +126,7 @@ export default function AdminPatientsPage() {
           filtered.map((p) => (
             <div key={p.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center gap-3">
               <Avatar className="w-11 h-11 flex-shrink-0">
-                <AvatarFallback className="bg-teal-600 text-white text-sm font-bold">
+                <AvatarFallback className="bg-[#1B3A6B] text-white text-sm font-bold">
                   {getInitials(p.fullName)}
                 </AvatarFallback>
               </Avatar>

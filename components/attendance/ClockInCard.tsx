@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { Camera, MapPin, CheckCircle, XCircle, AlertCircle, RotateCcw, Loader2 } from "lucide-react";
@@ -272,7 +272,7 @@ export function ClockInCard({ userId, clinicLocation, onSuccess, label = "Clock 
       {/* Action buttons */}
       <div className="flex gap-3">
         {step === "idle" && (
-          <Button onClick={startCamera} disabled={disabled} className="flex-1 bg-[#1a2744] hover:bg-[#2a3a60] gap-2">
+          <Button onClick={startCamera} disabled={disabled} className="flex-1 bg-[#0A1628] hover:bg-[#1B3A6B] gap-2">
             <Camera className="w-4 h-4" />
             Buka Kamera
           </Button>
@@ -281,7 +281,7 @@ export function ClockInCard({ userId, clinicLocation, onSuccess, label = "Clock 
         {step === "camera" && (
           <>
             <Button variant="outline" onClick={reset} className="flex-1">Batal</Button>
-            <Button onClick={takePhoto} className="flex-1 bg-[#1a2744] hover:bg-[#2a3a60] gap-2">
+            <Button onClick={takePhoto} className="flex-1 bg-[#0A1628] hover:bg-[#1B3A6B] gap-2">
               <Camera className="w-4 h-4" />
               Ambil Foto
             </Button>
@@ -294,7 +294,7 @@ export function ClockInCard({ userId, clinicLocation, onSuccess, label = "Clock 
               <RotateCcw className="w-4 h-4" />
               Ulangi
             </Button>
-            <Button onClick={handleSubmit} disabled={submitting} className="flex-1 bg-[#1a2744] hover:bg-[#2a3a60] gap-2">
+            <Button onClick={handleSubmit} disabled={submitting} className="flex-1 bg-[#0A1628] hover:bg-[#1B3A6B] gap-2">
               {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
               {label}
             </Button>

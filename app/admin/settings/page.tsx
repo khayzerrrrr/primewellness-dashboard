@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -138,7 +138,7 @@ export default function AdminSettingsPage() {
 
         <Button
           type="submit"
-          className="bg-teal-600 hover:bg-teal-700 text-white gap-2"
+          className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2"
           disabled={saving}
         >
           {saving ? (

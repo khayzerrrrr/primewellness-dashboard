@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef } from "react";
 import { Bell, X, CheckCheck, Calendar, Receipt, UserCheck, Info } from "lucide-react";
@@ -111,7 +111,7 @@ export function NotificationBell() {
             </div>
             <div className="flex items-center gap-2">
               {unread > 0 && (
-                <button onClick={markAllRead} className="text-xs text-[#1a2744] hover:underline">Tandai semua baca</button>
+                <button onClick={markAllRead} className="text-xs text-[#0A1628] hover:underline">Tandai semua baca</button>
               )}
               <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600">
                 <X className="w-4 h-4" />

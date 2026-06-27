@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -65,7 +65,7 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 bg-[#1a2744] transform transition-transform duration-300 ease-in-out flex flex-col",
+          "fixed inset-y-0 left-0 z-50 w-64 bg-[#0A1628] transform transition-transform duration-300 ease-in-out flex flex-col",
           sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
@@ -152,7 +152,7 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 px-2 h-9">
                   <Avatar className="w-7 h-7">
-                    <AvatarFallback className="bg-[#1a2744] text-white text-xs font-bold">
+                    <AvatarFallback className="bg-[#0A1628] text-white text-xs font-bold">
                       {getInitials(displayName)}
                     </AvatarFallback>
                   </Avatar>

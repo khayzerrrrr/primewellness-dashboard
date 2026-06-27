@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Stethoscope, ArrowRight, Loader2 } from "lucide-react";
@@ -59,23 +59,23 @@ export function BookingStep1Service({ selected, onSelect }: Props) {
               onClick={() => onSelect(service)}
               className={`w-full text-left p-5 rounded-xl border-2 transition-all hover:shadow-md ${
                 selected?.id === service.id
-                  ? "border-teal-500 bg-teal-50"
-                  : "border-gray-100 hover:border-teal-200 bg-white"
+                  ? "border-[#2563EB] bg-blue-50"
+                  : "border-gray-100 hover:border-blue-200 bg-white"
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Stethoscope className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Stethoscope className="w-5 h-5 text-[#1B3A6B]" />
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold text-slate-800">{service.name}</p>
                   <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{service.description}</p>
                   <div className="flex items-center gap-3 mt-2">
-                    <span className="text-teal-700 font-bold text-sm">{formatCurrency(service.price)}</span>
+                    <span className="text-[#0A1628] font-bold text-sm">{formatCurrency(service.price)}</span>
                     <span className="text-gray-400 text-xs">• {service.duration} menit</span>
                   </div>
                 </div>
-                <ArrowRight className={`w-5 h-5 mt-1 transition-colors ${selected?.id === service.id ? "text-teal-500" : "text-gray-300"}`} />
+                <ArrowRight className={`w-5 h-5 mt-1 transition-colors ${selected?.id === service.id ? "text-[#2563EB]" : "text-gray-300"}`} />
               </div>
             </button>
           ))}

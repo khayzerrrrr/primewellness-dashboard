@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -82,7 +82,7 @@ function KpiCard({ kpi, rank }: { kpi: KpiScore; rank: number }) {
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <Calendar className="w-3.5 h-3.5" />
             <span className="w-28">Kehadiran (30%)</span>
-            <ScoreBar value={kpi.attendanceScore} color="bg-teal-400" />
+            <ScoreBar value={kpi.attendanceScore} color="bg-[#2563EB]" />
           </div>
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <Stethoscope className="w-3.5 h-3.5" />
@@ -105,7 +105,7 @@ function KpiCard({ kpi, rank }: { kpi: KpiScore; rank: number }) {
         {expanded && (
           <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="bg-gray-50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-teal-600">{kpi.presentDays}</p>
+              <p className="text-2xl font-bold text-[#1B3A6B]">{kpi.presentDays}</p>
               <p className="text-xs text-gray-500">Hari Hadir</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3 text-center">
@@ -222,7 +222,7 @@ export default function KpiPage() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">KPI Karyawan</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">KPI Karyawan</h1>
           <p className="text-gray-500 text-sm">Penilaian kinerja berbasis kehadiran, sesi, SOP, dan ketepatan waktu</p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -252,13 +252,13 @@ export default function KpiPage() {
       </div>
 
       {/* Algorithm info */}
-      <div className="bg-[#1a2744]/5 border border-[#1a2744]/10 rounded-xl p-4">
-        <p className="text-xs font-semibold text-[#1a2744] mb-2 flex items-center gap-1.5">
+      <div className="bg-[#0A1628]/5 border border-[#0A1628]/10 rounded-xl p-4">
+        <p className="text-xs font-semibold text-[#0A1628] mb-2 flex items-center gap-1.5">
           <Info className="w-3.5 h-3.5" /> Algoritma Penilaian KPI
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: "Kehadiran", weight: "30%", desc: "Hadir penuh + 50% terlambat", color: "bg-teal-500" },
+            { label: "Kehadiran", weight: "30%", desc: "Hadir penuh + 50% terlambat", color: "bg-[#2563EB]" },
             { label: "Kinerja/Sesi", weight: "35%", desc: "Terapis: completion rate sesi", color: "bg-blue-500" },
             { label: "Kepatuhan SOP", weight: "20%", desc: "Persentase SOP yang dibaca", color: "bg-purple-500" },
             { label: "Ketepatan Waktu", weight: "15%", desc: "Rasio hadir vs terlambat", color: "bg-orange-500" },
@@ -266,7 +266,7 @@ export default function KpiPage() {
             <div key={item.label} className="flex items-start gap-2">
               <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${item.color}`} />
               <div>
-                <p className="text-xs font-semibold text-slate-700">{item.label} <span className="text-[#1a2744] font-bold">{item.weight}</span></p>
+                <p className="text-xs font-semibold text-slate-700">{item.label} <span className="text-[#0A1628] font-bold">{item.weight}</span></p>
                 <p className="text-xs text-gray-500">{item.desc}</p>
               </div>
             </div>
@@ -277,10 +277,10 @@ export default function KpiPage() {
       {/* Summary stats */}
       {!loading && kpiData.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
-          <div className="md:col-span-2 bg-[#1a2744] rounded-xl p-4 text-white">
+          <div className="md:col-span-2 bg-[#0A1628] rounded-xl p-4 text-white">
             <p className="text-3xl font-bold">{avgScore}</p>
             <p className="text-xs text-white/60 mt-0.5">Rata-rata Skor Tim</p>
-            <p className="text-xs font-semibold mt-1 text-teal-300">
+            <p className="text-xs font-semibold mt-1 text-blue-300">
               {avgScore >= 90 ? "Tim sangat solid!" : avgScore >= 80 ? "Tim berjalan baik" : avgScore >= 70 ? "Perlu peningkatan" : "Butuh evaluasi segera"}
             </p>
           </div>
@@ -303,7 +303,7 @@ export default function KpiPage() {
               onClick={() => setRoleFilter(r)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 roleFilter === r
-                  ? "bg-[#1a2744] text-white"
+                  ? "bg-[#0A1628] text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >

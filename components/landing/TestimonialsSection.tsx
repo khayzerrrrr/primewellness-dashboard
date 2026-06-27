@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -49,7 +49,7 @@ export function TestimonialsSection() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+    <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -67,7 +67,7 @@ export function TestimonialsSection() {
               className="border border-gray-100 hover:shadow-lg transition-shadow"
             >
               <CardContent className="p-6">
-                <Quote className="w-8 h-8 text-teal-200 mb-4" />
+                <Quote className="w-8 h-8 text-blue-200 mb-4" />
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
@@ -80,7 +80,7 @@ export function TestimonialsSection() {
                   &ldquo;{testimonial.comment}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-[#1B3A6B] rounded-full flex items-center justify-center">
                     <span className="text-white text-sm font-bold">
                       {getInitials(testimonial.patientName)}
                     </span>

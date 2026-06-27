@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { FileText, ChevronDown, ChevronUp, BookOpen, AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
@@ -87,12 +87,12 @@ export default function DoctorSOPPage() {
     <div className="space-y-6">
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">SOP Terapis</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">SOP Terapis</h1>
           <p className="text-gray-500 text-sm">Standar Operasional Prosedur yang berlaku untuk terapis</p>
         </div>
         {sops.length > 0 && (
-          <div className="bg-[#1a2744] text-white px-4 py-2 rounded-xl text-sm">
-            <span className="font-bold text-teal-300">{readCount}</span>
+          <div className="bg-[#0A1628] text-white px-4 py-2 rounded-xl text-sm">
+            <span className="font-bold text-blue-300">{readCount}</span>
             <span className="text-white/70">/{sops.length} SOP dibaca</span>
           </div>
         )}
@@ -129,7 +129,7 @@ export default function DoctorSOPPage() {
                   <CardHeader className="p-4 hover:bg-gray-50 transition-colors">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${isRead ? "bg-green-500" : "bg-[#1a2744]"}`}>
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${isRead ? "bg-green-500" : "bg-[#0A1628]"}`}>
                           {isRead
                             ? <CheckCircle2 className="w-4 h-4 text-white" />
                             : <FileText className="w-4 h-4 text-white" />
@@ -138,7 +138,7 @@ export default function DoctorSOPPage() {
                         <div className="min-w-0">
                           <p className="font-semibold text-slate-800 text-sm">{sop.title}</p>
                           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                            <span className="text-xs bg-[#1a2744]/10 text-[#1a2744] px-2 py-0.5 rounded-full font-medium">
+                            <span className="text-xs bg-[#0A1628]/10 text-[#0A1628] px-2 py-0.5 rounded-full font-medium">
                               {ROLE_LABELS[sop.role] ?? sop.role}
                             </span>
                             <span className="text-xs text-gray-400">Diperbarui: {formatDate(sop.updatedAt)}</span>

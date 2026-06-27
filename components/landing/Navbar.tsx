@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -46,7 +46,7 @@ export function Navbar() {
               className="object-contain"
             />
             <div className="flex flex-col leading-tight">
-              <span className="font-bold text-base text-[#1a2744]">Prime Wellness</span>
+              <span className="font-bold text-base text-[#0A1628]">Prime Wellness</span>
               <span className="text-[10px] text-gray-500 font-medium tracking-wide">THERAPY & RELIEFY</span>
             </div>
           </Link>
@@ -57,7 +57,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-600 hover:text-[#1a2744] font-medium transition-colors text-sm"
+                className="text-gray-600 hover:text-[#0A1628] font-medium transition-colors text-sm"
               >
                 {link.label}
               </a>
@@ -79,12 +79,12 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/sign-in">
-              <Button variant="outline" size="sm" className="border-[#1a2744] text-[#1a2744] hover:bg-gray-50">
+              <Button variant="outline" size="sm" className="border-[#0A1628] text-[#0A1628] hover:bg-gray-50">
                 {t("nav.login")}
               </Button>
             </Link>
             <Link href="/booking">
-              <Button size="sm" className="bg-[#1a2744] hover:bg-[#2a3a60] text-white">
+              <Button size="sm" className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white">
                 {t("common.bookNow")}
               </Button>
             </Link>
@@ -106,7 +106,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-600 hover:text-[#1a2744] font-medium py-2 px-2"
+                className="text-gray-600 hover:text-[#0A1628] font-medium py-2 px-2"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -114,12 +114,12 @@ export function Navbar() {
             ))}
             <div className="flex gap-2 pt-2">
               <Link href="/sign-in" className="flex-1">
-                <Button variant="outline" className="w-full border-teal-600 text-teal-700">
+                <Button variant="outline" className="w-full border-[#1B3A6B] text-[#0A1628]">
                   {t("nav.login")}
                 </Button>
               </Link>
               <Link href="/booking" className="flex-1">
-                <Button className="w-full bg-[#1a2744] hover:bg-[#2a3a60] text-white">
+                <Button className="w-full bg-[#0A1628] hover:bg-[#1B3A6B] text-white">
                   {t("common.bookNow")}
                 </Button>
               </Link>

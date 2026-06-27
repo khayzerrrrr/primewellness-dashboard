@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -80,7 +80,7 @@ export function DoctorsSection() {
   }, []);
 
   return (
-    <section id="doctors" className="py-20 bg-gradient-to-br from-teal-50 to-white">
+    <section id="doctors" className="py-20 bg-gradient-to-br from-blue-50 to-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -99,7 +99,7 @@ export function DoctorsSection() {
             >
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-16 h-16 bg-[#1a2744] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md">
+                  <div className="w-16 h-16 bg-[#0A1628] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md">
                     {doctor.photoURL ? (
                       <img
                         src={doctor.photoURL}
@@ -118,7 +118,7 @@ export function DoctorsSection() {
                     </h3>
                     <Badge
                       variant="secondary"
-                      className="mt-1 bg-blue-100 text-[#1a2744] text-xs"
+                      className="mt-1 bg-blue-100 text-[#0A1628] text-xs"
                     >
                       {doctor.specialization}
                     </Badge>
@@ -131,7 +131,7 @@ export function DoctorsSection() {
                     {doctor.schedule.map((s) => (
                       <span
                         key={s.day}
-                        className="text-xs bg-blue-50 text-[#1a2744] border border-blue-200 px-2 py-1 rounded-md"
+                        className="text-xs bg-blue-50 text-[#0A1628] border border-blue-200 px-2 py-1 rounded-md"
                       >
                         {DAYS_LABEL[s.day]} {s.startTime}-{s.endTime}
                       </span>
@@ -140,7 +140,7 @@ export function DoctorsSection() {
                 </div>
 
                 <Link href="/booking">
-                  <Button className="w-full bg-[#1a2744] hover:bg-[#2a3a60] text-white gap-2">
+                  <Button className="w-full bg-[#0A1628] hover:bg-[#1B3A6B] text-white gap-2">
                     <Calendar className="w-4 h-4" />
                     {t("doctors.bookAppointment")}
                   </Button>

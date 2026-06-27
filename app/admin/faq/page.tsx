@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -81,7 +81,7 @@ export default function AdminFAQPage() {
         <h1 className="text-2xl font-bold text-slate-900">FAQ</h1>
         <Dialog open={open} onOpenChange={(o) => { setOpen(o); if (!o) { reset(); setEditId(null); } }}>
           <DialogTrigger asChild>
-            <Button className="bg-teal-600 hover:bg-teal-700 text-white gap-2">
+            <Button className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2">
               <Plus className="w-4 h-4" />
               Tambah FAQ
             </Button>
@@ -103,7 +103,7 @@ export default function AdminFAQPage() {
                 <Label>Jawaban</Label>
                 <Textarea {...register("answer")} rows={4} />
               </div>
-              <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white" disabled={saving}>
+              <Button type="submit" className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white" disabled={saving}>
                 {saving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Menyimpan...</> : "Simpan"}
               </Button>
             </form>

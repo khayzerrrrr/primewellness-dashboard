@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -79,9 +79,9 @@ export function FAQSection() {
             <AccordionItem
               key={faq.id}
               value={faq.id}
-              className="border border-gray-200 rounded-xl px-6 hover:border-teal-200 transition-colors"
+              className="border border-gray-200 rounded-xl px-6 hover:border-blue-200 transition-colors"
             >
-              <AccordionTrigger className="text-left font-medium text-slate-800 hover:text-teal-700 py-5">
+              <AccordionTrigger className="text-left font-medium text-slate-800 hover:text-[#0A1628] py-5">
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 pb-5 leading-relaxed">

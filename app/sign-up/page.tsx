@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -7,7 +7,8 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Heart, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -86,14 +87,12 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-white flex items-center justify-center p-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-teal-700 font-bold text-2xl">
-            <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
-              <Heart className="w-5 h-5 text-white" />
-            </div>
-            Prime Wellness
+          <Link href="/" className="inline-flex flex-col items-center gap-2">
+            <Image src="/logo.png" alt="Prime Wellness" width={90} height={90} className="object-contain" priority />
+            <span className="font-bold text-xl text-[#0A1628]">Prime Wellness</span>
           </Link>
         </div>
 
@@ -238,7 +237,7 @@ export default function SignUpPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white mt-2"
+                className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white mt-2"
                 disabled={loading}
               >
                 {loading ? (
@@ -254,7 +253,7 @@ export default function SignUpPage() {
 
             <p className="text-center text-sm text-gray-500 mt-6">
               {t("alreadyHaveAccount")}{" "}
-              <Link href="/sign-in" className="text-teal-600 hover:text-teal-700 font-semibold">
+              <Link href="/sign-in" className="text-[#1B3A6B] hover:text-[#0A1628] font-semibold">
                 {t("login")}
               </Link>
             </p>

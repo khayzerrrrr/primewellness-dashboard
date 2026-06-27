@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { UserPlus, Calendar, CreditCard, Clock, CheckCircle, AlertCircle, PhoneCall, RefreshCw } from "lucide-react";
@@ -77,27 +77,27 @@ export default function FrontOfficeDashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Front Office</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Front Office</h1>
           <p className="text-gray-500 text-sm mt-1">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={load} className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 transition-colors" title="Refresh">
             <RefreshCw className="w-4 h-4" />
           </button>
-          <p className="text-sm font-medium text-[#1a2744]">{user?.displayName}</p>
+          <p className="text-sm font-medium text-[#0A1628]">{user?.displayName}</p>
         </div>
       </div>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Link href="/front-office/register">
-          <Button className="w-full h-16 bg-[#1a2744] hover:bg-[#2a3a60] text-white flex-col gap-1">
+          <Button className="w-full h-16 bg-[#0A1628] hover:bg-[#1B3A6B] text-white flex-col gap-1">
             <UserPlus className="w-5 h-5" />
             <span className="text-xs">Registrasi Pasien</span>
           </Button>
         </Link>
         <Link href="/admin/appointments">
-          <Button variant="outline" className="w-full h-16 border-[#1a2744] text-[#1a2744] flex-col gap-1">
+          <Button variant="outline" className="w-full h-16 border-[#0A1628] text-[#0A1628] flex-col gap-1">
             <Calendar className="w-5 h-5" />
             <span className="text-xs">Buat Booking</span>
           </Button>
@@ -149,7 +149,7 @@ export default function FrontOfficeDashboardPage() {
                     </Button>
                     <Button size="sm" disabled={confirmingId === app.id}
                       onClick={() => handleConfirm(app)}
-                      className="text-xs h-8 px-3 bg-[#1a2744] hover:bg-[#2a3a60]">
+                      className="text-xs h-8 px-3 bg-[#0A1628] hover:bg-[#1B3A6B]">
                       {confirmingId === app.id ? "..." : "Konfirmasi"}
                     </Button>
                   </div>
@@ -167,7 +167,7 @@ export default function FrontOfficeDashboardPage() {
         {/* Today Queue */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#1a2744]">
+            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#0A1628]">
               <Calendar className="w-5 h-5" />
               Antrian Hari Ini
               <span className="ml-auto text-sm font-normal text-gray-500">
@@ -205,7 +205,7 @@ export default function FrontOfficeDashboardPage() {
         {/* Unpaid Invoices */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#1a2744]">
+            <CardTitle className="text-base font-semibold flex items-center gap-2 text-[#0A1628]">
               <AlertCircle className="w-5 h-5 text-red-500" />
               Invoice Belum Bayar ({unpaidInvoices.length})
             </CardTitle>

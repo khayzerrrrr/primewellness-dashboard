@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Settings, Percent, Save, Building2, Clock, CheckCircle, Plus, Trash2, CreditCard, Phone, Globe, Instagram, MapPin, Navigation } from "lucide-react";
@@ -162,7 +162,7 @@ export default function OwnerSettingsPage() {
   const previewPrices = [150000, 200000, 250000, 300000, 400000, 500000];
   const SaveBtn = ({ skey, onClick }: { skey: string; onClick: () => void }) => (
     <Button onClick={onClick} disabled={saving === skey}
-      className={`gap-2 transition-colors ${saved === skey ? "bg-green-600 hover:bg-green-700" : "bg-[#1a2744] hover:bg-[#2a3a60]"}`}>
+      className={`gap-2 transition-colors ${saved === skey ? "bg-green-600 hover:bg-green-700" : "bg-[#0A1628] hover:bg-[#1B3A6B]"}`}>
       {saved === skey ? <><CheckCircle className="w-4 h-4" /> Tersimpan!</> : <><Save className="w-4 h-4" /> {saving === skey ? "Menyimpan..." : "Simpan"}</>}
     </Button>
   );
@@ -172,14 +172,14 @@ export default function OwnerSettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Pengaturan Klinik</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Pengaturan Klinik</h1>
         <p className="text-gray-500 text-sm">Konfigurasi sistem untuk owner & super admin</p>
       </div>
 
       {/* Clinic Info */}
       <Card className="border-0 shadow-sm border-l-4 border-l-blue-400">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
             <Building2 className="w-5 h-5 text-blue-500" />
             Informasi Klinik
           </CardTitle>
@@ -194,14 +194,14 @@ export default function OwnerSettingsPage() {
               <div key={f.label}>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{f.label}</label>
                 <input value={f.value} onChange={(e) => f.set(e.target.value)} placeholder={f.placeholder}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
             ))}
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
               <textarea value={clinicAddress} onChange={(e) => setClinicAddress(e.target.value)}
                 placeholder="Alamat lengkap klinik" rows={2}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744] resize-none" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628] resize-none" />
             </div>
           </div>
           <div className="bg-blue-50 rounded-lg p-3 text-xs text-blue-700">
@@ -214,7 +214,7 @@ export default function OwnerSettingsPage() {
       {/* Commission Rate */}
       <Card className="border-0 shadow-sm border-l-4 border-l-orange-400">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
             <Percent className="w-5 h-5 text-orange-500" />
             Komisi Terapis Default
           </CardTitle>
@@ -245,10 +245,10 @@ export default function OwnerSettingsPage() {
       </Card>
 
       {/* Operational Hours */}
-      <Card className="border-0 shadow-sm border-l-4 border-l-teal-400">
+      <Card className="border-0 shadow-sm border-l-4 border-l-[#2563EB]">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
-            <Clock className="w-5 h-5 text-teal-500" />
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
+            <Clock className="w-5 h-5 text-[#2563EB]" />
             Jam Operasional
           </CardTitle>
         </CardHeader>
@@ -259,7 +259,7 @@ export default function OwnerSettingsPage() {
               <label className="flex items-center gap-1.5 cursor-pointer">
                 <input type="checkbox" checked={!h.isClosed}
                   onChange={(e) => updateOps(i, "isClosed", !e.target.checked)}
-                  className="accent-[#1a2744]" />
+                  className="accent-[#0A1628]" />
                 <span className="text-xs text-gray-500">Buka</span>
               </label>
               {h.isClosed ? (
@@ -267,10 +267,10 @@ export default function OwnerSettingsPage() {
               ) : (
                 <>
                   <input type="time" value={h.open} onChange={(e) => updateOps(i, "open", e.target.value)}
-                    className="border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#1a2744]" />
+                    className="border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#0A1628]" />
                   <span className="text-gray-400 text-sm">—</span>
                   <input type="time" value={h.close} onChange={(e) => updateOps(i, "close", e.target.value)}
-                    className="border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#1a2744]" />
+                    className="border border-gray-200 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#0A1628]" />
                 </>
               )}
             </div>
@@ -285,7 +285,7 @@ export default function OwnerSettingsPage() {
       <Card className="border-0 shadow-sm border-l-4 border-l-green-400">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-green-500" />
               Rekening Bank (untuk Invoice)
             </CardTitle>
@@ -307,7 +307,7 @@ export default function OwnerSettingsPage() {
                 ].map((f) => (
                   <input key={f.field} value={bank[f.field]} onChange={(e) => updateBank(i, f.field, e.target.value)}
                     placeholder={f.placeholder}
-                    className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#1a2744]" />
+                    className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#0A1628]" />
                 ))}
               </div>
               <button onClick={() => removeBank(i)} className="text-gray-300 hover:text-red-500 transition-colors mt-2">
@@ -320,15 +320,15 @@ export default function OwnerSettingsPage() {
       </Card>
 
       {/* Attendance Location */}
-      <Card className="border-0 shadow-sm border-l-4 border-l-teal-500">
+      <Card className="border-0 shadow-sm border-l-4 border-l-[#2563EB]">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-teal-600" />
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-[#1B3A6B]" />
             Setup Lokasi Absensi (Geofencing)
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="bg-teal-50 rounded-lg p-3 text-xs text-teal-700">
+          <div className="bg-blue-50 rounded-lg p-3 text-xs text-[#0A1628]">
             Karyawan hanya bisa clock-in jika berada dalam radius yang ditentukan dari koordinat klinik. GPS diverifikasi otomatis saat absen.
           </div>
 
@@ -337,31 +337,31 @@ export default function OwnerSettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Alamat Lokasi (label)</label>
               <input value={attLoc.address} onChange={(e) => setAttLoc((p) => ({ ...p, address: e.target.value }))}
                 placeholder="Nama/alamat lokasi klinik"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Radius Toleransi (meter)</label>
               <input type="number" min={50} max={1000} value={attLoc.radiusMeters}
                 onChange={(e) => setAttLoc((p) => ({ ...p, radiusMeters: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
               <input type="number" step="0.000001" value={attLoc.latitude}
                 onChange={(e) => setAttLoc((p) => ({ ...p, latitude: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB] font-mono" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
               <input type="number" step="0.000001" value={attLoc.longitude}
                 onChange={(e) => setAttLoc((p) => ({ ...p, longitude: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB] font-mono" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Toleransi Keterlambatan (menit setelah 08:00)</label>
               <input type="number" min={0} max={60} value={attLoc.lateAfterMinutes}
                 onChange={(e) => setAttLoc((p) => ({ ...p, lateAfterMinutes: Number(e.target.value) }))}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
               <p className="text-xs text-gray-400 mt-1">Contoh: 15 → dianggap terlambat jika clock-in setelah 08:15</p>
             </div>
           </div>
@@ -376,7 +376,7 @@ export default function OwnerSettingsPage() {
           </div>
 
           <div className="flex gap-3 flex-wrap">
-            <Button variant="outline" onClick={handleGetCurrentLocation} disabled={gettingGeo} className="gap-2 border-teal-500 text-teal-700 hover:bg-teal-50">
+            <Button variant="outline" onClick={handleGetCurrentLocation} disabled={gettingGeo} className="gap-2 border-[#2563EB] text-[#0A1628] hover:bg-blue-50">
               <Navigation className="w-4 h-4" />
               {gettingGeo ? "Mengambil GPS..." : "Ambil Lokasi GPS Perangkat Ini"}
             </Button>
@@ -395,7 +395,7 @@ export default function OwnerSettingsPage() {
       {/* Social Media */}
       <Card className="border-0 shadow-sm border-l-4 border-l-pink-400">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+          <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
             <Instagram className="w-5 h-5 text-pink-500" />
             Media Sosial
           </CardTitle>
@@ -406,7 +406,7 @@ export default function OwnerSettingsPage() {
             <div className="flex gap-2 items-center">
               <span className="text-gray-400 text-sm">@</span>
               <input value={instagram} onChange={(e) => setInstagram(e.target.value)} placeholder="primewellness.id"
-                className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
             </div>
           </div>
           <div className="bg-pink-50 rounded-lg p-3 text-xs text-pink-700">

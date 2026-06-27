@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Receipt, DollarSign, Loader2, Printer } from "lucide-react";
@@ -87,7 +87,7 @@ export default function AdminInvoicesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Invoice & Pembayaran</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Invoice & Pembayaran</h1>
           <p className="text-gray-500 text-sm">{invoices.length} invoice total</p>
         </div>
       </div>
@@ -98,7 +98,7 @@ export default function AdminInvoicesPage() {
           <Receipt className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari invoice, pasien, layanan..."
-            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
         </div>
         <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
           className="border border-gray-200 rounded-lg px-3 py-2 text-sm">
@@ -143,7 +143,7 @@ export default function AdminInvoicesPage() {
             ) : (
               filtered.map((inv) => (
                 <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50">
-                  <td className="py-3 px-4 font-mono text-xs text-teal-600">{inv.invoiceNumber}</td>
+                  <td className="py-3 px-4 font-mono text-xs text-[#1B3A6B]">{inv.invoiceNumber}</td>
                   <td className="py-3 px-4 font-medium text-slate-800">{inv.patientName}</td>
                   <td className="py-3 px-4 text-gray-600 text-xs max-w-[140px] truncate">{inv.serviceName}</td>
                   <td className="py-3 px-4 font-semibold">{formatCurrency(inv.total)}</td>
@@ -197,7 +197,7 @@ export default function AdminInvoicesPage() {
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div>
                   <p className="font-semibold text-slate-800">{inv.patientName}</p>
-                  <p className="text-xs font-mono text-teal-600">{inv.invoiceNumber}</p>
+                  <p className="text-xs font-mono text-[#1B3A6B]">{inv.invoiceNumber}</p>
                 </div>
                 <span className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${INVOICE_STATUS_COLORS[inv.status] ?? "bg-gray-100 text-gray-600"}`}>
                   {STATUS_LABELS[inv.status] ?? inv.status}
@@ -240,7 +240,7 @@ export default function AdminInvoicesPage() {
           {payingInvoice && (
             <div className="space-y-4">
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm text-gray-500">Invoice: <span className="font-mono font-medium text-teal-600">{payingInvoice.invoiceNumber}</span></p>
+                <p className="text-sm text-gray-500">Invoice: <span className="font-mono font-medium text-[#1B3A6B]">{payingInvoice.invoiceNumber}</span></p>
                 <p className="text-sm text-gray-500">Pasien: <span className="font-medium text-slate-800">{payingInvoice.patientName}</span></p>
                 <p className="text-2xl font-bold text-slate-900 mt-2">{formatCurrency(payingInvoice.total)}</p>
               </div>

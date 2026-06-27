@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { ArrowLeft, Clock, CheckCircle, XCircle } from "lucide-react";
@@ -52,7 +52,7 @@ export function BookingStep3DateTime({ doctor, selectedDate, selectedTime, onSel
           <h2 className="text-xl font-bold text-slate-900">Pilih Tanggal & Jam</h2>
           {doctor && (
             <p className="text-gray-500 text-sm">
-              Terapis: <span className="text-teal-600 font-medium">{doctor.fullName}</span>
+              Terapis: <span className="text-[#1B3A6B] font-medium">{doctor.fullName}</span>
             </p>
           )}
         </div>
@@ -101,7 +101,7 @@ export function BookingStep3DateTime({ doctor, selectedDate, selectedTime, onSel
               {/* Legend */}
               <div className="flex items-center gap-3 mb-3 text-xs text-gray-500 flex-wrap">
                 <span className="flex items-center gap-1">
-                  <span className="w-3 h-3 rounded bg-teal-600 inline-block" /> Pilihan Anda
+                  <span className="w-3 h-3 rounded bg-[#1B3A6B] inline-block" /> Pilihan Anda
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-3 rounded bg-green-100 border border-green-300 inline-block" /> Tersedia
@@ -123,10 +123,10 @@ export function BookingStep3DateTime({ doctor, selectedDate, selectedTime, onSel
                         disabled={blocked}
                         className={`w-full py-2.5 px-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1
                           ${selected
-                            ? "bg-teal-600 text-white shadow-md"
+                            ? "bg-[#1B3A6B] text-white shadow-md"
                             : blocked
                               ? "bg-red-50 text-red-300 border border-red-200 cursor-not-allowed"
-                              : "bg-green-50 text-green-700 border border-green-200 hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700"
+                              : "bg-green-50 text-green-700 border border-green-200 hover:bg-blue-50 hover:border-blue-300 hover:text-[#0A1628]"
                           }`}
                       >
                         {selected ? (
@@ -154,7 +154,7 @@ export function BookingStep3DateTime({ doctor, selectedDate, selectedTime, onSel
       <Button
         onClick={handleConfirm}
         disabled={!date || !time}
-        className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+        className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white"
         size="lg"
       >
         Lanjutkan ke Konfirmasi

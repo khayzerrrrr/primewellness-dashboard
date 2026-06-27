@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+﻿import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { LucideIcon } from "lucide-react";
 
@@ -19,7 +19,7 @@ export function StatsCard({
   title,
   value,
   icon: Icon,
-  color = "bg-teal-100 text-teal-600",
+  color = "bg-blue-100 text-[#1B3A6B]",
   loading,
   trend,
 }: StatsCardProps) {

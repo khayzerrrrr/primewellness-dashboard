@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { UserPlus, CheckCircle, ChevronRight } from "lucide-react";
@@ -80,20 +80,20 @@ export default function RegisterPatientPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Registrasi Pasien</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Registrasi Pasien</h1>
           <p className="text-gray-500 text-sm">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
         </div>
         <Card className="border-0 shadow-sm max-w-lg">
           <CardContent className="p-8 text-center">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-[#1a2744] mb-2">Pasien Berhasil Didaftarkan!</h2>
+            <h2 className="text-xl font-bold text-[#0A1628] mb-2">Pasien Berhasil Didaftarkan!</h2>
             <p className="text-gray-600 mb-1">Nama: <strong>{form.fullName}</strong></p>
             <p className="text-gray-500 text-sm mb-6">ID Pasien: <code className="bg-gray-100 px-2 py-0.5 rounded">{patientId}</code></p>
             <div className="flex gap-3 justify-center">
               <Button variant="outline" onClick={() => { setForm(INIT); setDone(false); }}>
                 Daftarkan Pasien Lain
               </Button>
-              <Button className="bg-[#1a2744] hover:bg-[#2a3a60]" asChild>
+              <Button className="bg-[#0A1628] hover:bg-[#1B3A6B]" asChild>
                 <a href="/admin/appointments">Buat Booking Sekarang →</a>
               </Button>
             </div>
@@ -106,7 +106,7 @@ export default function RegisterPatientPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Registrasi Pasien Baru</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Registrasi Pasien Baru</h1>
         <p className="text-gray-500 text-sm">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
       </div>
 
@@ -114,7 +114,7 @@ export default function RegisterPatientPage() {
         {/* Data Diri */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base text-[#0A1628] flex items-center gap-2">
               <UserPlus className="w-5 h-5" />
               Data Diri Pasien
             </CardTitle>
@@ -124,46 +124,46 @@ export default function RegisterPatientPage() {
               <div className="md:col-span-2">
                 <label className="text-sm font-medium text-gray-700 block mb-1">Nama Lengkap *</label>
                 <input required value={form.fullName} onChange={(e) => set("fullName", e.target.value)}
-                  placeholder="Nama sesuai KTP" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  placeholder="Nama sesuai KTP" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">No. HP / WhatsApp *</label>
                 <input required value={form.phone} onChange={(e) => set("phone", e.target.value)}
-                  placeholder="08xxxxxxxxxx" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  placeholder="08xxxxxxxxxx" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Email</label>
                 <input type="email" value={form.email} onChange={(e) => set("email", e.target.value)}
-                  placeholder="email@gmail.com" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  placeholder="email@gmail.com" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Tanggal Lahir</label>
                 <input type="date" value={form.dob} onChange={(e) => set("dob", e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Jenis Kelamin</label>
                 <select value={form.gender} onChange={(e) => set("gender", e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]">
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]">
                   {GENDERS.map((g) => <option key={g.value} value={g.value}>{g.label}</option>)}
                 </select>
               </div>
               <div className="md:col-span-2">
                 <label className="text-sm font-medium text-gray-700 block mb-1">Alamat</label>
                 <input value={form.address} onChange={(e) => set("address", e.target.value)}
-                  placeholder="Jl. ..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  placeholder="Jl. ..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Golongan Darah</label>
                 <select value={form.bloodType} onChange={(e) => set("bloodType", e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]">
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]">
                   {BLOOD_TYPES.map((b) => <option key={b} value={b}>{b}</option>)}
                 </select>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">Alergi (pisah koma)</label>
                 <input value={form.allergies} onChange={(e) => set("allergies", e.target.value)}
-                  placeholder="Contoh: Udang, Penisilin" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                  placeholder="Contoh: Udang, Penisilin" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
               </div>
             </div>
           </CardContent>
@@ -172,14 +172,14 @@ export default function RegisterPatientPage() {
         {/* Keluhan & Layanan */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-[#1a2744]">Keluhan & Pilihan Layanan</CardTitle>
+            <CardTitle className="text-base text-[#0A1628]">Keluhan & Pilihan Layanan</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-1">Keluhan Utama *</label>
               <textarea required value={form.mainComplaint} onChange={(e) => set("mainComplaint", e.target.value)}
                 rows={3} placeholder="Ceritakan keluhan utama pasien..."
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
             </div>
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">Pilih Layanan (opsional)</label>
@@ -191,7 +191,7 @@ export default function RegisterPatientPage() {
                     onClick={() => set("selectedServiceId", form.selectedServiceId === s.id ? "" : s.id)}
                     className={`p-3 rounded-xl border-2 text-left transition-colors ${
                       form.selectedServiceId === s.id
-                        ? "border-[#1a2744] bg-[#1a2744]/5"
+                        ? "border-[#0A1628] bg-[#0A1628]/5"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -204,14 +204,14 @@ export default function RegisterPatientPage() {
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-1">Sumber Referral</label>
               <select value={form.referralSource} onChange={(e) => set("referralSource", e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]">
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]">
                 {REFERRAL_SOURCES.map((r) => <option key={r} value={r}>{r}</option>)}
               </select>
             </div>
           </CardContent>
         </Card>
 
-        <Button type="submit" disabled={saving} className="w-full h-12 bg-[#1a2744] hover:bg-[#2a3a60] text-white text-base gap-2">
+        <Button type="submit" disabled={saving} className="w-full h-12 bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-base gap-2">
           {saving ? "Mendaftarkan..." : (
             <>
               <UserPlus className="w-5 h-5" />

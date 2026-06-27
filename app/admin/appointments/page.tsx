@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { Calendar, Search, CheckCircle, XCircle, RefreshCw, Clock, CalendarCheck, CalendarDays, Loader2, Link as LinkIcon } from "lucide-react";
@@ -176,7 +176,7 @@ export default function AdminAppointmentsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Jadwal Appointment</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Jadwal Appointment</h1>
           <p className="text-gray-500 text-sm">{appointments.length} appointment terdaftar</p>
         </div>
         <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export default function AdminAppointmentsPage() {
               {syncing ? "Menyinkron..." : "Sync Google Calendar"}
             </Button>
           ) : (
-            <a href="/api/calendar/auth" className="inline-flex items-center gap-2 bg-[#1a2744] hover:bg-[#2a3a60] text-white text-sm px-4 h-9 rounded-md font-medium transition-colors">
+            <a href="/api/calendar/auth" className="inline-flex items-center gap-2 bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-sm px-4 h-9 rounded-md font-medium transition-colors">
               <CalendarDays className="w-4 h-4" />
               Hubungkan Google Calendar
             </a>
@@ -223,7 +223,7 @@ export default function AdminAppointmentsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari booking, pasien, terapis..."
-            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+            className="w-full border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
           />
         </div>
         <select
@@ -268,7 +268,7 @@ export default function AdminAppointmentsPage() {
               filtered.map((app) => (
                 <tr key={app.id} className="border-b border-gray-50 hover:bg-gray-50">
                   <td className="py-3 px-4">
-                    <p className="font-mono text-xs text-teal-600">{app.bookingNumber}</p>
+                    <p className="font-mono text-xs text-[#1B3A6B]">{app.bookingNumber}</p>
                     {app.googleEventId && (
                       <span className="inline-flex items-center gap-0.5 text-[10px] text-green-600 mt-0.5">
                         <CalendarCheck className="w-3 h-3" /> synced
@@ -331,7 +331,7 @@ export default function AdminAppointmentsPage() {
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div>
                   <p className="font-semibold text-slate-800">{app.patientName}</p>
-                  <p className="text-xs font-mono text-teal-600">{app.bookingNumber}</p>
+                  <p className="text-xs font-mono text-[#1B3A6B]">{app.bookingNumber}</p>
                   {app.googleEventId && (
                     <span className="inline-flex items-center gap-0.5 text-[10px] text-green-600">
                       <CalendarCheck className="w-3 h-3" /> synced ke Google Calendar

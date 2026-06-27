@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Users, Search } from "lucide-react";
@@ -68,7 +68,7 @@ export default function DoctorPatientsPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
                   <Avatar className="w-12 h-12">
-                    <AvatarFallback className="bg-teal-600 text-white">
+                    <AvatarFallback className="bg-[#1B3A6B] text-white">
                       {getInitials(app.patientName)}
                     </AvatarFallback>
                   </Avatar>
@@ -78,7 +78,7 @@ export default function DoctorPatientsPage() {
                       <AppointmentBadge status={app.status} />
                     </div>
                     <p className="text-sm text-gray-500">{app.serviceName} • {app.timeSlot}</p>
-                    <p className="text-xs text-teal-600 font-mono mt-0.5">{app.bookingNumber}</p>
+                    <p className="text-xs text-[#1B3A6B] font-mono mt-0.5">{app.bookingNumber}</p>
                   </div>
                 </div>
               </CardContent>

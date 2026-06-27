@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Plus, Pencil, Trash2, Stethoscope, Loader2, Database } from "lucide-react";
@@ -114,14 +114,14 @@ export default function AdminServicesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Layanan Terapi ({services.length})</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Layanan Terapi ({services.length})</h1>
           <p className="text-gray-500 text-sm">Kelola layanan yang ditawarkan klinik</p>
         </div>
         <div className="flex gap-2">
           {services.length === 0 && (
             <Button
               variant="outline"
-              className="gap-2 border-teal-300 text-teal-700 hover:bg-teal-50"
+              className="gap-2 border-blue-300 text-[#0A1628] hover:bg-blue-50"
               onClick={handleSeedDefaults}
               disabled={seeding}
             >
@@ -131,7 +131,7 @@ export default function AdminServicesPage() {
           )}
           <Dialog open={open} onOpenChange={(o) => { setOpen(o); if (!o) { setForm(BLANK); setEditId(null); } }}>
             <DialogTrigger asChild>
-              <Button className="bg-[#1a2744] hover:bg-[#2a3a60] gap-2" onClick={openCreate}>
+              <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] gap-2" onClick={openCreate}>
                 <Plus className="w-4 h-4" />
                 Tambah Layanan
               </Button>
@@ -170,7 +170,7 @@ export default function AdminServicesPage() {
                     <option value="inactive">Nonaktif</option>
                   </select>
                 </div>
-                <Button type="submit" className="w-full bg-[#1a2744] hover:bg-[#2a3a60]" disabled={saving}>
+                <Button type="submit" className="w-full bg-[#0A1628] hover:bg-[#1B3A6B]" disabled={saving}>
                   {saving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Menyimpan...</> : "Simpan"}
                 </Button>
               </form>
@@ -181,9 +181,9 @@ export default function AdminServicesPage() {
 
       {/* Seed button when there are services but user wants to add defaults */}
       {services.length > 0 && services.length < DEFAULT_SERVICES.length && (
-        <div className="bg-teal-50 border border-teal-100 rounded-xl p-3 flex items-center justify-between gap-3">
-          <p className="text-sm text-teal-700">Belum semua layanan default tersedia. Tambahkan layanan TCM standar sekaligus?</p>
-          <Button size="sm" variant="outline" className="border-teal-300 text-teal-700 hover:bg-teal-100 gap-1 flex-shrink-0" onClick={handleSeedDefaults} disabled={seeding}>
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 flex items-center justify-between gap-3">
+          <p className="text-sm text-[#0A1628]">Belum semua layanan default tersedia. Tambahkan layanan TCM standar sekaligus?</p>
+          <Button size="sm" variant="outline" className="border-blue-300 text-[#0A1628] hover:bg-blue-100 gap-1 flex-shrink-0" onClick={handleSeedDefaults} disabled={seeding}>
             {seeding ? <Loader2 className="w-3 h-3 animate-spin" /> : <Database className="w-3 h-3" />}
             Isi Default
           </Button>
@@ -199,7 +199,7 @@ export default function AdminServicesPage() {
           <Stethoscope className="w-12 h-12 text-gray-300 mx-auto mb-3" />
           <p className="text-gray-500 font-medium mb-1">Belum ada layanan</p>
           <p className="text-gray-400 text-sm mb-4">Klik tombol &quot;Isi Layanan Default&quot; untuk menambahkan layanan TCM standar secara otomatis</p>
-          <Button onClick={handleSeedDefaults} disabled={seeding} className="bg-teal-600 hover:bg-teal-700 gap-2">
+          <Button onClick={handleSeedDefaults} disabled={seeding} className="bg-[#1B3A6B] hover:bg-[#0A1628] gap-2">
             {seeding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Database className="w-4 h-4" />}
             Isi Layanan Default
           </Button>
@@ -208,11 +208,11 @@ export default function AdminServicesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service) => (
             <Card key={service.id} className={`border-0 shadow-sm overflow-hidden ${service.status === "inactive" ? "opacity-60" : ""}`}>
-              <div className="h-1 bg-gradient-to-r from-teal-500 to-teal-400" />
+              <div className="h-1 bg-gradient-to-r from-[#2563EB] to-[#2563EB]" />
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center">
-                    <Stethoscope className="w-5 h-5 text-teal-600" />
+                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <Stethoscope className="w-5 h-5 text-[#1B3A6B]" />
                   </div>
                   <div className="flex gap-1">
                     <Button variant="ghost" size="icon" className="w-8 h-8" onClick={() => openEdit(service)}>
@@ -226,7 +226,7 @@ export default function AdminServicesPage() {
                 <h3 className="font-semibold text-slate-800 mb-1 text-sm">{service.name}</h3>
                 <p className="text-xs text-gray-500 mb-3 line-clamp-2">{service.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-teal-700">{formatCurrency(service.price)}</span>
+                  <span className="text-sm font-bold text-[#0A1628]">{formatCurrency(service.price)}</span>
                   <span className="text-xs text-gray-400">{service.duration} menit</span>
                 </div>
               </CardContent>

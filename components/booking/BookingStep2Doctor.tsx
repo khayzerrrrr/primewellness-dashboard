@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { ArrowLeft, UserCheck } from "lucide-react";
@@ -40,7 +40,7 @@ export function BookingStep2Doctor({ service, selected, onSelect, onBack }: Prop
         <div>
           <h2 className="text-xl font-bold text-slate-900">Pilih Terapis</h2>
           {service && (
-            <p className="text-gray-500 text-sm">Layanan: <span className="text-teal-600 font-medium">{service.name}</span></p>
+            <p className="text-gray-500 text-sm">Layanan: <span className="text-[#1B3A6B] font-medium">{service.name}</span></p>
           )}
         </div>
       </div>
@@ -62,24 +62,24 @@ export function BookingStep2Doctor({ service, selected, onSelect, onBack }: Prop
               onClick={() => onSelect(doctor)}
               className={`w-full text-left p-5 rounded-xl border-2 transition-all hover:shadow-md ${
                 selected?.id === doctor.id
-                  ? "border-teal-500 bg-teal-50"
-                  : "border-gray-100 hover:border-teal-200 bg-white"
+                  ? "border-[#2563EB] bg-blue-50"
+                  : "border-gray-100 hover:border-blue-200 bg-white"
               }`}
             >
               <div className="flex items-start gap-4">
                 <Avatar className="w-14 h-14 flex-shrink-0">
-                  <AvatarFallback className="bg-[#1a2744] text-white text-lg">
+                  <AvatarFallback className="bg-[#0A1628] text-white text-lg">
                     {getInitials(doctor.fullName)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-slate-800">{doctor.fullName}</p>
-                  <p className="text-sm text-teal-700 mt-0.5">{doctor.specialization}</p>
+                  <p className="text-sm text-[#0A1628] mt-0.5">{doctor.specialization}</p>
                   {/* Multi-specializations chips */}
                   {(doctor.specializations ?? []).length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1.5">
                       {(doctor.specializations ?? []).slice(0, 4).map((s) => (
-                        <span key={s} className="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-100">{s}</span>
+                        <span key={s} className="text-xs bg-blue-50 text-[#0A1628] px-2 py-0.5 rounded-full border border-blue-100">{s}</span>
                       ))}
                       {(doctor.specializations ?? []).length > 4 && (
                         <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">

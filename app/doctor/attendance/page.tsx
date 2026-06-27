@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { LogIn, LogOut, CheckCircle, Camera, MapPin, Clock, Image, AlertCircle } from "lucide-react";
@@ -157,7 +157,7 @@ export default function TherapistAttendancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Absensi Saya</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Absensi Saya</h1>
         <p className="text-gray-500 text-sm">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
       </div>
 
@@ -177,7 +177,7 @@ export default function TherapistAttendancePage() {
       {mode === "clockin" && (
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
               <Camera className="w-5 h-5" />
               Foto Selfie Clock In
             </CardTitle>
@@ -197,7 +197,7 @@ export default function TherapistAttendancePage() {
       {mode === "clockout" && (
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
               <Camera className="w-5 h-5" />
               Foto Selfie Clock Out
             </CardTitle>
@@ -215,7 +215,7 @@ export default function TherapistAttendancePage() {
 
       {/* Status Card */}
       {mode === "view" && (
-        <Card className="border-0 shadow-sm bg-gradient-to-br from-[#1a2744] to-[#2a3a60] text-white overflow-hidden">
+        <Card className="border-0 shadow-sm bg-gradient-to-br from-[#0A1628] to-[#1B3A6B] text-white overflow-hidden">
           <CardContent className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
@@ -310,7 +310,7 @@ export default function TherapistAttendancePage() {
       {/* History */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-[#1a2744]">Riwayat 30 Hari Terakhir</CardTitle>
+          <CardTitle className="text-base font-semibold text-[#0A1628]">Riwayat 30 Hari Terakhir</CardTitle>
         </CardHeader>
         <CardContent>
           {history.length === 0 ? (

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Navigation, Instagram } from "lucide-react";
@@ -17,11 +17,11 @@ export function ContactSection() {
   const WA_REG_MSG = "Halo Prime Wellness, saya ingin mendaftar sebagai pasien baru. 🙏";
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-teal-700 to-teal-900 text-white">
+    <section id="contact" className="py-20 bg-gradient-to-br from-[#0A1628] to-[#0A1628] text-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
-          <p className="text-teal-200 text-lg">{t("subtitle")}</p>
+          <p className="text-blue-200 text-lg">{t("subtitle")}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -33,9 +33,9 @@ export function ContactSection() {
                 <MapPin className="w-5 h-5 text-red-400" />
               </div>
               <div>
-                <p className="text-teal-300 text-sm font-medium">{t("address")}</p>
+                <p className="text-blue-300 text-sm font-medium">{t("address")}</p>
                 <p className="text-white font-medium mt-0.5">{CLINIC_INFO.address}</p>
-                <p className="text-teal-200 text-sm">{CLINIC_INFO.city}</p>
+                <p className="text-blue-200 text-sm">{CLINIC_INFO.city}</p>
               </div>
             </div>
 
@@ -45,7 +45,7 @@ export function ContactSection() {
                 <Phone className="w-5 h-5 text-green-400" />
               </div>
               <div>
-                <p className="text-teal-300 text-sm font-medium">{t("phone")} / WhatsApp</p>
+                <p className="text-blue-300 text-sm font-medium">{t("phone")} / WhatsApp</p>
                 <p className="text-white font-medium mt-0.5">{CLINIC_INFO.phone}</p>
               </div>
             </div>
@@ -56,7 +56,7 @@ export function ContactSection() {
                 <Mail className="w-5 h-5 text-purple-400" />
               </div>
               <div>
-                <p className="text-teal-300 text-sm font-medium">{t("email")}</p>
+                <p className="text-blue-300 text-sm font-medium">{t("email")}</p>
                 <p className="text-white font-medium mt-0.5">{CLINIC_INFO.email}</p>
               </div>
             </div>
@@ -67,11 +67,11 @@ export function ContactSection() {
                 <Clock className="w-5 h-5 text-yellow-400" />
               </div>
               <div>
-                <p className="text-teal-300 text-sm font-medium">{t("hours")}</p>
+                <p className="text-blue-300 text-sm font-medium">{t("hours")}</p>
                 <div className="mt-1.5 space-y-1">
                   {OPERATIONAL_HOURS.map((h) => (
                     <div key={h.day} className="flex justify-between gap-8 text-sm">
-                      <span className="text-teal-200">{h.day}</span>
+                      <span className="text-blue-200">{h.day}</span>
                       <span className="text-white font-medium">{h.hours}</span>
                     </div>
                   ))}

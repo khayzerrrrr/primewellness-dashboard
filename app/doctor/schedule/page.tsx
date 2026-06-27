@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Calendar, Clock, ChevronLeft, ChevronRight, CheckCircle, XCircle, AlertCircle } from "lucide-react";
@@ -80,7 +80,7 @@ export default function DoctorSchedulePage() {
         </div>
         <div className="flex items-center gap-1">
           <button onClick={prevWeek} className="p-2 hover:bg-gray-100 rounded-lg"><ChevronLeft className="w-5 h-5" /></button>
-          <button onClick={goToday} className="px-3 py-1.5 text-sm border rounded-lg hover:bg-gray-50 text-[#1a2744] font-medium">Hari Ini</button>
+          <button onClick={goToday} className="px-3 py-1.5 text-sm border rounded-lg hover:bg-gray-50 text-[#0A1628] font-medium">Hari Ini</button>
           <button onClick={nextWeek} className="p-2 hover:bg-gray-100 rounded-lg"><ChevronRight className="w-5 h-5" /></button>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function DoctorSchedulePage() {
       <div className="grid grid-cols-3 gap-3">
         {[
           { label: "Hari Ini", value: todayApps.length, color: "text-blue-700" },
-          { label: "Minggu Ini", value: weekApps.length, color: "text-[#1a2744]" },
+          { label: "Minggu Ini", value: weekApps.length, color: "text-[#0A1628]" },
           { label: "Selesai Minggu Ini", value: weekApps.filter((a) => a.status === "completed").length, color: "text-green-700" },
         ].map((s) => (
           <Card key={s.label} className="border-0 shadow-sm">
@@ -104,7 +104,7 @@ export default function DoctorSchedulePage() {
       {/* Weekly Calendar Grid */}
       <Card className="border-0 shadow-sm overflow-hidden">
         <CardHeader className="pb-2 border-b bg-gray-50">
-          <CardTitle className="text-base font-semibold text-[#1a2744]">
+          <CardTitle className="text-base font-semibold text-[#0A1628]">
             Kalender Mingguan — {weekLabel}
           </CardTitle>
         </CardHeader>
@@ -123,7 +123,7 @@ export default function DoctorSchedulePage() {
                         <p className={`text-xs font-medium ${isToday ? "text-blue-600" : "text-gray-500"}`}>{DAYS_ID[day.getDay()]}</p>
                         <p className={`text-lg font-bold ${isToday ? "text-blue-600" : "text-slate-700"}`}>{day.getDate()}</p>
                         {dayApps.length > 0 && (
-                          <span className="text-xs bg-[#1a2744] text-white rounded-full px-1.5 py-0.5">{dayApps.length}</span>
+                          <span className="text-xs bg-[#0A1628] text-white rounded-full px-1.5 py-0.5">{dayApps.length}</span>
                         )}
                       </div>
                     );
@@ -184,7 +184,7 @@ export default function DoctorSchedulePage() {
               {todayApps.map((app, idx) => (
                 <div key={app.id} onClick={() => setSelected(app)}
                   className="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer">
-                  <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold">{idx + 1}</div>
+                  <div className="w-8 h-8 bg-[#1B3A6B] rounded-full flex items-center justify-center flex-shrink-0 text-white text-sm font-bold">{idx + 1}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
                       <p className="font-semibold text-slate-800">{app.patientName}</p>
@@ -194,7 +194,7 @@ export default function DoctorSchedulePage() {
                     <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
                       <Clock className="w-3 h-3" />
                       {app.timeSlot}
-                      <span className="ml-2 font-mono text-teal-600">{app.bookingNumber}</span>
+                      <span className="ml-2 font-mono text-[#1B3A6B]">{app.bookingNumber}</span>
                     </div>
                     {app.notes && <p className="text-xs text-gray-400 mt-1 italic">Catatan: {app.notes}</p>}
                   </div>
@@ -210,7 +210,7 @@ export default function DoctorSchedulePage() {
         <div className="fixed inset-0 bg-black/40 z-50 flex items-end sm:items-center justify-center p-4" onClick={() => setSelected(null)}>
           <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-[#1a2744]">Detail Appointment</h3>
+              <h3 className="text-lg font-bold text-[#0A1628]">Detail Appointment</h3>
               <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
             </div>
             <div className="space-y-3">

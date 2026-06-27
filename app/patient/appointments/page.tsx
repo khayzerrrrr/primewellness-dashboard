@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function PatientAppointmentsPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">Appointment Saya</h1>
         <Link href="/booking">
-          <Button className="bg-teal-600 hover:bg-teal-700 text-white gap-2">
+          <Button className="bg-[#1B3A6B] hover:bg-[#0A1628] text-white gap-2">
             <Plus className="w-4 h-4" />
             Buat Appointment
           </Button>
@@ -75,7 +75,7 @@ export default function PatientAppointmentsPage() {
             <Calendar className="w-12 h-12 text-gray-300 mx-auto mb-3" />
             <p className="text-gray-500">Belum ada appointment</p>
             <Link href="/booking">
-              <Button className="mt-4 bg-teal-600 hover:bg-teal-700 text-white">
+              <Button className="mt-4 bg-[#1B3A6B] hover:bg-[#0A1628] text-white">
                 Buat Appointment Pertama
               </Button>
             </Link>
@@ -86,8 +86,8 @@ export default function PatientAppointmentsPage() {
               <CardContent className="p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Calendar className="w-6 h-6 text-teal-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Calendar className="w-6 h-6 text-[#1B3A6B]" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
@@ -103,7 +103,7 @@ export default function PatientAppointmentsPage() {
                           : formatDate(app.date as Date)}{" "}
                         • {app.timeSlot}
                       </p>
-                      <p className="text-xs text-teal-600 font-mono mt-1 bg-teal-50 inline-block px-2 py-0.5 rounded">
+                      <p className="text-xs text-[#1B3A6B] font-mono mt-1 bg-blue-50 inline-block px-2 py-0.5 rounded">
                         {app.bookingNumber}
                       </p>
                     </div>

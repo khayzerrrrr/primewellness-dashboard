@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -72,11 +72,11 @@ export default function PatientDashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Selamat Datang! 👋</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Selamat Datang! 👋</h1>
           <p className="text-gray-500 mt-1 text-sm">Pantau perjalanan terapi Anda</p>
         </div>
         <Link href="/booking">
-          <Button className="bg-[#1a2744] hover:bg-[#2a3a60] text-white gap-2">
+          <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white gap-2">
             <Plus className="w-4 h-4" />
             Booking Terapi
           </Button>
@@ -109,7 +109,7 @@ export default function PatientDashboardPage() {
 
       {/* Voucher aktif banner */}
       {!loading && vouchers.length > 0 && (
-        <div className="bg-gradient-to-r from-[#1a2744] to-[#2a3a60] rounded-2xl p-5 text-white">
+        <div className="bg-gradient-to-r from-[#0A1628] to-[#1B3A6B] rounded-2xl p-5 text-white">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
@@ -149,12 +149,12 @@ export default function PatientDashboardPage() {
 
       {/* Next appointment highlight */}
       {!loading && nextApp && (
-        <Card className="border-0 shadow-sm border-l-4 border-l-teal-500">
+        <Card className="border-0 shadow-sm border-l-4 border-l-[#2563EB]">
           <CardContent className="p-4">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-6 h-6 text-teal-600" />
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-6 h-6 text-[#1B3A6B]" />
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">Appointment Berikutnya</p>
@@ -179,9 +179,9 @@ export default function PatientDashboardPage() {
         {/* Upcoming Appointments */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744]">Appointment Mendatang</CardTitle>
+            <CardTitle className="text-base font-semibold text-[#0A1628]">Appointment Mendatang</CardTitle>
             <Link href="/patient/appointments">
-              <Button variant="ghost" size="sm" className="text-teal-600 text-xs gap-1">
+              <Button variant="ghost" size="sm" className="text-[#1B3A6B] text-xs gap-1">
                 Semua <ChevronRight className="w-3 h-3" />
               </Button>
             </Link>
@@ -194,7 +194,7 @@ export default function PatientDashboardPage() {
                 <Calendar className="w-10 h-10 text-gray-200 mx-auto mb-2" />
                 <p className="text-gray-400 text-sm">Tidak ada appointment mendatang</p>
                 <Link href="/booking">
-                  <Button size="sm" className="mt-3 bg-teal-600 hover:bg-teal-700 text-white">
+                  <Button size="sm" className="mt-3 bg-[#1B3A6B] hover:bg-[#0A1628] text-white">
                     Buat Appointment
                   </Button>
                 </Link>
@@ -202,8 +202,8 @@ export default function PatientDashboardPage() {
             ) : (
               upcoming.slice(0, 3).map((app) => (
                 <div key={app.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Calendar className="w-5 h-5 text-teal-600" />
+                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-5 h-5 text-[#1B3A6B]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-slate-800 text-sm">{app.serviceName}</p>
@@ -224,9 +224,9 @@ export default function PatientDashboardPage() {
         {/* Invoice & Riwayat Terapi */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744]">Riwayat Terapi</CardTitle>
+            <CardTitle className="text-base font-semibold text-[#0A1628]">Riwayat Terapi</CardTitle>
             <Link href="/patient/invoices">
-              <Button variant="ghost" size="sm" className="text-teal-600 text-xs gap-1">
+              <Button variant="ghost" size="sm" className="text-[#1B3A6B] text-xs gap-1">
                 Invoice <ChevronRight className="w-3 h-3" />
               </Button>
             </Link>

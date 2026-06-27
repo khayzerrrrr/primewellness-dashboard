@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { UserCheck, CalendarCheck, FileText, Zap, Building2, Leaf } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -18,7 +18,7 @@ export function WhyUsSection() {
     <section id="why-us" className="py-20 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#1a2744]/10 text-[#1a2744] px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#0A1628]/10 text-[#0A1628] px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Leaf className="w-4 h-4 text-green-600" />
             {t("title")}
           </div>

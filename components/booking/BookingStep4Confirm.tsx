@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { ArrowLeft, Loader2, Calendar, User, Clock, Stethoscope } from "lucide-react";
@@ -131,17 +131,17 @@ export function BookingStep4Confirm({ bookingData, onUpdate, onBack, onSuccess }
       </div>
 
       {/* Summary */}
-      <div className="bg-teal-50 rounded-xl p-5 space-y-3">
+      <div className="bg-blue-50 rounded-xl p-5 space-y-3">
         <div className="flex items-center gap-3">
-          <Stethoscope className="w-5 h-5 text-teal-600" />
+          <Stethoscope className="w-5 h-5 text-[#1B3A6B]" />
           <div>
             <p className="text-xs text-gray-500">Layanan</p>
             <p className="font-semibold text-slate-800">{bookingData.service?.name}</p>
-            <p className="text-teal-700 font-bold">{bookingData.service && formatCurrency(bookingData.service.price)}</p>
+            <p className="text-[#0A1628] font-bold">{bookingData.service && formatCurrency(bookingData.service.price)}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <User className="w-5 h-5 text-teal-600" />
+          <User className="w-5 h-5 text-[#1B3A6B]" />
           <div>
             <p className="text-xs text-gray-500">Dokter</p>
             <p className="font-semibold text-slate-800">{bookingData.doctor?.fullName}</p>
@@ -149,7 +149,7 @@ export function BookingStep4Confirm({ bookingData, onUpdate, onBack, onSuccess }
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Calendar className="w-5 h-5 text-teal-600" />
+          <Calendar className="w-5 h-5 text-[#1B3A6B]" />
           <div>
             <p className="text-xs text-gray-500">Tanggal & Jam</p>
             <p className="font-semibold text-slate-800">
@@ -205,7 +205,7 @@ export function BookingStep4Confirm({ bookingData, onUpdate, onBack, onSuccess }
       <Button
         onClick={handleConfirm}
         disabled={loading || !bookingData.patientName || !bookingData.patientPhone}
-        className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+        className="w-full bg-[#1B3A6B] hover:bg-[#0A1628] text-white"
         size="lg"
       >
         {loading ? (

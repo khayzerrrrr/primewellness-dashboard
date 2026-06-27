@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Leaf, Hand, Wind, Flame, Zap, Droplets, ArrowRight } from "lucide-react";
@@ -77,7 +77,7 @@ export function ServicesSection() {
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#1a2744]/10 text-[#1a2744] px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#0A1628]/10 text-[#0A1628] px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Leaf className="w-4 h-4 text-green-600" />
             {t("title")}
           </div>
@@ -93,7 +93,7 @@ export function ServicesSection() {
           {SERVICES_DATA.map((service) => (
             <Card
               key={service.name}
-              className="border border-gray-200 hover:shadow-lg hover:border-[#1a2744]/30 transition-all duration-300 group bg-white"
+              className="border border-gray-200 hover:shadow-lg hover:border-[#0A1628]/30 transition-all duration-300 group bg-white"
             >
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -106,7 +106,7 @@ export function ServicesSection() {
                     </Badge>
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-[#1a2744] transition-colors">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2 group-hover:text-[#0A1628] transition-colors">
                   {service.name}
                 </h3>
                 <p className="text-sm text-gray-500 mb-4 leading-relaxed">
@@ -114,14 +114,14 @@ export function ServicesSection() {
                 </p>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-400">{service.duration} menit</span>
-                  <span className="font-bold text-[#1a2744] text-base">{formatCurrency(service.price)}/sesi</span>
+                  <span className="font-bold text-[#0A1628] text-base">{formatCurrency(service.price)}/sesi</span>
                 </div>
               </CardContent>
               <CardFooter className="px-6 pb-6 pt-0">
                 <Link href="/booking" className="w-full">
                   <Button
                     variant="outline"
-                    className="w-full border-[#1a2744] text-[#1a2744] hover:bg-[#1a2744] hover:text-white transition-colors"
+                    className="w-full border-[#0A1628] text-[#0A1628] hover:bg-[#0A1628] hover:text-white transition-colors"
                   >
                     {t("bookService")}
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -133,7 +133,7 @@ export function ServicesSection() {
         </div>
 
         {/* Voucher promo banner */}
-        <div className="mt-12 bg-gradient-to-r from-[#1a2744] to-[#2a3a60] rounded-2xl p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-[#0A1628] to-[#1B3A6B] rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-2">Hemat Lebih Banyak dengan Paket Voucher</h3>
           <p className="text-blue-200 mb-6">Beli paket sesi dan dapatkan diskon hingga 20%</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-6">
@@ -152,7 +152,7 @@ export function ServicesSection() {
             ))}
           </div>
           <Link href="/sign-up">
-            <Button className="bg-white text-[#1a2744] hover:bg-gray-100 font-semibold px-8">
+            <Button className="bg-white text-[#0A1628] hover:bg-gray-100 font-semibold px-8">
               Daftar & Beli Voucher
             </Button>
           </Link>

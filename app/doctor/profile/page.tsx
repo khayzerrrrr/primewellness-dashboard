@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { User } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,7 +17,7 @@ export default function DoctorProfilePage() {
         <CardContent className="p-6">
           <div className="flex items-center gap-4 mb-6">
             <Avatar className="w-16 h-16">
-              <AvatarFallback className="bg-teal-600 text-white text-xl">
+              <AvatarFallback className="bg-[#1B3A6B] text-white text-xl">
                 {getInitials(displayName)}
               </AvatarFallback>
             </Avatar>
@@ -26,8 +26,8 @@ export default function DoctorProfilePage() {
               <p className="text-gray-500">{user?.email}</p>
             </div>
           </div>
-          <div className="p-4 bg-teal-50 rounded-xl">
-            <p className="text-sm text-teal-700">
+          <div className="p-4 bg-blue-50 rounded-xl">
+            <p className="text-sm text-[#0A1628]">
               Update profil dokter dilakukan melalui Admin Dashboard. Hubungi administrator untuk perubahan data.
             </p>
           </div>

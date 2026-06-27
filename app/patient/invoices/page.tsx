@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Receipt, Printer } from "lucide-react";
@@ -34,7 +34,7 @@ export default function PatientInvoicesPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-[#1a2744]">Invoice Saya</h1>
+      <h1 className="text-2xl font-bold text-[#0A1628]">Invoice Saya</h1>
 
       {loading ? (
         <div className="space-y-3">

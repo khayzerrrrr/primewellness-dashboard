@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Ticket, CheckCircle, Clock, Gift } from "lucide-react";
@@ -84,19 +84,19 @@ export default function PatientVouchersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#1a2744]">Voucher Sesi Terapi</h1>
+        <h1 className="text-2xl font-bold text-[#0A1628]">Voucher Sesi Terapi</h1>
         <p className="text-gray-500 text-sm mt-1">Beli paket sesi dan hemat lebih banyak</p>
       </div>
 
       {/* Active Vouchers */}
       {!loading && activeVouchers.length > 0 && (
         <div>
-          <h2 className="font-semibold text-[#1a2744] mb-3">Voucher Aktif Saya</h2>
+          <h2 className="font-semibold text-[#0A1628] mb-3">Voucher Aktif Saya</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {activeVouchers.map((v) => {
               const pct = v.totalSessions > 0 ? Math.round(((v.totalSessions - v.usedSessions) / v.totalSessions) * 100) : 0;
               return (
-                <div key={v.id} className="bg-gradient-to-br from-[#1a2744] to-[#2a3a60] rounded-2xl p-5 text-white">
+                <div key={v.id} className="bg-gradient-to-br from-[#0A1628] to-[#1B3A6B] rounded-2xl p-5 text-white">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-white/70 text-sm">{v.packageName}</span>
                     <Ticket className="w-5 h-5 text-white/50" />
@@ -119,21 +119,21 @@ export default function PatientVouchersPage() {
 
       {/* Buy Packages */}
       <div>
-        <h2 className="font-semibold text-[#1a2744] mb-3">Beli Paket Voucher</h2>
+        <h2 className="font-semibold text-[#0A1628] mb-3">Beli Paket Voucher</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {VOUCHER_PACKAGES.map((pkg) => {
             const originalPrice = pkg.sessions * 300000;
             const isPopular = pkg.sessions === 10;
             return (
-              <Card key={pkg.id} className={`border-0 shadow-sm overflow-hidden ${isPopular ? "ring-2 ring-[#1a2744]" : ""}`}>
+              <Card key={pkg.id} className={`border-0 shadow-sm overflow-hidden ${isPopular ? "ring-2 ring-[#0A1628]" : ""}`}>
                 {isPopular && (
-                  <div className="bg-[#1a2744] text-white text-xs text-center py-1.5 font-medium">
+                  <div className="bg-[#0A1628] text-white text-xs text-center py-1.5 font-medium">
                     ⭐ Paling Populer
                   </div>
                 )}
                 <CardContent className="p-5">
                   <div className="text-center mb-4">
-                    <p className="text-3xl font-bold text-[#1a2744]">{pkg.sessions}</p>
+                    <p className="text-3xl font-bold text-[#0A1628]">{pkg.sessions}</p>
                     <p className="text-gray-500 text-sm">sesi terapi</p>
                   </div>
                   <div className="space-y-1 mb-4">
@@ -145,7 +145,7 @@ export default function PatientVouchersPage() {
                       <span className="text-green-600 font-medium">Diskon {pkg.discountPercent}%</span>
                       <span className="text-green-600 font-medium">-{formatCurrency(originalPrice - pkg.totalPrice)}</span>
                     </div>
-                    <div className="flex justify-between font-bold text-[#1a2744] border-t border-gray-100 pt-2 mt-2">
+                    <div className="flex justify-between font-bold text-[#0A1628] border-t border-gray-100 pt-2 mt-2">
                       <span>Total Bayar</span>
                       <span>{formatCurrency(pkg.totalPrice)}</span>
                     </div>
@@ -158,14 +158,14 @@ export default function PatientVouchersPage() {
                       <p className="text-xs text-gray-600 text-center">Konfirmasi pembelian?</p>
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm" className="flex-1" onClick={() => setShowPurchaseConfirm(null)}>Batal</Button>
-                        <Button size="sm" className="flex-1 bg-[#1a2744]" onClick={() => handleBuy(pkg.id)} disabled={purchasing === pkg.id}>
+                        <Button size="sm" className="flex-1 bg-[#0A1628]" onClick={() => handleBuy(pkg.id)} disabled={purchasing === pkg.id}>
                           {purchasing === pkg.id ? "..." : "Ya"}
                         </Button>
                       </div>
                     </div>
                   ) : (
                     <Button
-                      className={`w-full ${isPopular ? "bg-[#1a2744] hover:bg-[#2a3a60]" : "bg-gray-900 hover:bg-gray-800"} text-white`}
+                      className={`w-full ${isPopular ? "bg-[#0A1628] hover:bg-[#1B3A6B]" : "bg-gray-900 hover:bg-gray-800"} text-white`}
                       onClick={() => setShowPurchaseConfirm(pkg.id)}
                     >
                       Beli Paket
@@ -199,7 +199,7 @@ export default function PatientVouchersPage() {
       {/* Voucher History */}
       {usedVouchers.length > 0 && (
         <div>
-          <h2 className="font-semibold text-[#1a2744] mb-3">Riwayat Voucher</h2>
+          <h2 className="font-semibold text-[#0A1628] mb-3">Riwayat Voucher</h2>
           <div className="space-y-2">
             {usedVouchers.map((v) => (
               <div key={v.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg text-sm">

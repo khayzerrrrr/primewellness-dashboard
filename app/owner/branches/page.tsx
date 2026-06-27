@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -140,12 +140,12 @@ export default function BranchesPage() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Manajemen Cabang</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Manajemen Cabang</h1>
           <p className="text-gray-500 text-sm">
             {branches.length} cabang terdaftar · {activeBranches} aktif
           </p>
         </div>
-        <Button className="bg-[#1a2744] hover:bg-[#2a3a60] gap-2" onClick={openCreate}>
+        <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] gap-2" onClick={openCreate}>
           <Plus className="w-4 h-4" />
           Tambah Cabang
         </Button>
@@ -178,7 +178,7 @@ export default function BranchesPage() {
           <Building2 className="w-12 h-12 text-gray-300 mx-auto mb-3" />
           <p className="text-gray-500 font-medium mb-1">Belum ada cabang terdaftar</p>
           <p className="text-gray-400 text-sm mb-4">Tambahkan cabang klinik pertama Anda</p>
-          <Button onClick={openCreate} className="bg-[#1a2744] hover:bg-[#2a3a60] gap-2">
+          <Button onClick={openCreate} className="bg-[#0A1628] hover:bg-[#1B3A6B] gap-2">
             <Plus className="w-4 h-4" />
             Tambah Cabang
           </Button>
@@ -187,12 +187,12 @@ export default function BranchesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {branches.map((b) => (
             <Card key={b.id} className={`border-0 shadow-sm overflow-hidden ${b.status === "inactive" ? "opacity-60" : ""}`}>
-              <div className={`h-1.5 ${b.status === "active" ? "bg-gradient-to-r from-[#1a2744] to-teal-500" : "bg-gray-200"}`} />
+              <div className={`h-1.5 ${b.status === "active" ? "bg-gradient-to-r from-[#0A1628] to-[#2563EB]" : "bg-gray-200"}`} />
               <CardContent className="p-5">
                 {/* Title row */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 bg-[#1a2744] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-11 h-11 bg-[#0A1628] rounded-xl flex items-center justify-center flex-shrink-0">
                       <Building2 className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -253,8 +253,8 @@ export default function BranchesPage() {
 
                 {/* PIC */}
                 <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-2">
-                  <div className="w-7 h-7 bg-teal-100 rounded-full flex items-center justify-center">
-                    <User className="w-3.5 h-3.5 text-teal-600" />
+                  <div className="w-7 h-7 bg-blue-100 rounded-full flex items-center justify-center">
+                    <User className="w-3.5 h-3.5 text-[#1B3A6B]" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-400">Person In Charge</p>
@@ -389,7 +389,7 @@ export default function BranchesPage() {
 
             <Button
               type="submit"
-              className="w-full bg-[#1a2744] hover:bg-[#2a3a60]"
+              className="w-full bg-[#0A1628] hover:bg-[#1B3A6B]"
               disabled={saving}
             >
               {saving ? (

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { FileText, Plus, Trash2, Edit2, ChevronDown, ChevronUp, BookOpen } from "lucide-react";
@@ -106,7 +106,7 @@ export default function SOPPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">SOP Karyawan</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">SOP Karyawan</h1>
           <p className="text-gray-500 text-sm">Standar Operasional Prosedur per role</p>
         </div>
         <div className="flex gap-2">
@@ -116,7 +116,7 @@ export default function SOPPage() {
               Isi SOP Default
             </Button>
           )}
-          <Button size="sm" className="bg-[#1a2744] hover:bg-[#2a3a60]" onClick={() => { setShowForm(!showForm); setEditId(null); setForm({ title: "", role: "therapist", content: "" }); }}>
+          <Button size="sm" className="bg-[#0A1628] hover:bg-[#1B3A6B]" onClick={() => { setShowForm(!showForm); setEditId(null); setForm({ title: "", role: "therapist", content: "" }); }}>
             <Plus className="w-4 h-4 mr-2" />
             Tambah SOP
           </Button>
@@ -125,9 +125,9 @@ export default function SOPPage() {
 
       {/* Form */}
       {showForm && (
-        <Card className="border border-[#1a2744]/20 shadow-sm">
+        <Card className="border border-[#0A1628]/20 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-[#1a2744]">{editId ? "Edit SOP" : "Tambah SOP Baru"}</CardTitle>
+            <CardTitle className="text-base text-[#0A1628]">{editId ? "Edit SOP" : "Tambah SOP Baru"}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -136,7 +136,7 @@ export default function SOPPage() {
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder="Contoh: SOP Penyambutan Pasien"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
               />
             </div>
             <div>
@@ -144,7 +144,7 @@ export default function SOPPage() {
               <select
                 value={form.role}
                 onChange={(e) => setForm({ ...form, role: e.target.value })}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]"
               >
                 {Object.entries(ROLE_LABELS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
               </select>
@@ -156,12 +156,12 @@ export default function SOPPage() {
                 onChange={(e) => setForm({ ...form, content: e.target.value })}
                 rows={8}
                 placeholder="Tuliskan langkah-langkah SOP..."
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744] font-mono"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628] font-mono"
               />
             </div>
             <div className="flex gap-2 justify-end">
               <Button variant="outline" onClick={() => { setShowForm(false); setEditId(null); }}>Batal</Button>
-              <Button className="bg-[#1a2744] hover:bg-[#2a3a60]" onClick={handleSave} disabled={saving}>
+              <Button className="bg-[#0A1628] hover:bg-[#1B3A6B]" onClick={handleSave} disabled={saving}>
                 {saving ? "Menyimpan..." : "Simpan SOP"}
               </Button>
             </div>
@@ -176,7 +176,7 @@ export default function SOPPage() {
             key={r}
             onClick={() => setFilterRole(r)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filterRole === r ? "bg-[#1a2744] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              filterRole === r ? "bg-[#0A1628] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
             {r === "Semua" ? "Semua Role" : ROLE_LABELS[r]}
@@ -204,8 +204,8 @@ export default function SOPPage() {
                 onClick={() => setExpandedId(expandedId === sop.id ? null : sop.id)}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-[#1a2744]/10 rounded-lg flex items-center justify-center">
-                    <FileText className="w-4 h-4 text-[#1a2744]" />
+                  <div className="w-9 h-9 bg-[#0A1628]/10 rounded-lg flex items-center justify-center">
+                    <FileText className="w-4 h-4 text-[#0A1628]" />
                   </div>
                   <div>
                     <p className="font-semibold text-slate-800 text-sm">{sop.title}</p>

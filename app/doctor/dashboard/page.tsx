@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Calendar, Users, CheckCircle, Clock, TrendingUp, Wallet, Percent, ChevronRight } from "lucide-react";
@@ -95,7 +95,7 @@ export default function DoctorDashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Dashboard Terapis</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Dashboard Terapis</h1>
           <p className="text-gray-500 text-sm">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
         </div>
         <div className="flex items-center gap-2 bg-orange-50 border border-orange-100 rounded-xl px-3 py-2">
@@ -115,7 +115,7 @@ export default function DoctorDashboardPage() {
       {/* Commission Highlight Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
-          { label: "Komisi Bulan Ini", value: monthlyComm, color: "from-[#1a2744] to-[#2a3a60]", sub: `${thisMonthComm.length} sesi` },
+          { label: "Komisi Bulan Ini", value: monthlyComm, color: "from-[#0A1628] to-[#1B3A6B]", sub: `${thisMonthComm.length} sesi` },
           { label: "Belum Dibayarkan", value: totalPending, color: "from-orange-500 to-orange-600", sub: `${pendingComm.length} sesi menunggu` },
           { label: "Total Komisi (All-Time)", value: allTimeComm, color: "from-green-600 to-green-700", sub: `${commissions.length} sesi total` },
         ].map((c) => (
@@ -135,7 +135,7 @@ export default function DoctorDashboardPage() {
         {/* Today's schedule with Complete button */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
               <Calendar className="w-5 h-5" />
               Jadwal Hari Ini ({todayApps.length})
             </CardTitle>
@@ -197,7 +197,7 @@ export default function DoctorDashboardPage() {
         {/* Commission history */}
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744] flex items-center gap-2">
+            <CardTitle className="text-base font-semibold text-[#0A1628] flex items-center gap-2">
               <TrendingUp className="w-5 h-5" />
               Riwayat Komisi Terbaru
             </CardTitle>

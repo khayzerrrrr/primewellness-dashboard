@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Wallet, CheckCircle, Clock, TrendingUp, Search, Download } from "lucide-react";
@@ -95,7 +95,7 @@ export default function CommissionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Komisi Terapis</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Komisi Terapis</h1>
           <p className="text-gray-500 text-sm">Rekap dan pembayaran insentif terapis</p>
         </div>
         <Button variant="outline" size="sm" className="gap-2">
@@ -123,7 +123,7 @@ export default function CommissionsPage() {
             {commissions.filter((c) => c.status === "paid").length} sesi
           </p>
         </div>
-        <div className="bg-gradient-to-br from-[#1a2744] to-[#2a3a60] rounded-2xl p-5 text-white">
+        <div className="bg-gradient-to-br from-[#0A1628] to-[#1B3A6B] rounded-2xl p-5 text-white">
           <p className="text-white/70 text-sm mb-1">Total All-Time</p>
           {loading ? <Skeleton className="h-8 w-32 bg-white/20" /> : (
             <p className="text-2xl font-bold">{formatCurrency(totalPending + totalPaid)}</p>
@@ -136,13 +136,13 @@ export default function CommissionsPage() {
       {byTherapist.length > 0 && (
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold text-[#1a2744]">Ringkasan per Terapis</CardTitle>
+            <CardTitle className="text-base font-semibold text-[#0A1628]">Ringkasan per Terapis</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
               {byTherapist.map(({ therapist, pendingAmount, monthlyAmount, pendingIds, totalSessions }) => (
                 <div key={therapist.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-9 h-9 bg-[#1a2744] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 bg-[#0A1628] rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-xs font-bold">{(therapist.fullName ?? "?").charAt(0)}</span>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -184,7 +184,7 @@ export default function CommissionsPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Cari terapis / pasien..."
-              className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+              className="border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
           </div>
           <select value={filterTherapist} onChange={(e) => setFilterTherapist(e.target.value)}
             className="border border-gray-200 rounded-lg px-3 py-2 text-sm">
@@ -200,7 +200,7 @@ export default function CommissionsPage() {
           <div className="flex gap-1">
             {(["month", "all"] as const).map((p) => (
               <button key={p} onClick={() => setPeriod(p)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${period === p ? "bg-[#1a2744] text-white" : "bg-gray-100 text-gray-600"}`}>
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${period === p ? "bg-[#0A1628] text-white" : "bg-gray-100 text-gray-600"}`}>
                 {p === "month" ? "Bulan Ini" : "Semua"}
               </button>
             ))}
@@ -217,11 +217,11 @@ export default function CommissionsPage() {
       {/* Commission Table */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3 flex flex-row items-center justify-between">
-          <CardTitle className="text-base font-semibold text-[#1a2744]">
+          <CardTitle className="text-base font-semibold text-[#0A1628]">
             Detail Komisi ({filtered.length})
           </CardTitle>
           {filtered.some((c) => c.status === "pending") && (
-            <button onClick={handleSelectAll} className="text-xs text-[#1a2744] hover:underline">
+            <button onClick={handleSelectAll} className="text-xs text-[#0A1628] hover:underline">
               {selectedIds.size > 0 ? "Batal Pilih Semua" : "Pilih Semua Pending"}
             </button>
           )}

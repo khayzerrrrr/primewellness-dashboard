@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { Clock, CheckCircle, XCircle, Calendar, Download, Plus, ChevronLeft, ChevronRight, Users, AlertCircle, Trash2 } from "lucide-react";
@@ -197,11 +197,11 @@ export default function AttendancePage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1a2744]">Absensi Karyawan</h1>
+          <h1 className="text-2xl font-bold text-[#0A1628]">Absensi Karyawan</h1>
           <p className="text-gray-500 text-sm">{formatDate(new Date(), "EEEE, dd MMMM yyyy")}</p>
         </div>
         <div className="flex gap-2 flex-wrap">
-          <Button onClick={openBulk} size="sm" className="gap-2 bg-[#1a2744] hover:bg-[#2a3a60]">
+          <Button onClick={openBulk} size="sm" className="gap-2 bg-[#0A1628] hover:bg-[#1B3A6B]">
             <Plus className="w-4 h-4" />
             Input Massal
           </Button>
@@ -218,7 +218,7 @@ export default function AttendancePage() {
       <div className="flex gap-2">
         {[{ label: "Harian", value: "daily" }, { label: "Rekap Bulanan", value: "monthly" }].map((v) => (
           <button key={v.value} onClick={() => setView(v.value as "daily" | "monthly")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${view === v.value ? "bg-[#1a2744] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${view === v.value ? "bg-[#0A1628] text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>
             {v.label}
           </button>
         ))}
@@ -228,7 +228,7 @@ export default function AttendancePage() {
         <>
           <div className="flex items-center gap-3">
             <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+              className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
             <span className="text-sm text-gray-500">{records.length} karyawan tercatat</span>
           </div>
 
@@ -244,7 +244,7 @@ export default function AttendancePage() {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${s.color}`}>
                     <s.icon className="w-5 h-5" />
                   </div>
-                  <p className="text-2xl font-bold text-[#1a2744]">{s.count}</p>
+                  <p className="text-2xl font-bold text-[#0A1628]">{s.count}</p>
                   <p className="text-sm text-gray-500">{s.label}</p>
                 </CardContent>
               </Card>
@@ -253,7 +253,7 @@ export default function AttendancePage() {
 
           <Card className="border-0 shadow-sm">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-semibold text-[#1a2744]">Absensi — {selectedDate}</CardTitle>
+              <CardTitle className="text-base font-semibold text-[#0A1628]">Absensi — {selectedDate}</CardTitle>
             </CardHeader>
             <CardContent>
               {loading ? <div className="space-y-3">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-14 w-full" />)}</div>
@@ -338,7 +338,7 @@ export default function AttendancePage() {
           <div className="flex items-center gap-3">
             <button onClick={() => setViewMonth(new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1))}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"><ChevronLeft className="w-5 h-5" /></button>
-            <span className="font-semibold text-[#1a2744] min-w-40 text-center">
+            <span className="font-semibold text-[#0A1628] min-w-40 text-center">
               {MONTHS_ID[viewMonth.getMonth()]} {viewMonth.getFullYear()}
             </span>
             <button onClick={() => setViewMonth(new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1))}
@@ -354,7 +354,7 @@ export default function AttendancePage() {
             ].map((s) => (
               <Card key={s.label} className="border-0 shadow-sm">
                 <CardContent className="p-4">
-                  <p className="text-2xl font-bold text-[#1a2744]">{loading ? "..." : s.count}</p>
+                  <p className="text-2xl font-bold text-[#0A1628]">{loading ? "..." : s.count}</p>
                   <p className="text-sm text-gray-500">{s.label}</p>
                 </CardContent>
               </Card>
@@ -363,7 +363,7 @@ export default function AttendancePage() {
 
           <Card className="border-0 shadow-sm">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-semibold text-[#1a2744]">
+              <CardTitle className="text-base font-semibold text-[#0A1628]">
                 Rekap per Karyawan — {MONTHS_ID[viewMonth.getMonth()]} {viewMonth.getFullYear()}
               </CardTitle>
             </CardHeader>
@@ -459,13 +459,13 @@ export default function AttendancePage() {
       <Dialog open={bulkOpen} onOpenChange={setBulkOpen}>
         <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-[#1a2744]">Input Absensi Massal</DialogTitle>
+            <DialogTitle className="text-[#0A1628]">Input Absensi Massal</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium text-gray-700">Tanggal:</label>
               <input type="date" value={bulkDate} onChange={(e) => setBulkDate(e.target.value)}
-                className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a2744]" />
+                className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0A1628]" />
             </div>
             {bulkRows.length === 0 ? (
               <p className="text-gray-400 text-sm text-center py-8">Tidak ada karyawan ditemukan</p>
@@ -488,7 +488,7 @@ export default function AttendancePage() {
                         <td className="py-2 px-2">
                           <select value={row.status}
                             onChange={(e) => setBulkRows((prev) => prev.map((r, j) => j === i ? { ...r, status: e.target.value } : r))}
-                            className="border border-gray-200 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#1a2744]">
+                            className="border border-gray-200 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#0A1628]">
                             <option value="present">Hadir</option>
                             <option value="late">Terlambat</option>
                             <option value="absent">Tidak Hadir</option>
@@ -518,7 +518,7 @@ export default function AttendancePage() {
             )}
             <div className="flex justify-end gap-3 pt-2">
               <Button variant="outline" onClick={() => setBulkOpen(false)}>Batal</Button>
-              <Button onClick={handleBulkSave} disabled={saving || bulkRows.length === 0} className="bg-[#1a2744] hover:bg-[#2a3a60]">
+              <Button onClick={handleBulkSave} disabled={saving || bulkRows.length === 0} className="bg-[#0A1628] hover:bg-[#1B3A6B]">
                 {saving ? "Menyimpan..." : `Simpan (${bulkRows.length} karyawan)`}
               </Button>
             </div>
