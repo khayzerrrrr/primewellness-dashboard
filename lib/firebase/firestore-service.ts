@@ -46,12 +46,10 @@ import {
 
 // ==================== SERVICES ====================
 export async function getServices(activeOnly = true) {
-  const constraints: QueryConstraint[] = activeOnly
-    ? [where("status", "==", "active"), orderBy("name")]
-    : [orderBy("name")];
-  const q = query(collection(db, FIRESTORE_COLLECTIONS.services), ...constraints);
+  const q = query(collection(db, FIRESTORE_COLLECTIONS.services), orderBy("name"));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Service[];
+  const all = snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Service[];
+  return activeOnly ? all.filter((s) => s.status === "active") : all;
 }
 
 export async function getService(id: string) {

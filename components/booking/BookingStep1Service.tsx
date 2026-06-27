@@ -17,11 +17,12 @@ interface Props {
 export function BookingStep1Service({ selected, onSelect }: Props) {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getServices(true)
       .then((data) => { setServices(data); setLoading(false); })
-      .catch(() => setLoading(false));
+      .catch(() => { setError(true); setLoading(false); });
   }, []);
 
   return (
@@ -38,6 +39,12 @@ export function BookingStep1Service({ selected, onSelect }: Props) {
           {Array.from({ length: 5 }).map((_, i) => (
             <Skeleton key={i} className="h-28 rounded-xl" />
           ))}
+        </div>
+      ) : error ? (
+        <div className="text-center py-12">
+          <Stethoscope className="w-12 h-12 text-red-200 mx-auto mb-3" />
+          <p className="text-gray-500 font-medium">Gagal memuat layanan</p>
+          <p className="text-gray-400 text-sm mt-1">Periksa koneksi internet Anda dan coba refresh halaman</p>
         </div>
       ) : services.length === 0 ? (
         <div className="text-center py-12">
