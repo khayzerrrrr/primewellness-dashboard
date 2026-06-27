@@ -213,6 +213,7 @@ export interface PatientVoucher {
   packageId: string;
   packageName: string;
   totalSessions: number;
+  usedSessions: number;
   remainingSessions: number;
   purchasePrice: number;
   status: VoucherStatus;

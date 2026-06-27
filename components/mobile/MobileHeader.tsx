@@ -21,7 +21,7 @@ export function MobileHeader() {
   const theme = THEME[role] || THEME.patient;
   const [unread, setUnread] = useState(0);
 
-  const name = userData?.displayName || userData?.fullName || user?.email?.split("@")[0] || "Pengguna";
+  const name = String(userData?.displayName || userData?.fullName || user?.email?.split("@")[0] || "Pengguna");
 
   useEffect(() => {
     if (!user?.uid) return;

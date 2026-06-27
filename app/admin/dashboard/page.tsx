@@ -8,6 +8,7 @@ import { StatsCard } from "@/components/dashboard/StatsCard";
 import { AppointmentBadge } from "@/components/dashboard/AppointmentBadge";
 import { getDashboardStats, getAppointmentsByDate, getAppointments } from "@/lib/firebase/firestore-service";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { LiveSessionWidget } from "@/components/dashboard/LiveSessionWidget";
 import type { Appointment } from "@/types";
 
 export default function AdminDashboardPage() {
@@ -70,6 +71,8 @@ export default function AdminDashboardPage() {
         />
       </div>
 
+      <LiveSessionWidget />
+
       <Card>
         <CardHeader>
           <CardTitle className="text-base font-semibold">
@@ -84,32 +87,46 @@ export default function AdminDashboardPage() {
           ) : todayApps.length === 0 ? (
             <p className="text-gray-500 text-center py-8">Tidak ada appointment hari ini</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-100">
-                    <th className="text-left py-2 text-gray-500 font-medium">Booking #</th>
-                    <th className="text-left py-2 text-gray-500 font-medium">Pasien</th>
-                    <th className="text-left py-2 text-gray-500 font-medium">Dokter</th>
-                    <th className="text-left py-2 text-gray-500 font-medium">Jam</th>
-                    <th className="text-left py-2 text-gray-500 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {todayApps.map((app) => (
-                    <tr key={app.id} className="border-b border-gray-50 hover:bg-gray-50">
-                      <td className="py-3 text-[#1B3A6B] font-mono text-xs">{app.bookingNumber}</td>
-                      <td className="py-3 font-medium text-slate-800">{app.patientName}</td>
-                      <td className="py-3 text-gray-600">{app.doctorName}</td>
-                      <td className="py-3 text-gray-600">{app.timeSlot}</td>
-                      <td className="py-3">
-                        <AppointmentBadge status={app.status} />
-                      </td>
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100">
+                      <th className="text-left py-2 text-gray-500 font-medium">Booking #</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Pasien</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Dokter</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Jam</th>
+                      <th className="text-left py-2 text-gray-500 font-medium">Status</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {todayApps.map((app) => (
+                      <tr key={app.id} className="border-b border-gray-50 hover:bg-gray-50">
+                        <td className="py-3 text-[#1B3A6B] font-mono text-xs">{app.bookingNumber}</td>
+                        <td className="py-3 font-medium text-slate-800">{app.patientName}</td>
+                        <td className="py-3 text-gray-600">{app.doctorName}</td>
+                        <td className="py-3 text-gray-600">{app.timeSlot}</td>
+                        <td className="py-3"><AppointmentBadge status={app.status} /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden space-y-2">
+                {todayApps.map((app) => (
+                  <div key={app.id} className="bg-gray-50 rounded-xl p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="font-semibold text-slate-800 text-sm">{app.patientName}</p>
+                      <AppointmentBadge status={app.status} />
+                    </div>
+                    <p className="text-xs text-gray-500">{app.serviceName} · {app.timeSlot}</p>
+                    <p className="text-xs text-[#1B3A6B] font-mono mt-0.5">{app.bookingNumber}</p>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>
