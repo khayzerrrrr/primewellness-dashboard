@@ -130,6 +130,7 @@ export interface Appointment {
   voucherId?: string;
   voucherSessionUsed?: boolean;
   googleEventId?: string;
+  startedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 }

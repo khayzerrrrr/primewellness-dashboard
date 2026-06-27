@@ -14,8 +14,10 @@ import {
   orderBy,
   limit,
   serverTimestamp,
+  onSnapshot,
   Timestamp,
   type QueryConstraint,
+  type Unsubscribe,
 } from "firebase/firestore";
 import { db } from "./config";
 import { FIRESTORE_COLLECTIONS } from "@/lib/constants";
@@ -507,10 +509,9 @@ export async function updateAppointmentStatus(
   status: Appointment["status"],
   actor?: { userId: string; userName: string; userRole: string; patientName?: string; bookingNumber?: string }
 ) {
-  await updateDoc(doc(db, FIRESTORE_COLLECTIONS.appointments, id), {
-    status,
-    updatedAt: serverTimestamp(),
-  });
+  const updatePayload: Record<string, unknown> = { status, updatedAt: serverTimestamp() };
+  if (status === "in_progress") updatePayload.startedAt = serverTimestamp();
+  await updateDoc(doc(db, FIRESTORE_COLLECTIONS.appointments, id), updatePayload);
   if (actor) {
     const actionMap: Record<string, string> = {
       confirmed: "confirm_appointment",
@@ -545,6 +546,46 @@ export async function updateAppointment(id: string, data: Partial<Appointment>) 
   await updateDoc(doc(db, FIRESTORE_COLLECTIONS.appointments, id), {
     ...data,
     updatedAt: serverTimestamp(),
+  });
+}
+
+/** Live subscription — all in_progress appointments (for session timer widget) */
+export function subscribeToInProgressAppointments(
+  callback: (appointments: Appointment[]) => void
+): Unsubscribe {
+  const q = query(
+    collection(db, FIRESTORE_COLLECTIONS.appointments),
+    where("status", "==", "in_progress")
+  );
+  return onSnapshot(q, (snap) => {
+    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })) as Appointment[]);
+  });
+}
+
+/** Live subscription — booked slots for a doctor on a given date (for slot validation) */
+export function subscribeToBookedSlots(
+  doctorId: string,
+  date: Date,
+  callback: (bookedSlots: string[]) => void
+): Unsubscribe {
+  const start = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(date);
+  end.setHours(23, 59, 59, 999);
+
+  const q = query(
+    collection(db, FIRESTORE_COLLECTIONS.appointments),
+    where("doctorId", "==", doctorId),
+    where("date", ">=", Timestamp.fromDate(start)),
+    where("date", "<=", Timestamp.fromDate(end))
+  );
+  return onSnapshot(q, (snap) => {
+    const slots = snap.docs
+      .map((d) => d.data())
+      .filter((d) => d.status !== "cancelled")
+      .map((d) => d.timeSlot as string)
+      .filter(Boolean);
+    callback(slots);
   });
 }
 

@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { toast } from "sonner";
+import { LiveSessionWidget } from "@/components/dashboard/LiveSessionWidget";
 import type { Appointment, Invoice } from "@/types";
 
 export default function FrontOfficeDashboardPage() {
@@ -158,6 +159,9 @@ export default function FrontOfficeDashboardPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* Live Session Timer */}
+      <LiveSessionWidget />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Today Queue */}

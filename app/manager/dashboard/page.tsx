@@ -10,6 +10,7 @@ import { getDashboardStats, getDoctors, getAppointmentsByDate, getInvoices } fro
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
+import { LiveSessionWidget } from "@/components/dashboard/LiveSessionWidget";
 import type { Appointment, Doctor, Invoice } from "@/types";
 
 export default function ManagerDashboardPage() {
@@ -112,6 +113,9 @@ export default function ManagerDashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Live Sessions */}
+      <LiveSessionWidget />
 
       {/* Appointment & Invoice */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

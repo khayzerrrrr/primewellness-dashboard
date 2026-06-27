@@ -5,9 +5,10 @@ import { Users, UserCheck, Calendar, DollarSign, TrendingUp, Receipt, Ticket, Ar
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StatsCard } from "@/components/dashboard/StatsCard";
-import { getDashboardStats, getPatients, getDoctors, getInvoices } from "@/lib/firebase/firestore-service";
+import { getDashboardStats, getDoctors, getInvoices } from "@/lib/firebase/firestore-service";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { LiveSessionWidget } from "@/components/dashboard/LiveSessionWidget";
 import type { Invoice } from "@/types";
 
 export default function OwnerDashboardPage() {
@@ -93,6 +94,9 @@ export default function OwnerDashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Live Sessions */}
+      <LiveSessionWidget />
 
       {/* Summary */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
