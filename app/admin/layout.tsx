@@ -7,7 +7,7 @@ import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import {
   LayoutDashboard, Users, UserCheck, Calendar,
   FileText, Receipt, Stethoscope, Star, HelpCircle, Settings,
-  BarChart3, ShieldCheck, Wallet, Building2, TrendingUp, Activity,
+  BarChart3, ShieldCheck, Wallet, Building2, TrendingUp, Activity, ClipboardCheck,
 } from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -22,6 +22,7 @@ const ADMIN_NAV = [
   { href: "/admin/services", label: "Layanan", icon: Stethoscope },
   { href: "/admin/testimonials", label: "Testimoni", icon: Star },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
+  { href: "/admin/attendance", label: "Absensi Saya", icon: ClipboardCheck },
   { href: "/admin/settings", label: "Pengaturan", icon: Settings },
 ];
 
