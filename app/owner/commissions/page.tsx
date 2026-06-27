@@ -234,30 +234,73 @@ export default function CommissionsPage() {
           ) : filtered.length === 0 ? (
             <p className="text-center text-gray-400 py-12">Belum ada data komisi</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50">
-                    <th className="py-3 px-4 w-8"></th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Tanggal</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Terapis</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Pasien</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Layanan</th>
-                    <th className="text-right py-3 px-4 text-gray-500 font-medium">Harga</th>
-                    <th className="text-right py-3 px-4 text-gray-500 font-medium">Rate</th>
-                    <th className="text-right py-3 px-4 text-gray-500 font-medium">Komisi</th>
-                    <th className="text-center py-3 px-4 text-gray-500 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((c) => {
-                    const d = c.sessionDate instanceof Date
-                      ? c.sessionDate
-                      : (c.sessionDate as unknown as { toDate?: () => Date })?.toDate?.() ?? new Date();
-                    const isSelected = selectedIds.has(c.id);
-                    return (
-                      <tr key={c.id} className={`border-b border-gray-50 hover:bg-gray-50 ${isSelected ? "bg-orange-50" : ""}`}>
-                        <td className="py-3 px-4">
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100 bg-gray-50">
+                      <th className="py-3 px-4 w-8"></th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Tanggal</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Terapis</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Pasien</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Layanan</th>
+                      <th className="text-right py-3 px-4 text-gray-500 font-medium">Harga</th>
+                      <th className="text-right py-3 px-4 text-gray-500 font-medium">Rate</th>
+                      <th className="text-right py-3 px-4 text-gray-500 font-medium">Komisi</th>
+                      <th className="text-center py-3 px-4 text-gray-500 font-medium">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filtered.map((c) => {
+                      const d = c.sessionDate instanceof Date
+                        ? c.sessionDate
+                        : (c.sessionDate as unknown as { toDate?: () => Date })?.toDate?.() ?? new Date();
+                      const isSelected = selectedIds.has(c.id);
+                      return (
+                        <tr key={c.id} className={`border-b border-gray-50 hover:bg-gray-50 ${isSelected ? "bg-orange-50" : ""}`}>
+                          <td className="py-3 px-4">
+                            {c.status === "pending" && (
+                              <input type="checkbox" checked={isSelected}
+                                onChange={(e) => {
+                                  const next = new Set(selectedIds);
+                                  e.target.checked ? next.add(c.id) : next.delete(c.id);
+                                  setSelectedIds(next);
+                                }}
+                                className="rounded" />
+                            )}
+                          </td>
+                          <td className="py-3 px-4 text-gray-500 text-xs">{formatDate(d, "dd MMM yyyy")}</td>
+                          <td className="py-3 px-4 font-medium text-slate-800">{c.therapistName}</td>
+                          <td className="py-3 px-4 text-gray-600">{c.patientName}</td>
+                          <td className="py-3 px-4 text-gray-600 text-xs">{c.serviceName}</td>
+                          <td className="py-3 px-4 text-right text-gray-600">{formatCurrency(c.servicePrice)}</td>
+                          <td className="py-3 px-4 text-right text-gray-500">{c.commissionRate}%</td>
+                          <td className="py-3 px-4 text-right font-bold text-green-700">{formatCurrency(c.commissionAmount)}</td>
+                          <td className="py-3 px-4 text-center">
+                            <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                              c.status === "paid" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"
+                            }`}>
+                              {c.status === "paid" ? "Dibayar" : "Pending"}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden divide-y divide-gray-50">
+                {filtered.map((c) => {
+                  const d = c.sessionDate instanceof Date
+                    ? c.sessionDate
+                    : (c.sessionDate as unknown as { toDate?: () => Date })?.toDate?.() ?? new Date();
+                  const isSelected = selectedIds.has(c.id);
+                  return (
+                    <div key={c.id} className={`p-3 ${isSelected ? "bg-orange-50" : ""}`}>
+                      <div className="flex items-start justify-between gap-2 mb-1">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
                           {c.status === "pending" && (
                             <input type="checkbox" checked={isSelected}
                               onChange={(e) => {
@@ -265,29 +308,28 @@ export default function CommissionsPage() {
                                 e.target.checked ? next.add(c.id) : next.delete(c.id);
                                 setSelectedIds(next);
                               }}
-                              className="rounded" />
+                              className="rounded flex-shrink-0" />
                           )}
-                        </td>
-                        <td className="py-3 px-4 text-gray-500 text-xs">{formatDate(d, "dd MMM yyyy")}</td>
-                        <td className="py-3 px-4 font-medium text-slate-800">{c.therapistName}</td>
-                        <td className="py-3 px-4 text-gray-600">{c.patientName}</td>
-                        <td className="py-3 px-4 text-gray-600 text-xs">{c.serviceName}</td>
-                        <td className="py-3 px-4 text-right text-gray-600">{formatCurrency(c.servicePrice)}</td>
-                        <td className="py-3 px-4 text-right text-gray-500">{c.commissionRate}%</td>
-                        <td className="py-3 px-4 text-right font-bold text-green-700">{formatCurrency(c.commissionAmount)}</td>
-                        <td className="py-3 px-4 text-center">
-                          <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                          <div className="min-w-0">
+                            <p className="font-semibold text-slate-800 text-sm truncate">{c.therapistName}</p>
+                            <p className="text-xs text-gray-500 truncate">{c.patientName} · {c.serviceName}</p>
+                            <p className="text-xs text-gray-400">{formatDate(d, "dd MMM yyyy")} · {c.commissionRate}%</p>
+                          </div>
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <p className="font-bold text-green-700 text-sm">{formatCurrency(c.commissionAmount)}</p>
+                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                             c.status === "paid" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700"
                           }`}>
                             {c.status === "paid" ? "Dibayar" : "Pending"}
                           </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

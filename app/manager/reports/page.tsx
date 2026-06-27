@@ -258,39 +258,62 @@ export default function ReportsPage() {
           {loading ? <Skeleton className="h-32 w-full" /> : periodInvoices.length === 0 ? (
             <p className="text-gray-400 text-center py-8 text-sm">Belum ada transaksi</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50">
-                    <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Tanggal</th>
-                    <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Pasien</th>
-                    <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Layanan</th>
-                    <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Terapis</th>
-                    <th className="text-right py-2.5 px-3 text-gray-500 font-medium text-xs">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {periodInvoices.slice(0, 30).map((inv) => {
-                    const d = getDate(inv);
-                    return (
-                      <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                        <td className="py-2.5 px-3 text-gray-500 text-xs">{d ? formatDate(d, "dd MMM yy") : "—"}</td>
-                        <td className="py-2.5 px-3 font-medium text-slate-800">{inv.patientName}</td>
-                        <td className="py-2.5 px-3 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
-                        <td className="py-2.5 px-3 text-gray-600 text-xs">{inv.therapistName || "—"}</td>
-                        <td className="py-2.5 px-3 text-right font-semibold text-green-700">{formatCurrency(inv.total)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                <tfoot>
-                  <tr className="bg-[#1a2744] text-white">
-                    <td colSpan={4} className="py-2.5 px-3 font-semibold text-sm">Total</td>
-                    <td className="py-2.5 px-3 text-right font-bold">{formatCurrency(periodRevenue)}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100 bg-gray-50">
+                      <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Tanggal</th>
+                      <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Pasien</th>
+                      <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Layanan</th>
+                      <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Terapis</th>
+                      <th className="text-right py-2.5 px-3 text-gray-500 font-medium text-xs">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {periodInvoices.slice(0, 30).map((inv) => {
+                      const d = getDate(inv);
+                      return (
+                        <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                          <td className="py-2.5 px-3 text-gray-500 text-xs">{d ? formatDate(d, "dd MMM yy") : "—"}</td>
+                          <td className="py-2.5 px-3 font-medium text-slate-800">{inv.patientName}</td>
+                          <td className="py-2.5 px-3 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
+                          <td className="py-2.5 px-3 text-gray-600 text-xs">{inv.therapistName || "—"}</td>
+                          <td className="py-2.5 px-3 text-right font-semibold text-green-700">{formatCurrency(inv.total)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  <tfoot>
+                    <tr className="bg-[#1a2744] text-white">
+                      <td colSpan={4} className="py-2.5 px-3 font-semibold text-sm">Total</td>
+                      <td className="py-2.5 px-3 text-right font-bold">{formatCurrency(periodRevenue)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden space-y-2">
+                {periodInvoices.slice(0, 30).map((inv) => {
+                  const d = getDate(inv);
+                  return (
+                    <div key={inv.id} className="bg-gray-50 rounded-xl p-3 flex items-center justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-slate-800 text-sm truncate">{inv.patientName}</p>
+                        <p className="text-xs text-gray-500 truncate">{inv.serviceName || "—"}</p>
+                        <p className="text-xs text-gray-400">{d ? formatDate(d, "dd MMM yy") : "—"} · {inv.therapistName || "—"}</p>
+                      </div>
+                      <p className="font-bold text-green-700 text-sm flex-shrink-0">{formatCurrency(inv.total)}</p>
+                    </div>
+                  );
+                })}
+                <div className="bg-[#1a2744] text-white rounded-xl p-3 flex items-center justify-between">
+                  <p className="font-semibold text-sm">Total ({periodInvoices.length} transaksi)</p>
+                  <p className="font-bold">{formatCurrency(periodRevenue)}</p>
+                </div>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

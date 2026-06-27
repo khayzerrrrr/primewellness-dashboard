@@ -264,42 +264,69 @@ export default function AttendancePage() {
                     <p className="text-sm mt-1">Gunakan tombol &quot;Input Massal&quot; untuk mengisi absensi</p>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b border-gray-100 bg-gray-50">
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Karyawan</th>
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Role</th>
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Masuk</th>
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Keluar</th>
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Status</th>
-                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Keterangan</th>
-                          <th className="py-2.5 px-3"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {records.map((rec) => (
-                          <tr key={rec.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                            <td className="py-2.5 px-3 font-medium text-slate-800">{rec.employeeName}</td>
-                            <td className="py-2.5 px-3 text-gray-600 capitalize text-xs">{rec.role}</td>
-                            <td className="py-2.5 px-3 text-gray-600 font-mono text-xs">{rec.clockIn || "—"}</td>
-                            <td className="py-2.5 px-3 text-gray-600 font-mono text-xs">{rec.clockOut || "—"}</td>
-                            <td className="py-2.5 px-3">
-                              <span className={`text-xs px-2 py-1 rounded-full font-medium ${STATUS_COLORS[rec.status]}`}>
+                  <>
+                    {/* Desktop table */}
+                    <div className="hidden md:block overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-gray-100 bg-gray-50">
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Karyawan</th>
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Role</th>
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Masuk</th>
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Keluar</th>
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Status</th>
+                            <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Keterangan</th>
+                            <th className="py-2.5 px-3"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {records.map((rec) => (
+                            <tr key={rec.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                              <td className="py-2.5 px-3 font-medium text-slate-800">{rec.employeeName}</td>
+                              <td className="py-2.5 px-3 text-gray-600 capitalize text-xs">{rec.role}</td>
+                              <td className="py-2.5 px-3 text-gray-600 font-mono text-xs">{rec.clockIn || "—"}</td>
+                              <td className="py-2.5 px-3 text-gray-600 font-mono text-xs">{rec.clockOut || "—"}</td>
+                              <td className="py-2.5 px-3">
+                                <span className={`text-xs px-2 py-1 rounded-full font-medium ${STATUS_COLORS[rec.status]}`}>
+                                  {STATUS_LABELS[rec.status]}
+                                </span>
+                              </td>
+                              <td className="py-2.5 px-3 text-gray-500 text-xs">{rec.notes || "—"}</td>
+                              <td className="py-2.5 px-3">
+                                <button onClick={() => handleDelete(rec.id)} className="text-gray-300 hover:text-red-500 transition-colors">
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    {/* Mobile cards */}
+                    <div className="md:hidden space-y-2">
+                      {records.map((rec) => (
+                        <div key={rec.id} className="bg-gray-50 rounded-xl p-3 flex items-center gap-3">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                              <p className="font-semibold text-slate-800 text-sm truncate">{rec.employeeName}</p>
+                              <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${STATUS_COLORS[rec.status]}`}>
                                 {STATUS_LABELS[rec.status]}
                               </span>
-                            </td>
-                            <td className="py-2.5 px-3 text-gray-500 text-xs">{rec.notes || "—"}</td>
-                            <td className="py-2.5 px-3">
-                              <button onClick={() => handleDelete(rec.id)} className="text-gray-300 hover:text-red-500 transition-colors">
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                            </div>
+                            <p className="text-xs text-gray-500 capitalize">{rec.role}</p>
+                            <div className="flex gap-4 mt-1">
+                              <span className="text-xs text-gray-600 font-mono">Masuk: {rec.clockIn || "—"}</span>
+                              <span className="text-xs text-gray-600 font-mono">Keluar: {rec.clockOut || "—"}</span>
+                            </div>
+                            {rec.notes && <p className="text-xs text-gray-400 mt-0.5 italic">{rec.notes}</p>}
+                          </div>
+                          <button onClick={() => handleDelete(rec.id)} className="text-gray-300 hover:text-red-500 transition-colors flex-shrink-0">
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 )}
             </CardContent>
           </Card>
@@ -347,48 +374,81 @@ export default function AttendancePage() {
                   <p>Tidak ada data absensi bulan ini</p>
                 </div>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-100 bg-gray-50">
-                        <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Karyawan</th>
-                        <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Role</th>
-                        <th className="text-center py-2.5 px-3 text-green-600 font-medium text-xs">Hadir</th>
-                        <th className="text-center py-2.5 px-3 text-yellow-600 font-medium text-xs">Terlambat</th>
-                        <th className="text-center py-2.5 px-3 text-red-600 font-medium text-xs">Absen</th>
-                        <th className="text-center py-2.5 px-3 text-blue-600 font-medium text-xs">Cuti</th>
-                        <th className="text-center py-2.5 px-3 text-gray-500 font-medium text-xs">Kehadiran</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {monthlyEmpList.map((emp) => {
-                        const total = emp.present + emp.late + emp.absent + emp.leave;
-                        const pct = total > 0 ? Math.round(((emp.present + emp.late) / total) * 100) : 0;
-                        return (
-                          <tr key={emp.name} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                            <td className="py-2.5 px-3 font-medium text-slate-800">{emp.name}</td>
-                            <td className="py-2.5 px-3 text-gray-500 capitalize text-xs">{emp.role}</td>
-                            <td className="py-2.5 px-3 text-center font-bold text-green-700">{emp.present}</td>
-                            <td className="py-2.5 px-3 text-center font-bold text-yellow-700">{emp.late}</td>
-                            <td className="py-2.5 px-3 text-center font-bold text-red-700">{emp.absent}</td>
-                            <td className="py-2.5 px-3 text-center font-bold text-blue-700">{emp.leave}</td>
-                            <td className="py-2.5 px-3">
-                              <div className="flex items-center gap-2">
-                                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                  <div className={`h-full rounded-full ${pct >= 80 ? "bg-green-500" : pct >= 60 ? "bg-yellow-500" : "bg-red-500"}`}
-                                    style={{ width: `${pct}%` }} />
+                <>
+                  {/* Desktop table */}
+                  <div className="hidden md:block overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-gray-100 bg-gray-50">
+                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Karyawan</th>
+                          <th className="text-left py-2.5 px-3 text-gray-500 font-medium text-xs">Role</th>
+                          <th className="text-center py-2.5 px-3 text-green-600 font-medium text-xs">Hadir</th>
+                          <th className="text-center py-2.5 px-3 text-yellow-600 font-medium text-xs">Terlambat</th>
+                          <th className="text-center py-2.5 px-3 text-red-600 font-medium text-xs">Absen</th>
+                          <th className="text-center py-2.5 px-3 text-blue-600 font-medium text-xs">Cuti</th>
+                          <th className="text-center py-2.5 px-3 text-gray-500 font-medium text-xs">Kehadiran</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {monthlyEmpList.map((emp) => {
+                          const total = emp.present + emp.late + emp.absent + emp.leave;
+                          const pct = total > 0 ? Math.round(((emp.present + emp.late) / total) * 100) : 0;
+                          return (
+                            <tr key={emp.name} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                              <td className="py-2.5 px-3 font-medium text-slate-800">{emp.name}</td>
+                              <td className="py-2.5 px-3 text-gray-500 capitalize text-xs">{emp.role}</td>
+                              <td className="py-2.5 px-3 text-center font-bold text-green-700">{emp.present}</td>
+                              <td className="py-2.5 px-3 text-center font-bold text-yellow-700">{emp.late}</td>
+                              <td className="py-2.5 px-3 text-center font-bold text-red-700">{emp.absent}</td>
+                              <td className="py-2.5 px-3 text-center font-bold text-blue-700">{emp.leave}</td>
+                              <td className="py-2.5 px-3">
+                                <div className="flex items-center gap-2">
+                                  <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div className={`h-full rounded-full ${pct >= 80 ? "bg-green-500" : pct >= 60 ? "bg-yellow-500" : "bg-red-500"}`}
+                                      style={{ width: `${pct}%` }} />
+                                  </div>
+                                  <span className={`text-xs font-medium ${pct >= 80 ? "text-green-700" : pct >= 60 ? "text-yellow-700" : "text-red-700"}`}>
+                                    {pct}%
+                                  </span>
                                 </div>
-                                <span className={`text-xs font-medium ${pct >= 80 ? "text-green-700" : pct >= 60 ? "text-yellow-700" : "text-red-700"}`}>
-                                  {pct}%
-                                </span>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  {/* Mobile cards */}
+                  <div className="md:hidden space-y-2">
+                    {monthlyEmpList.map((emp) => {
+                      const total = emp.present + emp.late + emp.absent + emp.leave;
+                      const pct = total > 0 ? Math.round(((emp.present + emp.late) / total) * 100) : 0;
+                      return (
+                        <div key={emp.name} className="bg-gray-50 rounded-xl p-3">
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <p className="font-semibold text-slate-800 text-sm">{emp.name}</p>
+                              <p className="text-xs text-gray-500 capitalize">{emp.role}</p>
+                            </div>
+                            <span className={`text-sm font-bold ${pct >= 80 ? "text-green-700" : pct >= 60 ? "text-yellow-700" : "text-red-700"}`}>
+                              {pct}%
+                            </span>
+                          </div>
+                          <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden mb-2">
+                            <div className={`h-full rounded-full ${pct >= 80 ? "bg-green-500" : pct >= 60 ? "bg-yellow-500" : "bg-red-500"}`}
+                              style={{ width: `${pct}%` }} />
+                          </div>
+                          <div className="grid grid-cols-4 gap-1 text-center">
+                            <div><p className="text-xs font-bold text-green-700">{emp.present}</p><p className="text-[10px] text-gray-400">Hadir</p></div>
+                            <div><p className="text-xs font-bold text-yellow-700">{emp.late}</p><p className="text-[10px] text-gray-400">Telat</p></div>
+                            <div><p className="text-xs font-bold text-red-700">{emp.absent}</p><p className="text-[10px] text-gray-400">Absen</p></div>
+                            <div><p className="text-xs font-bold text-blue-700">{emp.leave}</p><p className="text-[10px] text-gray-400">Cuti</p></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
               )}
             </CardContent>
           </Card>

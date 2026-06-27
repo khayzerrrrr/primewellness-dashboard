@@ -211,64 +211,99 @@ export default function AccountManagementPage() {
           ) : filtered.length === 0 ? (
             <p className="text-center text-gray-400 py-8">Tidak ada akun ditemukan</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-100">
-                    <th className="text-left py-3 text-gray-500 font-medium">Nama</th>
-                    <th className="text-left py-3 text-gray-500 font-medium">Email</th>
-                    <th className="text-left py-3 text-gray-500 font-medium">Role</th>
-                    <th className="text-left py-3 text-gray-500 font-medium">Status</th>
-                    <th className="text-left py-3 text-gray-500 font-medium">Dibuat</th>
-                    <th className="text-right py-3 text-gray-500 font-medium">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((u) => (
-                    <tr key={u.id} className="border-b border-gray-50 hover:bg-gray-50">
-                      <td className="py-3 font-medium text-slate-800">{u.displayName}</td>
-                      <td className="py-3 text-gray-600 text-xs">{u.email}</td>
-                      <td className="py-3">
-                        <span className={`text-xs px-2 py-1 rounded-full font-medium ${ROLE_COLORS[u.role] ?? "bg-gray-100 text-gray-700"}`}>
-                          {ROLE_LABELS[u.role] ?? u.role}
-                        </span>
-                      </td>
-                      <td className="py-3">
-                        <span className={`text-xs px-2 py-1 rounded-full ${u.isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
-                          {u.isActive ? "Aktif" : "Nonaktif"}
-                        </span>
-                      </td>
-                      <td className="py-3 text-gray-500 text-xs">{formatDate(u.createdAt, "dd MMM yyyy")}</td>
-                      <td className="py-3 text-right">
-                        <div className="flex items-center gap-1 justify-end">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => handleToggleActive(u)}
-                            title={u.isActive ? "Nonaktifkan" : "Aktifkan"}
-                          >
-                            {u.isActive
-                              ? <ToggleRight className="w-4 h-4 text-green-500" />
-                              : <ToggleLeft className="w-4 h-4 text-gray-400" />}
-                          </Button>
-                          {u.role !== "owner" && (
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100">
+                      <th className="text-left py-3 text-gray-500 font-medium">Nama</th>
+                      <th className="text-left py-3 text-gray-500 font-medium">Email</th>
+                      <th className="text-left py-3 text-gray-500 font-medium">Role</th>
+                      <th className="text-left py-3 text-gray-500 font-medium">Status</th>
+                      <th className="text-left py-3 text-gray-500 font-medium">Dibuat</th>
+                      <th className="text-right py-3 text-gray-500 font-medium">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filtered.map((u) => (
+                      <tr key={u.id} className="border-b border-gray-50 hover:bg-gray-50">
+                        <td className="py-3 font-medium text-slate-800">{u.displayName}</td>
+                        <td className="py-3 text-gray-600 text-xs">{u.email}</td>
+                        <td className="py-3">
+                          <span className={`text-xs px-2 py-1 rounded-full font-medium ${ROLE_COLORS[u.role] ?? "bg-gray-100 text-gray-700"}`}>
+                            {ROLE_LABELS[u.role] ?? u.role}
+                          </span>
+                        </td>
+                        <td className="py-3">
+                          <span className={`text-xs px-2 py-1 rounded-full ${u.isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
+                            {u.isActive ? "Aktif" : "Nonaktif"}
+                          </span>
+                        </td>
+                        <td className="py-3 text-gray-500 text-xs">{formatDate(u.createdAt, "dd MMM yyyy")}</td>
+                        <td className="py-3 text-right">
+                          <div className="flex items-center gap-1 justify-end">
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-8 w-8 text-red-500 hover:text-red-600"
-                              onClick={() => handleDelete(u.id)}
+                              className="h-8 w-8"
+                              onClick={() => handleToggleActive(u)}
+                              title={u.isActive ? "Nonaktifkan" : "Aktifkan"}
                             >
-                              <Trash2 className="w-3.5 h-3.5" />
+                              {u.isActive
+                                ? <ToggleRight className="w-4 h-4 text-green-500" />
+                                : <ToggleLeft className="w-4 h-4 text-gray-400" />}
                             </Button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                            {u.role !== "owner" && (
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-red-500 hover:text-red-600"
+                                onClick={() => handleDelete(u.id)}
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden space-y-2">
+                {filtered.map((u) => (
+                  <div key={u.id} className="bg-gray-50 rounded-xl p-3 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#1a2744] flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-sm font-bold">{u.displayName.charAt(0)}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-slate-800 text-sm truncate">{u.displayName}</p>
+                      <p className="text-xs text-gray-500 truncate">{u.email}</p>
+                      <div className="flex items-center gap-2 mt-1 flex-wrap">
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ROLE_COLORS[u.role] ?? "bg-gray-100 text-gray-700"}`}>
+                          {ROLE_LABELS[u.role] ?? u.role}
+                        </span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${u.isActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
+                          {u.isActive ? "Aktif" : "Nonaktif"}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleToggleActive(u)}>
+                        {u.isActive ? <ToggleRight className="w-4 h-4 text-green-500" /> : <ToggleLeft className="w-4 h-4 text-gray-400" />}
+                      </Button>
+                      {u.role !== "owner" && (
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500" onClick={() => handleDelete(u.id)}>
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

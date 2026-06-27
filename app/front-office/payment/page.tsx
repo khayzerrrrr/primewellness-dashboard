@@ -158,57 +158,94 @@ export default function PaymentPage() {
           ) : filtered.length === 0 ? (
             <p className="text-center text-gray-400 py-12">Tidak ada invoice</p>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-100 bg-gray-50">
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Invoice</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Pasien</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Layanan</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Total</th>
-                    <th className="text-left py-3 px-4 text-gray-500 font-medium">Status</th>
-                    <th className="text-right py-3 px-4 text-gray-500 font-medium">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((inv) => (
-                    <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50">
-                      <td className="py-3 px-4">
-                        <p className="font-mono text-xs text-teal-600">{inv.invoiceNumber}</p>
-                        <p className="text-xs text-gray-400">{formatDate(inv.date as Date, "dd MMM yyyy")}</p>
-                      </td>
-                      <td className="py-3 px-4 font-medium text-slate-800">{inv.patientName}</td>
-                      <td className="py-3 px-4 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
-                      <td className="py-3 px-4 font-bold text-[#1a2744]">{formatCurrency(inv.total)}</td>
-                      <td className="py-3 px-4">
-                        <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                          inv.status === "paid" ? "bg-green-100 text-green-700" :
-                          inv.status === "unpaid" ? "bg-yellow-100 text-yellow-700" :
-                          "bg-gray-100 text-gray-600"
-                        }`}>
-                          {inv.status === "paid" ? "Lunas" : inv.status === "unpaid" ? "Belum Bayar" : "Dibatalkan"}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-right">
-                        {inv.status === "unpaid" ? (
-                          <Button
-                            size="sm"
-                            className="bg-[#1a2744] hover:bg-[#2a3a60] text-white text-xs h-7"
-                            onClick={() => setSelectedInvoice(inv)}
-                          >
-                            Konfirmasi
-                          </Button>
-                        ) : (
-                          <span className="text-xs text-gray-400">
-                            {inv.status === "paid" ? "✓ Lunas" : "—"}
-                          </span>
-                        )}
-                      </td>
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-100 bg-gray-50">
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Invoice</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Pasien</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Layanan</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Total</th>
+                      <th className="text-left py-3 px-4 text-gray-500 font-medium">Status</th>
+                      <th className="text-right py-3 px-4 text-gray-500 font-medium">Aksi</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {filtered.map((inv) => (
+                      <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50">
+                        <td className="py-3 px-4">
+                          <p className="font-mono text-xs text-teal-600">{inv.invoiceNumber}</p>
+                          <p className="text-xs text-gray-400">{formatDate(inv.date as Date, "dd MMM yyyy")}</p>
+                        </td>
+                        <td className="py-3 px-4 font-medium text-slate-800">{inv.patientName}</td>
+                        <td className="py-3 px-4 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
+                        <td className="py-3 px-4 font-bold text-[#1a2744]">{formatCurrency(inv.total)}</td>
+                        <td className="py-3 px-4">
+                          <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                            inv.status === "paid" ? "bg-green-100 text-green-700" :
+                            inv.status === "unpaid" ? "bg-yellow-100 text-yellow-700" :
+                            "bg-gray-100 text-gray-600"
+                          }`}>
+                            {inv.status === "paid" ? "Lunas" : inv.status === "unpaid" ? "Belum Bayar" : "Dibatalkan"}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          {inv.status === "unpaid" ? (
+                            <Button
+                              size="sm"
+                              className="bg-[#1a2744] hover:bg-[#2a3a60] text-white text-xs h-7"
+                              onClick={() => setSelectedInvoice(inv)}
+                            >
+                              Konfirmasi
+                            </Button>
+                          ) : (
+                            <span className="text-xs text-gray-400">
+                              {inv.status === "paid" ? "✓ Lunas" : "—"}
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* Mobile cards */}
+              <div className="md:hidden divide-y divide-gray-50">
+                {filtered.map((inv) => (
+                  <div key={inv.id} className="p-4 hover:bg-gray-50">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div>
+                        <p className="font-semibold text-slate-800 text-sm">{inv.patientName}</p>
+                        <p className="text-xs font-mono text-teal-600">{inv.invoiceNumber}</p>
+                        <p className="text-xs text-gray-400">{formatDate(inv.date as Date, "dd MMM yyyy")}</p>
+                      </div>
+                      <span className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${
+                        inv.status === "paid" ? "bg-green-100 text-green-700" :
+                        inv.status === "unpaid" ? "bg-yellow-100 text-yellow-700" :
+                        "bg-gray-100 text-gray-600"
+                      }`}>
+                        {inv.status === "paid" ? "Lunas" : inv.status === "unpaid" ? "Belum Bayar" : "Dibatalkan"}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-500 mb-3 truncate">{inv.serviceName || "—"}</p>
+                    <div className="flex items-center justify-between">
+                      <p className="font-bold text-[#1a2744] text-base">{formatCurrency(inv.total)}</p>
+                      {inv.status === "unpaid" && (
+                        <Button
+                          size="sm"
+                          className="bg-[#1a2744] hover:bg-[#2a3a60] text-white text-xs h-8"
+                          onClick={() => setSelectedInvoice(inv)}
+                        >
+                          Konfirmasi Pembayaran
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>
