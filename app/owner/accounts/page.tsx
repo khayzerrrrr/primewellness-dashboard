@@ -96,7 +96,7 @@ export default function AccountManagementPage() {
 
   const filtered = users.filter((u) => {
     const matchRole = filterRole === "all" || u.role === filterRole;
-    const matchSearch = !search || u.displayName.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase());
+    const matchSearch = !search || u.displayName?.toLowerCase().includes(search.toLowerCase()) || u.email?.toLowerCase().includes(search.toLowerCase());
     return matchRole && matchSearch;
   });
 
@@ -228,8 +228,8 @@ export default function AccountManagementPage() {
                   <tbody>
                     {filtered.map((u) => (
                       <tr key={u.id} className="border-b border-gray-50 hover:bg-gray-50">
-                        <td className="py-3 font-medium text-slate-800">{u.displayName}</td>
-                        <td className="py-3 text-gray-600 text-xs">{u.email}</td>
+                        <td className="py-3 font-medium text-slate-800">{u.displayName || "—"}</td>
+                        <td className="py-3 text-gray-600 text-xs">{u.email || "—"}</td>
                         <td className="py-3">
                           <span className={`text-xs px-2 py-1 rounded-full font-medium ${ROLE_COLORS[u.role] ?? "bg-gray-100 text-gray-700"}`}>
                             {ROLE_LABELS[u.role] ?? u.role}
@@ -240,7 +240,7 @@ export default function AccountManagementPage() {
                             {u.isActive ? "Aktif" : "Nonaktif"}
                           </span>
                         </td>
-                        <td className="py-3 text-gray-500 text-xs">{formatDate(u.createdAt, "dd MMM yyyy")}</td>
+                        <td className="py-3 text-gray-500 text-xs">{u.createdAt ? formatDate(u.createdAt, "dd MMM yyyy") : "—"}</td>
                         <td className="py-3 text-right">
                           <div className="flex items-center gap-1 justify-end">
                             <Button
@@ -276,11 +276,11 @@ export default function AccountManagementPage() {
                 {filtered.map((u) => (
                   <div key={u.id} className="bg-gray-50 rounded-xl p-3 flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-[#1a2744] flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-sm font-bold">{u.displayName.charAt(0)}</span>
+                      <span className="text-white text-sm font-bold">{(u.displayName || u.email || "?").charAt(0).toUpperCase()}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-slate-800 text-sm truncate">{u.displayName}</p>
-                      <p className="text-xs text-gray-500 truncate">{u.email}</p>
+                      <p className="font-semibold text-slate-800 text-sm truncate">{u.displayName || "—"}</p>
+                      <p className="text-xs text-gray-500 truncate">{u.email || "—"}</p>
                       <div className="flex items-center gap-2 mt-1 flex-wrap">
                         <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ROLE_COLORS[u.role] ?? "bg-gray-100 text-gray-700"}`}>
                           {ROLE_LABELS[u.role] ?? u.role}
