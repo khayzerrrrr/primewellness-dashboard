@@ -215,7 +215,7 @@ export default function ReportsPage() {
                     <div key={s.name} className="flex items-center gap-2 text-xs">
                       <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: COLORS[i % COLORS.length] }} />
                       <span className="truncate text-gray-600 flex-1">{s.name}</span>
-                      <span className="font-medium text-slate-700">{Math.round((s.value / periodRevenue) * 100)}%</span>
+                      <span className="font-medium text-slate-700">{periodRevenue > 0 ? Math.round((s.value / periodRevenue) * 100) : 0}%</span>
                     </div>
                   ))}
                 </div>

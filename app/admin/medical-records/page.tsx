@@ -27,7 +27,7 @@ export default function AdminMedicalRecordsPage() {
 
   useEffect(() => {
     const q = search.toLowerCase();
-    setFiltered(records.filter((r) => r.diagnosis.toLowerCase().includes(q) || r.chiefComplaint.toLowerCase().includes(q)));
+    setFiltered(records.filter((r) => (r.diagnosis ?? "").toLowerCase().includes(q) || (r.chiefComplaint ?? "").toLowerCase().includes(q)));
   }, [search, records]);
 
   return (

@@ -143,7 +143,7 @@ export default function CommissionsPage() {
               {byTherapist.map(({ therapist, pendingAmount, monthlyAmount, pendingIds, totalSessions }) => (
                 <div key={therapist.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                   <div className="w-9 h-9 bg-[#1a2744] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xs font-bold">{therapist.fullName.charAt(0)}</span>
+                    <span className="text-white text-xs font-bold">{(therapist.fullName ?? "?").charAt(0)}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-slate-800 text-sm">{therapist.fullName}</p>

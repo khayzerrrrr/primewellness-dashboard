@@ -53,10 +53,10 @@ export default function AdminAppointmentsPage() {
   const filtered = appointments.filter((a) => {
     const q = search.toLowerCase();
     const matchSearch = !search ||
-      a.bookingNumber.toLowerCase().includes(q) ||
-      a.patientName.toLowerCase().includes(q) ||
+      (a.bookingNumber ?? "").toLowerCase().includes(q) ||
+      (a.patientName ?? "").toLowerCase().includes(q) ||
       (a.doctorName ?? "").toLowerCase().includes(q) ||
-      a.serviceName.toLowerCase().includes(q);
+      (a.serviceName ?? "").toLowerCase().includes(q);
     const matchStatus = filterStatus === "all" || a.status === filterStatus;
     return matchSearch && matchStatus;
   });

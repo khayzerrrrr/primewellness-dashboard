@@ -7,9 +7,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: Date | string, fmt = "dd MMMM yyyy"): string {
-  const d = typeof date === "string" ? new Date(date) : date;
-  return format(d, fmt, { locale: idLocale });
+export function formatDate(date: Date | string | null | undefined, fmt = "dd MMMM yyyy"): string {
+  if (!date) return "—";
+  try {
+    const d = typeof date === "string" ? new Date(date) : date;
+    return format(d, fmt, { locale: idLocale });
+  } catch {
+    return "—";
+  }
 }
 
 export function formatCurrency(amount: number): string {
@@ -41,7 +46,8 @@ export function generateMedicalRecordNumber(): string {
   return `MR-${dateStr}-${rand}`;
 }
 
-export function getInitials(name: string): string {
+export function getInitials(name: string | null | undefined): string {
+  if (!name) return "?";
   return name
     .split(" ")
     .map((n) => n[0])

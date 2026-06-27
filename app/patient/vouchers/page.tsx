@@ -94,7 +94,7 @@ export default function PatientVouchersPage() {
           <h2 className="font-semibold text-[#1a2744] mb-3">Voucher Aktif Saya</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {activeVouchers.map((v) => {
-              const pct = Math.round(((v.totalSessions - v.usedSessions) / v.totalSessions) * 100);
+              const pct = v.totalSessions > 0 ? Math.round(((v.totalSessions - v.usedSessions) / v.totalSessions) * 100) : 0;
               return (
                 <div key={v.id} className="bg-gradient-to-br from-[#1a2744] to-[#2a3a60] rounded-2xl p-5 text-white">
                   <div className="flex items-center justify-between mb-3">

@@ -30,9 +30,9 @@ export default function AdminPatientsPage() {
     setFiltered(
       patients.filter(
         (p) =>
-          p.fullName.toLowerCase().includes(q) ||
+          (p.fullName ?? "").toLowerCase().includes(q) ||
           (p.email ?? "").toLowerCase().includes(q) ||
-          p.phone.includes(q)
+          (p.phone ?? "").includes(q)
       )
     );
   }, [search, patients]);

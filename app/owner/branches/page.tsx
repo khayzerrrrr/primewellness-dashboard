@@ -75,9 +75,12 @@ export default function BranchesPage() {
       picName: b.picName,
       picPhone: b.picPhone ?? "",
       status: b.status,
-      openDate: b.openDate
-        ? new Date(b.openDate as unknown as string).toISOString().split("T")[0]
-        : "",
+      openDate: (() => {
+        if (!b.openDate) return "";
+        const ts = b.openDate as unknown as { toDate?: () => Date };
+        const d = typeof ts.toDate === "function" ? ts.toDate() : (b.openDate instanceof Date ? b.openDate : null);
+        return d ? d.toISOString().split("T")[0] : "";
+      })(),
       notes: b.notes ?? "",
     });
     setOpen(true);
@@ -239,7 +242,11 @@ export default function BranchesPage() {
                   {b.openDate && (
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Calendar className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span>Buka sejak {new Date(b.openDate as unknown as string).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</span>
+                      <span>Buka sejak {(() => {
+                        const ts = b.openDate as unknown as { toDate?: () => Date };
+                        const d = typeof ts.toDate === "function" ? ts.toDate() : (b.openDate instanceof Date ? b.openDate : null);
+                        return d ? d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : "—";
+                      })()}</span>
                     </div>
                   )}
                 </div>

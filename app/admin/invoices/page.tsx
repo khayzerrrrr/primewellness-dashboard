@@ -78,7 +78,7 @@ export default function AdminInvoicesPage() {
 
   const filtered = invoices.filter((inv) => {
     const q = search.toLowerCase();
-    const matchSearch = !search || inv.patientName.toLowerCase().includes(q) || inv.invoiceNumber.toLowerCase().includes(q) || inv.serviceName.toLowerCase().includes(q);
+    const matchSearch = !search || (inv.patientName ?? "").toLowerCase().includes(q) || (inv.invoiceNumber ?? "").toLowerCase().includes(q) || (inv.serviceName ?? "").toLowerCase().includes(q);
     const matchStatus = filterStatus === "all" || inv.status === filterStatus;
     return matchSearch && matchStatus;
   });

@@ -70,7 +70,7 @@ export default function AdminTestimonialsPage() {
                     </div>
                     <p className="text-sm text-gray-600">{t.comment}</p>
                     <p className="text-xs text-gray-400 mt-2">
-                      {typeof t.createdAt === "object" && "toDate" in t.createdAt
+                      {t.createdAt != null && typeof t.createdAt === "object" && "toDate" in t.createdAt
                         ? formatDate((t.createdAt as { toDate(): Date }).toDate())
                         : ""}
                     </p>

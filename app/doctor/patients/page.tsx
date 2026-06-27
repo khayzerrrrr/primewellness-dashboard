@@ -33,7 +33,7 @@ export default function DoctorPatientsPage() {
 
   useEffect(() => {
     const q = search.toLowerCase();
-    setFiltered(patients.filter((p) => p.patientName.toLowerCase().includes(q)));
+    setFiltered(patients.filter((p) => (p.patientName ?? "").toLowerCase().includes(q)));
   }, [search, patients]);
 
   return (

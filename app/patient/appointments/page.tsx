@@ -36,9 +36,9 @@ export default function PatientAppointmentsPage() {
     setFiltered(
       appointments.filter(
         (a) =>
-          a.bookingNumber.toLowerCase().includes(q) ||
-          a.serviceName.toLowerCase().includes(q) ||
-          a.doctorName.toLowerCase().includes(q)
+          (a.bookingNumber ?? "").toLowerCase().includes(q) ||
+          (a.serviceName ?? "").toLowerCase().includes(q) ||
+          (a.doctorName ?? "").toLowerCase().includes(q)
       )
     );
   }, [search, appointments]);

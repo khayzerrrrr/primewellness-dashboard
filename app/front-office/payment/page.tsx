@@ -25,6 +25,14 @@ const METHOD_COLORS: Record<string, string> = {
   virtual_account: "bg-orange-100 text-orange-700",
 };
 
+const getInvDate = (inv: { date?: unknown }): Date | null => {
+  if (!inv.date) return null;
+  if (inv.date instanceof Date) return inv.date;
+  const ts = inv.date as { toDate?: () => Date };
+  if (typeof ts.toDate === "function") return ts.toDate();
+  return null;
+};
+
 const BANK_ACCOUNTS = [
   { bank: "BCA", number: "1234567890", name: "PT Prime Wellness Indonesia" },
   { bank: "Mandiri", number: "0987654321", name: "PT Prime Wellness Indonesia" },
@@ -177,7 +185,7 @@ export default function PaymentPage() {
                       <tr key={inv.id} className="border-b border-gray-50 hover:bg-gray-50">
                         <td className="py-3 px-4">
                           <p className="font-mono text-xs text-teal-600">{inv.invoiceNumber}</p>
-                          <p className="text-xs text-gray-400">{formatDate(inv.date as Date, "dd MMM yyyy")}</p>
+                          <p className="text-xs text-gray-400">{getInvDate(inv) ? formatDate(getInvDate(inv)!, "dd MMM yyyy") : "—"}</p>
                         </td>
                         <td className="py-3 px-4 font-medium text-slate-800">{inv.patientName}</td>
                         <td className="py-3 px-4 text-gray-600 text-xs">{inv.serviceName || "—"}</td>
@@ -219,7 +227,7 @@ export default function PaymentPage() {
                       <div>
                         <p className="font-semibold text-slate-800 text-sm">{inv.patientName}</p>
                         <p className="text-xs font-mono text-teal-600">{inv.invoiceNumber}</p>
-                        <p className="text-xs text-gray-400">{formatDate(inv.date as Date, "dd MMM yyyy")}</p>
+                        <p className="text-xs text-gray-400">{getInvDate(inv) ? formatDate(getInvDate(inv)!, "dd MMM yyyy") : "—"}</p>
                       </div>
                       <span className={`text-xs px-2 py-1 rounded-full font-medium flex-shrink-0 ${
                         inv.status === "paid" ? "bg-green-100 text-green-700" :
