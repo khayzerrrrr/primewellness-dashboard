@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
-import { UserCheck, Plus, Pencil, ToggleLeft, ToggleRight, Percent, Award, X } from "lucide-react";
+import { UserCheck, Plus, Pencil, ToggleLeft, ToggleRight, Percent, Award, X, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +12,8 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
 import { getDoctors, createDoctor, updateDoctor } from "@/lib/firebase/firestore-service";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase/config";
 import { getInitials } from "@/lib/utils";
 import { THERAPIST_SPECIALIZATIONS, DEFAULT_COMMISSION_RATE } from "@/lib/constants";
 import type { Doctor } from "@/types";
@@ -39,6 +41,7 @@ export default function AdminDoctorsPage() {
   const [editTarget, setEditTarget] = useState<Doctor | null>(null);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState<TherapistForm>(BLANK);
+  const [ratingMap, setRatingMap] = useState<Record<string, { avg: number; count: number }>>({});
 
   const set = (k: keyof TherapistForm, v: TherapistForm[keyof TherapistForm]) =>
     setForm((prev) => ({ ...prev, [k]: v }));
@@ -58,6 +61,24 @@ export default function AdminDoctorsPage() {
   const load = async () => {
     const data = await getDoctors(false);
     setDoctors(data);
+    // Load ratings
+    try {
+      const rSnap = await getDocs(collection(db, "reviews"));
+      const map: Record<string, { total: number; count: number }> = {};
+      rSnap.docs.forEach((d) => {
+        const r = d.data() as { therapistId?: string; rating?: number };
+        if (r.therapistId && r.rating) {
+          if (!map[r.therapistId]) map[r.therapistId] = { total: 0, count: 0 };
+          map[r.therapistId].total += r.rating;
+          map[r.therapistId].count += 1;
+        }
+      });
+      const rMap: Record<string, { avg: number; count: number }> = {};
+      Object.entries(map).forEach(([id, v]) => {
+        rMap[id] = { avg: Math.round((v.total / v.count) * 10) / 10, count: v.count };
+      });
+      setRatingMap(rMap);
+    } catch { /* ignore */ }
     setLoading(false);
   };
 
@@ -196,12 +217,27 @@ export default function AdminDoctorsPage() {
                   )}
                 </div>
 
-                {/* Commission badge */}
-                <div className="flex items-center gap-1 bg-orange-50 rounded-lg px-3 py-2 mb-3">
-                  <Percent className="w-3.5 h-3.5 text-orange-500" />
-                  <span className="text-xs text-orange-700 font-medium">
-                    Komisi: {d.commissionRate ?? DEFAULT_COMMISSION_RATE}% per sesi
-                  </span>
+                {/* Commission + Rating badges */}
+                <div className="flex gap-2 mb-3">
+                  <div className="flex items-center gap-1 bg-orange-50 rounded-lg px-3 py-2 flex-1">
+                    <Percent className="w-3.5 h-3.5 text-orange-500" />
+                    <span className="text-xs text-orange-700 font-medium">
+                      Komisi: {d.commissionRate ?? DEFAULT_COMMISSION_RATE}%
+                    </span>
+                  </div>
+                  {ratingMap[d.id] ? (
+                    <div className="flex items-center gap-1 bg-amber-50 rounded-lg px-3 py-2">
+                      <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                      <span className="text-xs text-amber-700 font-medium">
+                        {ratingMap[d.id].avg} ({ratingMap[d.id].count})
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1 bg-gray-50 rounded-lg px-3 py-2">
+                      <Star className="w-3.5 h-3.5 text-gray-300" />
+                      <span className="text-xs text-gray-400">—</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Actions */}

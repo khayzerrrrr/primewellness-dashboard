@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { LayoutDashboard, Users, UserCheck, BarChart3, Settings, ShieldCheck, FileText, Wallet, Stethoscope, Building2, TrendingUp, Activity } from "lucide-react";
+import { LayoutDashboard, Users, UserCheck, BarChart3, Settings, ShieldCheck, FileText, Wallet, Stethoscope, Building2, TrendingUp, Activity, FolderHeart, LineChart } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NAV_ITEMS = [
@@ -19,6 +19,8 @@ const NAV_ITEMS = [
   { href: "/admin/patients", label: "Data Pasien", icon: Users },
   { href: "/admin/doctors", label: "Data Terapis", icon: UserCheck },
   { href: "/admin/invoices", label: "Invoice", icon: FileText },
+  { href: "/admin/medical-records", label: "Rekam Medis", icon: FolderHeart },
+  { href: "/owner/analytics", label: "Analytics", icon: LineChart },
   { href: "/owner/settings", label: "Pengaturan", icon: Settings },
 ];
 

@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
-import { CreditCard, CheckCircle, XCircle, Upload, Search, Eye } from "lucide-react";
+import { CreditCard, CheckCircle, XCircle, Upload, Search, Eye, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -24,6 +24,21 @@ const METHOD_COLORS: Record<string, string> = {
   qris: "bg-purple-100 text-purple-700",
   virtual_account: "bg-orange-100 text-orange-700",
 };
+
+function buildWhatsAppLink(inv: Invoice): string {
+  const d = getInvDate(inv);
+  const dateStr = d ? d.toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" }) : "—";
+  const msg =
+    `*INVOICE PRIME WELLNESS*\n\n` +
+    `No. Invoice: ${inv.invoiceNumber}\n` +
+    `Pasien: ${inv.patientName}\n` +
+    `Layanan: ${inv.serviceName || "—"}\n` +
+    `Tanggal: ${dateStr}\n` +
+    `Total: Rp ${inv.total.toLocaleString("id-ID")}\n` +
+    `Status: ${inv.status === "paid" ? "✅ LUNAS" : "⏳ BELUM BAYAR"}\n\n` +
+    `Terima kasih telah mempercayai Prime Wellness Therapy & Reliefy 🙏`;
+  return `https://wa.me/?text=${encodeURIComponent(msg)}`;
+}
 
 const getInvDate = (inv: { date?: unknown }): Date | null => {
   if (!inv.date) return null;
@@ -200,19 +215,26 @@ export default function PaymentPage() {
                           </span>
                         </td>
                         <td className="py-3 px-4 text-right">
-                          {inv.status === "unpaid" ? (
-                            <Button
-                              size="sm"
-                              className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-7"
-                              onClick={() => setSelectedInvoice(inv)}
-                            >
-                              Konfirmasi
-                            </Button>
-                          ) : (
-                            <span className="text-xs text-gray-400">
-                              {inv.status === "paid" ? "✓ Lunas" : "—"}
-                            </span>
-                          )}
+                          <div className="flex items-center justify-end gap-2">
+                            <a href={buildWhatsAppLink(inv)} target="_blank" rel="noopener noreferrer">
+                              <Button size="sm" variant="outline" className="text-green-600 border-green-200 hover:bg-green-50 text-xs h-7 gap-1">
+                                <MessageCircle className="w-3 h-3" />WA
+                              </Button>
+                            </a>
+                            {inv.status === "unpaid" ? (
+                              <Button
+                                size="sm"
+                                className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-7"
+                                onClick={() => setSelectedInvoice(inv)}
+                              >
+                                Konfirmasi
+                              </Button>
+                            ) : (
+                              <span className="text-xs text-gray-400">
+                                {inv.status === "paid" ? "✓ Lunas" : "—"}
+                              </span>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}

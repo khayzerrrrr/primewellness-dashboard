@@ -41,3 +41,21 @@ self.addEventListener("fetch", (e) => {
     })
   );
 });
+
+self.addEventListener("push", (e) => {
+  const data = e.data ? e.data.json() : {};
+  const title = data.title || "Prime Wellness";
+  const options = {
+    body: data.body || "",
+    icon: "/logo.png",
+    badge: "/logo.png",
+    data: { url: data.url || "/" },
+    vibrate: [100, 50, 100],
+  };
+  e.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener("notificationclick", (e) => {
+  e.notification.close();
+  e.waitUntil(clients.openWindow(e.notification.data.url || "/"));
+});

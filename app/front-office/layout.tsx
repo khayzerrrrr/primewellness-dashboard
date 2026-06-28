@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { LayoutDashboard, UserPlus, Calendar, Receipt, Ticket, CreditCard, ClipboardCheck } from "lucide-react";
+import { LayoutDashboard, UserPlus, Calendar, Receipt, Ticket, CreditCard, ClipboardCheck, ListOrdered } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NAV_ITEMS = [
@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { href: "/front-office/register", label: "Registrasi Pasien", icon: UserPlus },
   { href: "/admin/appointments", label: "Booking & Jadwal", icon: Calendar },
   { href: "/front-office/payment", label: "Pembayaran", icon: CreditCard },
+  { href: "/front-office/queue", label: "Antrian Digital", icon: ListOrdered },
   { href: "/admin/invoices", label: "Invoice", icon: Receipt },
   { href: "/front-office/vouchers", label: "Voucher Pasien", icon: Ticket },
   { href: "/front-office/attendance", label: "Absensi Saya", icon: ClipboardCheck },

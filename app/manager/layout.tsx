@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { LayoutDashboard, Users, UserCheck, Calendar, Receipt, Stethoscope, ClipboardCheck, FileText, BarChart3, Wallet, MapPin, TrendingUp, Activity, Building2, Settings, ShieldCheck } from "lucide-react";
+import { LayoutDashboard, Users, UserCheck, Calendar, Receipt, Stethoscope, ClipboardCheck, FileText, BarChart3, Wallet, MapPin, TrendingUp, Activity, Building2, Settings, ShieldCheck, FolderHeart, LineChart } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NAV_ITEMS = [
   { href: "/manager/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/manager/reports", label: "Laporan Bisnis", icon: BarChart3 },
+  { href: "/owner/analytics", label: "Analytics", icon: LineChart },
   { href: "/owner/commissions", label: "Komisi Terapis", icon: Wallet },
   { href: "/owner/kpi", label: "KPI Karyawan", icon: TrendingUp },
   { href: "/owner/activity-log", label: "Log Aktivitas", icon: Activity },
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
   { href: "/admin/patients", label: "Data Pasien", icon: Users },
   { href: "/admin/doctors", label: "Data Terapis", icon: UserCheck },
   { href: "/admin/invoices", label: "Invoice", icon: Receipt },
+  { href: "/admin/medical-records", label: "Rekam Medis", icon: FolderHeart },
   { href: "/manager/therapists", label: "Manajemen Terapis", icon: ShieldCheck },
   { href: "/manager/services", label: "Manajemen Layanan", icon: Stethoscope },
   { href: "/manager/sop", label: "SOP Karyawan", icon: FileText },

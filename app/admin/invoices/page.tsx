@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
-import { Receipt, DollarSign, Loader2, Printer } from "lucide-react";
+import { Receipt, DollarSign, Loader2, Printer, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,23 @@ const STATUS_LABELS: Record<string, string> = {
   void: "Batal",
   cancelled: "Dibatalkan",
 };
+
+function buildWhatsAppLink(inv: Invoice): string {
+  const invDate = typeof inv.date === "object" && "toDate" in inv.date
+    ? (inv.date as { toDate(): Date }).toDate()
+    : inv.date as Date;
+  const dateStr = invDate ? formatDate(invDate, "dd MMMM yyyy") : "—";
+  const msg =
+    `*INVOICE PRIME WELLNESS*\n\n` +
+    `No. Invoice: ${inv.invoiceNumber}\n` +
+    `Pasien: ${inv.patientName}\n` +
+    `Layanan: ${inv.serviceName || "—"}\n` +
+    `Tanggal: ${dateStr}\n` +
+    `Total: ${formatCurrency(inv.total)}\n` +
+    `Status: ${inv.status === "paid" ? "✅ LUNAS" : "⏳ BELUM BAYAR"}\n\n` +
+    `Terima kasih telah mempercayai Prime Wellness Therapy & Reliefy 🙏`;
+  return `https://wa.me/?text=${encodeURIComponent(msg)}`;
+}
 
 export default function AdminInvoicesPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
@@ -163,6 +180,12 @@ export default function AdminInvoicesPage() {
                         <Printer className="w-3 h-3" />
                         Cetak
                       </Button>
+                      <a href={buildWhatsAppLink(inv)} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" variant="outline" className="h-8 gap-1 text-xs text-green-600 border-green-200 hover:bg-green-50">
+                          <MessageCircle className="w-3 h-3" />
+                          WA
+                        </Button>
+                      </a>
                       {inv.status === "unpaid" && (
                         <Button
                           size="sm"
@@ -218,6 +241,11 @@ export default function AdminInvoicesPage() {
                   <Button size="sm" variant="outline" className="h-8 gap-1 text-xs" onClick={() => setPrintInvoice(inv)}>
                     <Printer className="w-3 h-3" />Cetak
                   </Button>
+                  <a href={buildWhatsAppLink(inv)} target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" variant="outline" className="h-8 gap-1 text-xs text-green-600 border-green-200 hover:bg-green-50">
+                      <MessageCircle className="w-3 h-3" />WA
+                    </Button>
+                  </a>
                   {inv.status === "unpaid" && (
                     <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white gap-1 h-8 text-xs"
                       onClick={() => { setPayingInvoice(inv); setReference(""); setPaymentMethod("cash"); }}>

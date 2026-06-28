@@ -5,7 +5,7 @@ import {
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
-import { BarChart3, TrendingUp, Download, DollarSign, Users, FileText, Stethoscope } from "lucide-react";
+import { BarChart3, TrendingUp, Download, DollarSign, Users, FileText, Stethoscope, FileDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -27,6 +27,9 @@ export default function ReportsPage() {
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<"week" | "month" | "year">("month");
   const [exporting, setExporting] = useState(false);
+  const [exportingPdf, setExportingPdf] = useState(false);
+
+  const MONTHS_ID = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 
   useEffect(() => {
     const load = async () => {
@@ -123,6 +126,70 @@ export default function ReportsPage() {
     setExporting(false);
   };
 
+  const handleExportPDF = async () => {
+    setExportingPdf(true);
+    try {
+      const { jsPDF } = await import("jspdf");
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.setTextColor(10, 22, 40);
+      doc.text("Laporan Keuangan Prime Wellness", 14, 22);
+      doc.setFontSize(11);
+      doc.setTextColor(100, 100, 100);
+      const periodLabel = period === "week" ? "7 Hari Terakhir" : period === "month" ? `${MONTHS_ID[now.getMonth()]} ${now.getFullYear()}` : String(now.getFullYear());
+      doc.text(`Periode: ${periodLabel}`, 14, 32);
+      doc.setFontSize(12);
+      doc.setTextColor(30, 30, 30);
+      doc.text(`Total Pendapatan: ${formatCurrency(periodRevenue)}`, 14, 44);
+      doc.text(`Total Transaksi: ${periodInvoices.length}`, 14, 52);
+      doc.text(`Rata-rata Transaksi: ${formatCurrency(avgTransaction)}`, 14, 60);
+      doc.text(`Total Pasien: ${totalPatients}`, 14, 68);
+      doc.text(`Total Terapis: ${totalTherapists}`, 14, 76);
+      // Divider
+      doc.setDrawColor(200, 200, 200);
+      doc.line(14, 82, 196, 82);
+      // Table header
+      let y = 90;
+      doc.setFontSize(10);
+      doc.setTextColor(10, 22, 40);
+      doc.text("Daftar Transaksi", 14, y);
+      y += 7;
+      doc.setFontSize(8);
+      doc.setTextColor(100, 100, 100);
+      doc.text("No", 14, y);
+      doc.text("Tanggal", 24, y);
+      doc.text("Pasien", 58, y);
+      doc.text("Layanan", 100, y);
+      doc.text("Total", 168, y);
+      y += 4;
+      doc.line(14, y, 196, y);
+      y += 4;
+      doc.setTextColor(30, 30, 30);
+      periodInvoices.slice(0, 35).forEach((inv, i) => {
+        const d = getDate(inv);
+        const dateStr = d ? formatDate(d, "dd/MM/yy") : "—";
+        doc.text(`${i + 1}`, 14, y);
+        doc.text(dateStr, 24, y);
+        doc.text((inv.patientName || "—").slice(0, 18), 58, y);
+        doc.text((inv.serviceName || "—").slice(0, 18), 100, y);
+        doc.text(formatCurrency(inv.total), 152, y);
+        y += 6;
+        if (y > 272) { doc.addPage(); y = 20; }
+      });
+      // Total footer
+      doc.line(14, y, 196, y);
+      y += 5;
+      doc.setFontSize(9);
+      doc.setTextColor(10, 22, 40);
+      doc.text(`Total (${periodInvoices.length} transaksi): ${formatCurrency(periodRevenue)}`, 14, y);
+      const filename = `Laporan_PrimeWellness_${periodLabel.replace(/ /g, "_")}.pdf`;
+      doc.save(filename);
+    } catch (e) {
+      console.error(e);
+    }
+    setExportingPdf(false);
+  };
+
   const fmt = (v: number) => `Rp ${(v / 1000).toFixed(0)}k`;
 
   return (
@@ -132,10 +199,16 @@ export default function ReportsPage() {
           <h1 className="text-2xl font-bold text-[#0A1628]">Laporan Bisnis</h1>
           <p className="text-gray-500 text-sm">Analisis pendapatan dan performa klinik</p>
         </div>
-        <Button onClick={handleExport} disabled={exporting} variant="outline" size="sm" className="gap-2">
-          <Download className="w-4 h-4" />
-          {exporting ? "Mengekspor..." : "Export Excel"}
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={handleExport} disabled={exporting} variant="outline" size="sm" className="gap-2">
+            <Download className="w-4 h-4" />
+            {exporting ? "Mengekspor..." : "Export Excel"}
+          </Button>
+          <Button onClick={handleExportPDF} disabled={exportingPdf} variant="outline" size="sm" className="gap-2 text-red-600 border-red-200 hover:bg-red-50">
+            <FileDown className="w-4 h-4" />
+            {exportingPdf ? "Membuat PDF..." : "Export PDF"}
+          </Button>
+        </div>
       </div>
 
       {/* Period tabs */}

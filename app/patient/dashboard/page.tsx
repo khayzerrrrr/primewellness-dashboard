@@ -2,17 +2,22 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Calendar, FileText, Receipt, Plus, Clock, Ticket, ChevronRight, Activity, Wallet } from "lucide-react";
+import { Calendar, FileText, Receipt, Plus, Clock, Ticket, ChevronRight, Activity, Wallet, Bell, BellOff } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AppointmentBadge } from "@/components/dashboard/AppointmentBadge";
+import { RatingModal } from "@/components/rating/RatingModal";
+import { LoyaltyWidget } from "@/components/loyalty/LoyaltyWidget";
 import { useAuth } from "@/contexts/AuthContext";
 import { getAppointmentsByPatient, getInvoices } from "@/lib/firebase/firestore-service";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
+import { subscribeUserToPush } from "@/lib/push-notifications";
 import type { Appointment, Invoice } from "@/types";
+import type { LoyaltyHistoryEntry } from "@/lib/loyalty";
 
 interface PatientVoucher {
   id: string;
@@ -30,6 +35,12 @@ export default function PatientDashboardPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [vouchers, setVouchers] = useState<PatientVoucher[]>([]);
   const [loading, setLoading] = useState(true);
+  const [ratingAppointment, setRatingAppointment] = useState<Appointment | null>(null);
+  const [reviewedIds, setReviewedIds] = useState<Set<string>>(new Set());
+  const [loyaltyPoints, setLoyaltyPoints] = useState(0);
+  const [loyaltyHistory, setLoyaltyHistory] = useState<LoyaltyHistoryEntry[]>([]);
+  const [notifPermission, setNotifPermission] = useState<NotificationPermission>("default");
+  const [enablingNotif, setEnablingNotif] = useState(false);
 
   useEffect(() => {
     if (!user?.uid) return;
@@ -51,10 +62,73 @@ export default function PatientDashboardPage() {
         setVouchers(vSnap.docs.map((d) => ({ id: d.id, ...d.data() } as PatientVoucher)));
       } catch { /* vouchers optional */ }
 
+      // Load existing reviews to avoid showing modal again
+      try {
+        const rSnap = await getDocs(query(
+          collection(db, "reviews"),
+          where("patientId", "==", user.uid)
+        ));
+        const ids = new Set(rSnap.docs.map((d) => d.data().appointmentId as string));
+        setReviewedIds(ids);
+        // Find first completed appointment without review
+        const completedApps = (apps as Appointment[]).filter((a) => a.status === "completed");
+        const needsReview = completedApps.find((a) => !ids.has(a.id));
+        if (needsReview) setRatingAppointment(needsReview);
+      } catch { /* reviews optional */ }
+
+      // Load loyalty points from patient doc
+      try {
+        // Try to find patient doc by userId
+        const pSnap = await getDocs(query(
+          collection(db, "patients"),
+          where("userId", "==", user.uid)
+        ));
+        if (!pSnap.empty) {
+          const pData = pSnap.docs[0].data();
+          setLoyaltyPoints(pData.loyaltyPoints ?? 0);
+          setLoyaltyHistory(pData.loyaltyHistory ?? []);
+        }
+      } catch { /* loyalty optional */ }
+
       setLoading(false);
     };
     load().catch(() => setLoading(false));
   }, [user?.uid]);
+
+  // Check initial notification permission
+  useEffect(() => {
+    if ("Notification" in window) {
+      setNotifPermission(Notification.permission);
+    }
+  }, []);
+
+  const handleEnableNotifications = async () => {
+    if (!user?.uid) return;
+    setEnablingNotif(true);
+    try {
+      const perm = await Notification.requestPermission();
+      setNotifPermission(perm);
+      if (perm === "granted") {
+        const sub = await subscribeUserToPush();
+        if (sub) {
+          await fetch("/api/push/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ subscription: sub.toJSON(), userId: user.uid }),
+          });
+          toast.success("Notifikasi berhasil diaktifkan!");
+        } else {
+          toast.info("Notifikasi aktif (tanpa push server)");
+        }
+      } else {
+        toast.error("Izin notifikasi ditolak");
+      }
+    } catch {
+      toast.error("Gagal mengaktifkan notifikasi");
+    } finally {
+      setEnablingNotif(false);
+    }
+  };
 
   const upcoming = appointments
     .filter((a) => ["pending", "confirmed", "checked_in"].includes(a.status))
@@ -70,17 +144,56 @@ export default function PatientDashboardPage() {
 
   return (
     <div className="space-y-6">
+      {/* Rating Modal for completed appointments */}
+      {ratingAppointment && user && (
+        <RatingModal
+          appointmentId={ratingAppointment.id}
+          therapistId={(ratingAppointment as unknown as { doctorId?: string }).doctorId}
+          therapistName={ratingAppointment.doctorName}
+          patientId={user.uid}
+          patientName={user.displayName || "Pasien"}
+          serviceName={ratingAppointment.serviceName}
+          onClose={() => setRatingAppointment(null)}
+          onSubmitted={() => {
+            setReviewedIds((prev) => new Set([...prev, ratingAppointment.id]));
+            setRatingAppointment(null);
+          }}
+        />
+      )}
+
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-bold text-[#0A1628]">Selamat Datang! 👋</h1>
           <p className="text-gray-500 mt-1 text-sm">Pantau perjalanan terapi Anda</p>
         </div>
-        <Link href="/booking">
-          <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white gap-2">
-            <Plus className="w-4 h-4" />
-            Booking Terapi
-          </Button>
-        </Link>
+        <div className="flex gap-2">
+          {typeof window !== "undefined" && "Notification" in window && notifPermission !== "granted" && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 text-[#1B3A6B] border-[#1B3A6B]/30"
+              onClick={handleEnableNotifications}
+              disabled={enablingNotif}
+            >
+              {enablingNotif ? (
+                <span className="w-4 h-4 animate-spin border-2 border-current border-t-transparent rounded-full" />
+              ) : notifPermission === "denied" ? (
+                <BellOff className="w-4 h-4" />
+              ) : (
+                <Bell className="w-4 h-4" />
+              )}
+              <span className="hidden sm:inline">
+                {notifPermission === "denied" ? "Notifikasi Diblokir" : "Aktifkan Notifikasi"}
+              </span>
+            </Button>
+          )}
+          <Link href="/booking">
+            <Button className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white gap-2">
+              <Plus className="w-4 h-4" />
+              Booking Terapi
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Stats Row */}
@@ -106,6 +219,11 @@ export default function PatientDashboardPage() {
           </Link>
         ))}
       </div>
+
+      {/* Loyalty Points Widget */}
+      {!loading && loyaltyPoints > 0 && (
+        <LoyaltyWidget points={loyaltyPoints} history={loyaltyHistory} />
+      )}
 
       {/* Voucher aktif banner */}
       {!loading && vouchers.length > 0 && (
