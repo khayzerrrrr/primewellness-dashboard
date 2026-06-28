@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -43,72 +43,81 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: #0A1628;
+  /* Brand Color Palette */
+  --brand-navy:       #0B1220;
+  --brand-teal:       #0F766E;
+  --brand-green:      #16A34A;
+  --brand-blue:       #1D4ED8;
+  --brand-gold:       #F59E0B;
+  --brand-red:        #DC2626;
+  --brand-bg:         #F8FAFC;
+
+  --radius: 0.75rem;
+  --background: #F8FAFC;
+  --foreground: #0B1220;
+  --card: #FFFFFF;
+  --card-foreground: #0B1220;
+  --popover: #FFFFFF;
+  --popover-foreground: #0B1220;
+  --primary: #0B1220;
   --primary-foreground: #FFFFFF;
-  --secondary: #1B3A6B;
+  --secondary: #0F766E;
   --secondary-foreground: #FFFFFF;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
-  --accent: #2563EB;
+  --accent: #0F766E;
   --accent-foreground: #FFFFFF;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --destructive: #DC2626;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #0F766E;
+  --chart-1: #0F766E;
+  --chart-2: #1D4ED8;
+  --chart-3: #F59E0B;
+  --chart-4: #16A34A;
+  --chart-5: #DC2626;
+  --sidebar: #0B1220;
+  --sidebar-foreground: rgba(255,255,255,0.85);
+  --sidebar-primary: #0F766E;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(15,118,110,0.15);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255,255,255,0.08);
+  --sidebar-ring: #0F766E;
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: #0B1220;
+  --foreground: #F8FAFC;
+  --card: #131D2E;
+  --card-foreground: #F8FAFC;
+  --popover: #131D2E;
+  --popover-foreground: #F8FAFC;
+  --primary: #0F766E;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1E2D40;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E2D40;
+  --muted-foreground: #94A3B8;
+  --accent: #0F766E;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --border: rgba(255,255,255,0.1);
+  --input: rgba(255,255,255,0.1);
+  --ring: #0F766E;
+  --chart-1: #0F766E;
+  --chart-2: #1D4ED8;
+  --chart-3: #F59E0B;
+  --chart-4: #16A34A;
+  --chart-5: #DC2626;
+  --sidebar: #0B1220;
+  --sidebar-foreground: rgba(255,255,255,0.85);
+  --sidebar-primary: #0F766E;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(15,118,110,0.15);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255,255,255,0.08);
+  --sidebar-ring: #0F766E;
 }
 
 @layer base {
@@ -117,8 +126,82 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
   }
 }
+
+/* ── Sidebar brand styles ─────────────────────────── */
+.sidebar-nav-item {
+  @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150;
+  color: rgba(255,255,255,0.70);
+}
+.sidebar-nav-item:hover {
+  background: rgba(255,255,255,0.07);
+  color: #FFFFFF;
+}
+.sidebar-nav-item.active {
+  background: #0F766E;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(15,118,110,0.35);
+}
+
+/* ── Card overhaul ────────────────────────────────── */
+.card-brand {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  transition: box-shadow 0.15s ease;
+}
+.card-brand:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ── Button brand ─────────────────────────────────── */
+.btn-teal {
+  background: #0F766E;
+  color: #FFFFFF;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.btn-teal:hover {
+  background: #0D5F58;
+}
+.btn-teal:active {
+  transform: scale(0.98);
+}
+
+/* ── Input brand ──────────────────────────────────── */
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #0F766E !important;
+  outline-offset: 1px;
+  border-color: #0F766E !important;
+}
+
+/* ── Table brand ──────────────────────────────────── */
+.table-brand thead tr {
+  background: #F8FAFC;
+  border-bottom: 2px solid #E2E8F0;
+}
+.table-brand thead th {
+  color: #64748B;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.table-brand tbody tr:hover {
+  background: #F8FAFC;
+}
+
+/* ── Scrollbar subtle ─────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
 /* PWA safe area utilities */
 .pt-safe-top { padding-top: env(safe-area-inset-top, 0px); }

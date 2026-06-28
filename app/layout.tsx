@@ -55,9 +55,9 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Prime Wellness" />
-        <meta name="theme-color" content="#0A1628" />
-        <link rel="icon" href="/logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="theme-color" content="#0B1220" />
+        <link rel="icon" href="/brand/favicon-browser.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/brand/app-icon-512x512.png" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>

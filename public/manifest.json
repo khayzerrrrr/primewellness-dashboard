@@ -1,20 +1,35 @@
-﻿{
-  "name": "Prime Wellness Therapy & Reliefy",
-  "short_name": "Prime Wellness",
-  "description": "Klinik TCM modern — Booking, Rekam Medis, Absensi",
+{
+  "name": "Prime Wellness Dashboard",
+  "short_name": "PrimeWellness",
+  "description": "Platform manajemen klinik terapi profesional — Booking, Rekam Medis, Absensi",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A1628",
-  "theme_color": "#0A1628",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0B1220",
   "orientation": "portrait",
   "scope": "/",
   "lang": "id",
   "icons": [
-    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    {
+      "src": "/brand/app-icon-512x512.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/app-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "screenshots": [
-    { "src": "/logo.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow" }
+    {
+      "src": "/brand/app-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
   ],
   "categories": ["health", "medical", "lifestyle"]
 }

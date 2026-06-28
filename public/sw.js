@@ -1,7 +1,8 @@
-const CACHE_NAME = "primewellness-v1";
+const CACHE_NAME = "primewellness-v2";
 const STATIC_ASSETS = [
   "/",
-  "/logo.png",
+  "/brand/favicon-browser.png",
+  "/brand/app-icon-512x512.png",
   "/manifest.json",
 ];
 
@@ -47,8 +48,8 @@ self.addEventListener("push", (e) => {
   const title = data.title || "Prime Wellness";
   const options = {
     body: data.body || "",
-    icon: "/logo.png",
-    badge: "/logo.png",
+    icon: "/brand/app-icon-512x512.png",
+    badge: "/brand/favicon-browser.png",
     data: { url: data.url || "/" },
     vibrate: [100, 50, 100],
   };

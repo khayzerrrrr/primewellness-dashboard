@@ -29,11 +29,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <Image src="/logo.png" alt="Prime Wellness" width={48} height={48} className="object-contain" />
-              <div>
-                <p className="font-bold text-white">Prime Wellness</p>
-                <p className="text-xs text-blue-300">THERAPY & RELIEFY</p>
+            <div className="mb-4">
+              <div className="w-44 h-10 relative">
+                <Image src="/brand/logo-on-dark.png" alt="Prime Wellness" fill className="object-contain object-left" />
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">

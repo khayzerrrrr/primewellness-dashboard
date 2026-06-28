@@ -37,17 +37,15 @@ export function Navbar() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Prime Wellness"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="font-bold text-base text-[#0A1628]">Prime Wellness</span>
-              <span className="text-[10px] text-gray-500 font-medium tracking-wide">THERAPY & RELIEFY</span>
+          <Link href="/" className="flex items-center">
+            <div className="w-40 h-9 relative">
+              <Image
+                src="/brand/logo-primary.png"
+                alt="Prime Wellness"
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </div>
           </Link>
 

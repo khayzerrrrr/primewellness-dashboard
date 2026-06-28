@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -61,23 +61,26 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen flex" style={{ background: "var(--brand-bg)" }}>
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 bg-[#0A1628] transform transition-transform duration-300 ease-in-out flex flex-col",
+          "fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out flex flex-col",
           sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
+        style={{ background: "var(--brand-navy)" }}
       >
         {/* Logo */}
-        <div className="p-5 border-b border-white/10">
+        <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 relative flex-shrink-0">
-              <Image src="/logo.png" alt="Prime Wellness" fill className="object-contain" />
-            </div>
-            <div>
-              <p className="font-bold text-white text-sm leading-tight">Prime Wellness</p>
-              <p className="text-white/50 text-xs">Therapy & Reliefy</p>
+            <div className="w-36 h-9 relative flex-shrink-0">
+              <Image
+                src="/brand/logo-on-dark.png"
+                alt="Prime Wellness"
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </div>
           </Link>
         </div>
@@ -92,13 +95,19 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150",
                   isActive
-                    ? "bg-white/15 text-white"
-                    : "text-white/60 hover:bg-white/10 hover:text-white"
+                    ? "text-white"
+                    : "hover:text-white"
                 )}
+                style={isActive
+                  ? { background: "var(--brand-teal)", color: "#fff", boxShadow: "0 2px 8px rgba(15,118,110,0.30)" }
+                  : { color: "rgba(255,255,255,0.65)" }
+                }
+                onMouseEnter={isActive ? undefined : (e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.color = "#fff"; }}
+                onMouseLeave={isActive ? undefined : (e) => { (e.currentTarget as HTMLElement).style.background = ""; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)"; }}
               >
-                <item.icon className={cn("w-4 h-4 flex-shrink-0", isActive ? "text-white" : "text-white/50")} />
+                <item.icon className="w-4 h-4 flex-shrink-0" style={{ opacity: isActive ? 1 : 0.7 }} />
                 {item.label}
               </Link>
             );
@@ -106,16 +115,19 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
         </nav>
 
         {/* User info bottom */}
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <div className="flex items-center gap-3">
             <Avatar className="w-8 h-8 flex-shrink-0">
-              <AvatarFallback className="bg-white/20 text-white text-xs font-bold">
+              <AvatarFallback
+                className="text-white text-xs font-bold"
+                style={{ background: "var(--brand-teal)" }}
+              >
                 {getInitials(displayName)}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-white truncate">{displayName}</p>
-              <p className="text-xs text-white/50 truncate">{roleLabel}</p>
+              <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.45)" }}>{roleLabel}</p>
             </div>
           </div>
         </div>
@@ -124,7 +136,7 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          className="fixed inset-0 z-40 bg-black/50 md:hidden backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -132,35 +144,43 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
       {/* Main content */}
       <div className="flex-1 flex flex-col md:ml-64">
         {/* Header */}
-        <header className="sticky top-0 z-30 bg-white border-b border-gray-200 px-4 md:px-6 h-14 flex items-center gap-4">
+        <header
+          className="sticky top-0 z-30 px-4 md:px-6 h-14 flex items-center gap-4"
+          style={{ background: "#fff", borderBottom: "1px solid #E2E8F0", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
+        >
           <button
-            className="md:hidden p-1.5 rounded-lg hover:bg-gray-100"
+            className="md:hidden p-1.5 rounded-lg transition-colors"
+            style={{ color: "#64748B" }}
             onClick={() => setSidebarOpen(true)}
           >
-            <Menu className="w-5 h-5 text-gray-600" />
+            <Menu className="w-5 h-5" />
           </button>
 
           <div className="flex-1">
-            {title && <h1 className="text-base font-semibold text-slate-800">{title}</h1>}
+            {title && <h1 className="text-base font-semibold" style={{ color: "var(--brand-navy)" }}>{title}</h1>}
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Live notification bell */}
             <NotificationBell />
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 px-2 h-9">
                   <Avatar className="w-7 h-7">
-                    <AvatarFallback className="bg-[#0A1628] text-white text-xs font-bold">
+                    <AvatarFallback
+                      className="text-white text-xs font-bold"
+                      style={{ background: "var(--brand-navy)" }}
+                    >
                       {getInitials(displayName)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="hidden sm:block text-left">
-                    <p className="text-xs font-medium text-slate-700 max-w-[100px] truncate">{displayName}</p>
-                    <p className="text-xs text-gray-400">{roleLabel}</p>
+                    <p className="text-xs font-medium max-w-[100px] truncate" style={{ color: "var(--brand-navy)" }}>
+                      {displayName}
+                    </p>
+                    <p className="text-xs" style={{ color: "#94A3B8" }}>{roleLabel}</p>
                   </div>
-                  <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+                  <ChevronDown className="w-3.5 h-3.5" style={{ color: "#94A3B8" }} />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
@@ -183,7 +203,7 @@ export function DashboardLayout({ children, navItems, title }: DashboardLayoutPr
           </div>
         </header>
 
-        {/* Mobile header — only visible on mobile */}
+        {/* Mobile header */}
         <MobileHeader />
 
         {/* Page content */}

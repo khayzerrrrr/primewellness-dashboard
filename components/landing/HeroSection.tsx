@@ -96,7 +96,7 @@ export function HeroSection() {
 
               {/* Logo in card */}
               <div className="mt-4 flex justify-center">
-                <Image src="/logo.png" alt="Prime Wellness" width={100} height={100} className="object-contain opacity-80" />
+                <Image src="/brand/logo-on-white.png" alt="Prime Wellness" width={160} height={40} className="object-contain opacity-90" />
               </div>
             </div>
 

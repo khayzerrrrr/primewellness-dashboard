@@ -51,9 +51,10 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex flex-col items-center gap-2">
-            <Image src="/logo.png" alt="Prime Wellness" width={90} height={90} className="object-contain" priority />
-            <span className="font-bold text-xl text-[#0A1628]">Prime Wellness</span>
+          <Link href="/" className="inline-flex items-center justify-center">
+            <div className="w-48 h-12 relative">
+              <Image src="/brand/logo-primary.png" alt="Prime Wellness" fill className="object-contain" priority />
+            </div>
           </Link>
         </div>
 
