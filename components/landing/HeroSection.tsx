@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -6,20 +6,20 @@ import { useTranslations } from "next-intl";
 import { ArrowRight, Calendar, Star, Users, Award, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const THERAPIES = [
+  "Akupunktur Tanpa Jarum - 09:00",
+  "Pijat Refleksi - 10:30",
+  "Terapi Cupping - 14:00",
+];
+
 export function HeroSection() {
   const t = useTranslations();
 
   const stats = [
-    { icon: Users, value: "500+", label: "Pasien Puas", color: "bg-blue-100 text-blue-600" },
-    { icon: Award, value: "10+", label: "Terapis Bersertifikat", color: "bg-green-100 text-green-600" },
-    { icon: Star, value: "5+", label: "Tahun Pengalaman", color: "bg-orange-100 text-orange-600" },
-    { icon: Leaf, value: "8+", label: "Jenis Terapi TCM", color: "bg-red-100 text-red-600" },
-  ];
-
-  const therapies = [
-    "Akupunktur Tanpa Jarum - 09:00",
-    "Pijat Refleksi - 10:30",
-    "Terapi Cupping - 14:00",
+    { icon: Users, value: "500+", labelKey: "hero.stat1", color: "bg-blue-100 text-blue-600" },
+    { icon: Award, value: "10+", labelKey: "hero.stat2", color: "bg-green-100 text-green-600" },
+    { icon: Star, value: "5+", labelKey: "hero.stat3", color: "bg-orange-100 text-orange-600" },
+    { icon: Leaf, value: "8+", labelKey: "hero.stat4", color: "bg-red-100 text-red-600" },
   ];
 
   return (
@@ -30,7 +30,7 @@ export function HeroSection() {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 bg-[#0A1628]/10 text-[#0A1628] px-4 py-2 rounded-full text-sm font-medium border border-[#0A1628]/20">
               <Leaf className="w-4 h-4 text-green-600" />
-              Where TCM meets biotechnology
+              {t("hero.badge")}
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -42,8 +42,7 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg text-gray-600 max-w-lg leading-relaxed">
-              Pusat terapi kesehatan holistik yang menggabungkan kearifan TCM (Traditional Chinese Medicine)
-              dengan bioteknologi modern untuk pemulihan optimal Anda.
+              {t("hero.description")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -53,7 +52,7 @@ export function HeroSection() {
                   className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto shadow-lg"
                 >
                   <Calendar className="w-5 h-5" />
-                  Booking Sekarang
+                  {t("hero.cta1")}
                 </Button>
               </Link>
               <Link href="/sign-up">
@@ -62,7 +61,7 @@ export function HeroSection() {
                   size="lg"
                   className="border-2 border-[#0A1628] text-[#0A1628] hover:bg-[#0A1628]/5 px-8 py-3 text-base font-semibold gap-2 w-full sm:w-auto"
                 >
-                  Daftar Sekarang
+                  {t("hero.cta2")}
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
@@ -78,17 +77,17 @@ export function HeroSection() {
                     <Calendar className="w-5 h-5 text-[#0A1628]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-800">Jadwal Terapi Hari Ini</p>
-                    <p className="text-sm text-gray-500">Tersedia Online 24/7</p>
+                    <p className="font-semibold text-slate-800">{t("hero.todaySchedule")}</p>
+                    <p className="text-sm text-gray-500">{t("hero.available247")}</p>
                   </div>
                 </div>
                 <div className="h-px bg-gray-100" />
                 <div className="space-y-2">
-                  {therapies.map((item, i) => (
+                  {THERAPIES.map((item, i) => (
                     <div key={i} className="flex items-center gap-2 bg-slate-50 rounded-lg px-3 py-2 border border-slate-100">
                       <div className={`w-2 h-2 rounded-full ${i === 0 ? "bg-blue-500" : i === 1 ? "bg-green-500" : "bg-orange-500"}`} />
                       <span className="text-sm text-slate-700">{item}</span>
-                      <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">Tersedia</span>
+                      <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">{t("hero.available")}</span>
                     </div>
                   ))}
                 </div>
@@ -104,7 +103,7 @@ export function HeroSection() {
             <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-4 flex items-center gap-2 border border-gray-100">
               <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
               <span className="font-bold text-slate-800">4.9/5</span>
-              <span className="text-sm text-gray-500">Rating</span>
+              <span className="text-sm text-gray-500">{t("hero.rating")}</span>
             </div>
             <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
               <div className="flex items-center gap-2">
@@ -116,8 +115,8 @@ export function HeroSection() {
                   ))}
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-800">500+ Pasien</p>
-                  <p className="text-xs text-gray-500">Mempercayai kami</p>
+                  <p className="text-xs font-semibold text-slate-800">{t("hero.patientsCount")}</p>
+                  <p className="text-xs text-gray-500">{t("hero.trustedBy")}</p>
                 </div>
               </div>
             </div>
@@ -128,14 +127,14 @@ export function HeroSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
           {stats.map((stat) => (
             <div
-              key={stat.label}
+              key={stat.labelKey}
               className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
             >
               <div className={`w-12 h-12 ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-3`}>
                 <stat.icon className="w-6 h-6" />
               </div>
               <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
-              <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
+              <p className="text-sm text-gray-500 mt-1">{t(stat.labelKey)}</p>
             </div>
           ))}
         </div>

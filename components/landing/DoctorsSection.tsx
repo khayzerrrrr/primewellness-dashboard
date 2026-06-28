@@ -65,12 +65,19 @@ const SAMPLE_DOCTORS: Doctor[] = [
   },
 ];
 
-const DAYS_LABEL: Record<number, string> = {
-  0: "Min", 1: "Sen", 2: "Sel", 3: "Rab", 4: "Kam", 5: "Jum", 6: "Sab",
-};
-
 export function DoctorsSection() {
   const t = useTranslations();
+
+  const DAY_LABELS: Record<number, string> = {
+    0: t("doctors.days.sun"),
+    1: t("doctors.days.mon"),
+    2: t("doctors.days.tue"),
+    3: t("doctors.days.wed"),
+    4: t("doctors.days.thu"),
+    5: t("doctors.days.fri"),
+    6: t("doctors.days.sat"),
+  };
+  const getDayLabel = (day: number) => DAY_LABELS[day] ?? "";
   const [doctors, setDoctors] = useState<Doctor[]>(SAMPLE_DOCTORS);
 
   useEffect(() => {
@@ -126,14 +133,14 @@ export function DoctorsSection() {
                 </div>
 
                 <div className="mb-4">
-                  <p className="text-xs text-gray-500 mb-2 font-medium">Jadwal Terapi:</p>
+                  <p className="text-xs text-gray-500 mb-2 font-medium">{t("doctors.therapySchedule")}</p>
                   <div className="flex flex-wrap gap-1">
                     {doctor.schedule.map((s) => (
                       <span
                         key={s.day}
                         className="text-xs bg-blue-50 text-[#0A1628] border border-blue-200 px-2 py-1 rounded-md"
                       >
-                        {DAYS_LABEL[s.day]} {s.startTime}-{s.endTime}
+                        {getDayLabel(s.day)} {s.startTime}-{s.endTime}
                       </span>
                     ))}
                   </div>

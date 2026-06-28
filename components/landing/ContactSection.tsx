@@ -84,13 +84,13 @@ export function ContactSection() {
               <a href={CLINIC_INFO.waUrl(WA_MSG)} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-500 hover:bg-green-600 text-white gap-2">
                   <MessageCircle className="w-4 h-4" />
-                  Chat WhatsApp
+                  {t("chatWhatsapp")}
                 </Button>
               </a>
               <a href={CLINIC_INFO.waUrl(WA_REG_MSG)} target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 gap-2">
                   <MessageCircle className="w-4 h-4" />
-                  Daftar via WA
+                  {t("registerViaWA")}
                 </Button>
               </a>
             </div>
@@ -120,7 +120,7 @@ export function ContactSection() {
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-full text-sm font-medium transition-colors border border-white/20"
           >
             <Navigation className="w-4 h-4 text-blue-300" />
-            Buka di Google Maps
+            {t("openInGoogleMaps")}
           </a>
           <a
             href={CLINIC_INFO.waUrl(WA_MSG)}

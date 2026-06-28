@@ -60,29 +60,68 @@
   },
   "hero": {
     "headline": "Prime Wellness",
-    "subheadline": "Modern healthcare clinic for your family.",
+    "subheadline": "Therapy & Reliefy — Where TCM meets biotechnology.",
     "cta1": "Book Now",
     "cta2": "Register Now",
     "stat1": "Satisfied Patients",
-    "stat2": "Specialist Doctors",
+    "stat2": "Certified Therapists",
     "stat3": "Years of Experience",
-    "stat4": "Health Services"
+    "stat4": "TCM Therapy Types",
+    "badge": "Where TCM meets biotechnology",
+    "description": "A holistic health therapy center combining Traditional Chinese Medicine (TCM) wisdom with modern biotechnology for your optimal recovery.",
+    "todaySchedule": "Today's Therapy Schedule",
+    "available247": "Available Online 24/7",
+    "available": "Available",
+    "rating": "Rating",
+    "patientsCount": "500+ Patients",
+    "trustedBy": "Trust us"
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "We provide various quality health services for you and your family",
-    "service1": "Doctor Consultation",
+    "subtitle": "We provide various quality therapy services for you and your family",
+    "service1": "Therapist Consultation",
     "service2": "Medical Check Up",
     "service3": "General Examination",
     "service4": "Vitamin Infusion",
-    "service5": "Health Therapy",
+    "service5": "TCM Health Therapy",
     "duration": "minutes",
-    "bookService": "Book Service"
+    "bookService": "Book Service",
+    "perSession": "/session",
+    "voucherTitle": "Save More with Voucher Packages",
+    "voucherSubtitle": "Buy session packages and get up to 20% discount",
+    "sessions": "sessions",
+    "discount": "Discount",
+    "registerBuyVoucher": "Register & Buy Voucher",
+    "s1Name": "Needleless Acupuncture",
+    "s1Desc": "Acupuncture point stimulation using electro-stimulation technology, painless",
+    "s1Badge": "Popular",
+    "s2Name": "Reflexology",
+    "s2Desc": "Massage on reflex points of feet and hands to improve body energy flow",
+    "s3Name": "Cupping Therapy",
+    "s3Desc": "Modern cupping technique to improve blood circulation and reduce muscle pain",
+    "s3Badge": "Best Seller",
+    "s4Name": "TCM Herbal",
+    "s4Desc": "Traditional Chinese herbal remedies specially formulated for your body condition",
+    "s5Name": "Moxibustion",
+    "s5Desc": "Heat therapy using mugwort plant to warm meridians and strengthen immunity",
+    "s6Name": "Gua Sha",
+    "s6Desc": "Skin scraping technique to remove toxins and improve lymphatic circulation",
+    "s6Badge": "New"
   },
   "doctors": {
-    "title": "Our Doctors",
-    "subtitle": "Experienced and dedicated medical team for your health",
-    "bookAppointment": "Book Appointment"
+    "title": "Our Therapists",
+    "subtitle": "Experienced and dedicated therapist team for your health",
+    "bookAppointment": "Book Appointment",
+    "therapySchedule": "Therapy Schedule:",
+    "days": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    }
   },
   "whyUs": {
     "title": "Why Choose Us?",
@@ -102,7 +141,8 @@
   },
   "testimonials": {
     "title": "Patient Testimonials",
-    "subtitle": "What they say about Prime Wellness"
+    "subtitle": "What they say about Prime Wellness",
+    "patientOf": "Prime Wellness Patient"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -116,10 +156,13 @@
     "email": "Email",
     "hours": "Operational Hours",
     "whatsapp": "Chat WhatsApp",
-    "sendMessage": "Send Message"
+    "sendMessage": "Send Message",
+    "chatWhatsapp": "Chat WhatsApp",
+    "registerViaWA": "Register via WA",
+    "openInGoogleMaps": "Open in Google Maps"
   },
   "footer": {
-    "description": "Modern healthcare clinic providing the best services for your family.",
+    "description": "Modern holistic health clinic providing the best services for your family.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
     "services": "Services",
@@ -127,7 +170,13 @@
     "privacyPolicy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "followUs": "Follow Us",
-    "copyright": "© 2024 Prime Wellness. All rights reserved."
+    "copyright": "© 2024 Prime Wellness. All rights reserved.",
+    "bookingOnline": "Online Booking",
+    "operationalHours": "Operational Hours",
+    "openEveryDay": "Open Every Day",
+    "weekdayHours": "Mon – Sat: 09:00 – 20:00",
+    "sundayHours": "Sunday: 10:00 – 17:00",
+    "footerTagline": "Where TCM meets biotechnology 🌿"
   },
   "auth": {
     "login": "Login",

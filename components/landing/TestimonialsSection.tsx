@@ -89,7 +89,7 @@ export function TestimonialsSection() {
                     <p className="font-semibold text-slate-800 text-sm">
                       {testimonial.patientName}
                     </p>
-                    <p className="text-xs text-gray-500">Pasien Prime Wellness</p>
+                    <p className="text-xs text-gray-500">{t("patientOf")}</p>
                   </div>
                 </div>
               </CardContent>

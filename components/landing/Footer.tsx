@@ -14,7 +14,7 @@ export function Footer() {
     { href: "#services", label: tNav("services") },
     { href: "#doctors", label: tNav("doctors") },
     { href: "#about", label: tNav("about") },
-    { href: "/booking", label: "Booking Online" },
+    { href: "/booking", label: t("bookingOnline") },
     { href: "/sign-up", label: tNav("register") },
   ];
 
@@ -97,8 +97,8 @@ export function Footer() {
               <li className="flex items-start gap-2 text-slate-400 text-sm">
                 <Clock className="w-4 h-4 mt-0.5 text-purple-400 flex-shrink-0" />
                 <div>
-                  <p>Senin – Sabtu: 09:00 – 20:00</p>
-                  <p>Minggu: 10:00 – 17:00</p>
+                  <p>{t("weekdayHours")}</p>
+                  <p>{t("sundayHours")}</p>
                 </div>
               </li>
             </ul>
@@ -120,8 +120,8 @@ export function Footer() {
               ))}
             </ul>
             <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <p className="text-xs text-slate-400 mb-2">Jam Operasional</p>
-              <p className="text-sm font-semibold text-white">Buka Setiap Hari</p>
+              <p className="text-xs text-slate-400 mb-2">{t("operationalHours")}</p>
+              <p className="text-sm font-semibold text-white">{t("openEveryDay")}</p>
               <p className="text-xs text-blue-300">09:00 — 20:00 WIB</p>
             </div>
           </div>
@@ -129,7 +129,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">{t("copyright")}</p>
-          <p className="text-slate-600 text-xs">Where TCM meets biotechnology 🌿</p>
+          <p className="text-slate-600 text-xs">{t("footerTagline")}</p>
         </div>
       </div>
     </footer>

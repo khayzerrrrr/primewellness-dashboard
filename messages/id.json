@@ -64,9 +64,17 @@
     "cta1": "Booking Sekarang",
     "cta2": "Daftar Sekarang",
     "stat1": "Pasien Puas",
-    "stat2": "Terapis Berpengalaman",
+    "stat2": "Terapis Bersertifikat",
     "stat3": "Tahun Pengalaman",
-    "stat4": "Layanan Terapi"
+    "stat4": "Jenis Terapi TCM",
+    "badge": "Where TCM meets biotechnology",
+    "description": "Pusat terapi kesehatan holistik yang menggabungkan kearifan TCM (Traditional Chinese Medicine) dengan bioteknologi modern untuk pemulihan optimal Anda.",
+    "todaySchedule": "Jadwal Terapi Hari Ini",
+    "available247": "Tersedia Online 24/7",
+    "available": "Tersedia",
+    "rating": "Rating",
+    "patientsCount": "500+ Pasien",
+    "trustedBy": "Mempercayai kami"
   },
   "services": {
     "title": "Layanan Kami",
@@ -77,12 +85,43 @@
     "service4": "Infus Vitamin",
     "service5": "Terapi Kesehatan TCM",
     "duration": "menit",
-    "bookService": "Booking Layanan"
+    "bookService": "Booking Layanan",
+    "perSession": "/sesi",
+    "voucherTitle": "Hemat Lebih Banyak dengan Paket Voucher",
+    "voucherSubtitle": "Beli paket sesi dan dapatkan diskon hingga 20%",
+    "sessions": "sesi",
+    "discount": "Diskon",
+    "registerBuyVoucher": "Daftar & Beli Voucher",
+    "s1Name": "Akupunktur Tanpa Jarum",
+    "s1Desc": "Stimulasi titik akupunktur menggunakan teknologi elektro-stimulasi tanpa rasa sakit",
+    "s1Badge": "Populer",
+    "s2Name": "Pijat Refleksi",
+    "s2Desc": "Pemijatan pada titik refleks telapak kaki dan tangan untuk melancarkan energi tubuh",
+    "s3Name": "Terapi Cupping (Bekam)",
+    "s3Desc": "Teknik bekam modern untuk melancarkan sirkulasi darah dan mengurangi nyeri otot",
+    "s3Badge": "Terlaris",
+    "s4Name": "Herbal TCM",
+    "s4Desc": "Ramuan herbal tradisional Tiongkok yang diformulasikan khusus sesuai kondisi tubuh",
+    "s5Name": "Moxibustion",
+    "s5Desc": "Terapi panas menggunakan tanaman mugwort untuk menghangatkan meridian dan menguatkan imun",
+    "s6Name": "Gua Sha",
+    "s6Desc": "Teknik scraping pada kulit untuk membuang toksin dan meningkatkan sirkulasi limfatik",
+    "s6Badge": "Baru"
   },
   "doctors": {
     "title": "Terapis Kami",
     "subtitle": "Tim terapis berpengalaman dan berdedikasi untuk kesehatan Anda",
-    "bookAppointment": "Buat Janji"
+    "bookAppointment": "Buat Janji",
+    "therapySchedule": "Jadwal Terapi:",
+    "days": {
+      "sun": "Min",
+      "mon": "Sen",
+      "tue": "Sel",
+      "wed": "Rab",
+      "thu": "Kam",
+      "fri": "Jum",
+      "sat": "Sab"
+    }
   },
   "whyUs": {
     "title": "Mengapa Memilih Kami?",
@@ -102,7 +141,8 @@
   },
   "testimonials": {
     "title": "Testimoni Pasien",
-    "subtitle": "Apa kata mereka tentang Prime Wellness"
+    "subtitle": "Apa kata mereka tentang Prime Wellness",
+    "patientOf": "Pasien Prime Wellness"
   },
   "faq": {
     "title": "Pertanyaan yang Sering Diajukan",
@@ -116,7 +156,10 @@
     "email": "Email",
     "hours": "Jam Operasional",
     "whatsapp": "Chat WhatsApp",
-    "sendMessage": "Kirim Pesan"
+    "sendMessage": "Kirim Pesan",
+    "chatWhatsapp": "Chat WhatsApp",
+    "registerViaWA": "Daftar via WA",
+    "openInGoogleMaps": "Buka di Google Maps"
   },
   "footer": {
     "description": "Klinik kesehatan modern yang memberikan layanan terbaik untuk keluarga Anda.",
@@ -127,7 +170,13 @@
     "privacyPolicy": "Kebijakan Privasi",
     "terms": "Syarat & Ketentuan",
     "followUs": "Ikuti Kami",
-    "copyright": "© 2024 Prime Wellness. Semua hak dilindungi."
+    "copyright": "© 2024 Prime Wellness. Semua hak dilindungi.",
+    "bookingOnline": "Booking Online",
+    "operationalHours": "Jam Operasional",
+    "openEveryDay": "Buka Setiap Hari",
+    "weekdayHours": "Senin – Sabtu: 09:00 – 20:00",
+    "sundayHours": "Minggu: 10:00 – 17:00",
+    "footerTagline": "Where TCM meets biotechnology 🌿"
   },
   "auth": {
     "login": "Masuk",
