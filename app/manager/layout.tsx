@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { ROLE_ROUTES } from "@/lib/constants";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { LayoutDashboard, Users, UserCheck, Calendar, Receipt, Stethoscope, ClipboardCheck, FileText, BarChart3, Wallet, MapPin, TrendingUp, Activity, Building2, Settings, ShieldCheck, FolderHeart, LineChart } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,7 +38,7 @@ export default function ManagerLayout({ children }: { children: React.ReactNode 
   useEffect(() => {
     if (!loading) {
       if (!user) router.push("/sign-in");
-      else if (role && !ALLOWED.includes(role)) router.push(`/${role}/dashboard`);
+      else if (role && !ALLOWED.includes(role)) router.push(ROLE_ROUTES[role] || "/sign-in");
     }
   }, [user, role, loading, router]);
 

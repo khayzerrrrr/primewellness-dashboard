@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { ROLE_ROUTES } from "@/lib/constants";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { LayoutDashboard, Calendar, Users, FileText, User, ClipboardCheck, BookOpen } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -28,7 +29,7 @@ export default function DoctorLayout({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (!loading) {
       if (!user) router.push("/sign-in");
-      else if (role && !isAllowed) router.push(`/${role}/dashboard`);
+      else if (role && !isAllowed) router.push(ROLE_ROUTES[role] || "/sign-in");
     }
   }, [user, role, loading, router, isAllowed]);
 
