@@ -9,9 +9,10 @@ import { TrendingUp, Users, DollarSign, Calendar, Activity, BarChart3 } from "lu
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatCurrency } from "@/lib/utils";
-import { getInvoices, getPatients, getDoctors } from "@/lib/firebase/firestore-service";
+import { getInvoices, getPatients, getDoctors, getBranches } from "@/lib/firebase/firestore-service";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
+import type { Branch } from "@/types";
 import type { Invoice } from "@/types";
 
 const COLORS = ["#0A1628", "#1B3A6B", "#2563EB", "#0d9488", "#f59e0b", "#8b5cf6", "#ef4444"];
@@ -30,28 +31,42 @@ const PERIOD_OPTIONS = [
 ];
 
 export default function OwnerAnalyticsPage() {
+  const [allInvoices, setAllInvoices] = useState<Invoice[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalTherapists, setTotalTherapists] = useState(0);
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<"week" | "month" | "3months" | "year">("month");
+  const [branches, setBranches] = useState<Branch[]>([]);
+  const [selectedBranch, setSelectedBranch] = useState<string>("all");
 
   useEffect(() => {
     const load = async () => {
       try {
-        const [invs, pts, docs] = await Promise.all([
+        const [invs, pts, docs, brs] = await Promise.all([
           getInvoices(),
           getPatients(),
           getDoctors(false),
+          getBranches(),
         ]);
+        setAllInvoices(invs as Invoice[]);
         setInvoices(invs as Invoice[]);
         setTotalPatients(pts.length);
         setTotalTherapists(docs.length);
+        setBranches(brs as Branch[]);
       } catch { /* ignore */ }
       setLoading(false);
     };
     load();
   }, []);
+
+  useEffect(() => {
+    if (selectedBranch === "all") {
+      setInvoices(allInvoices);
+    } else {
+      setInvoices(allInvoices.filter(i => (i as unknown as { branchId?: string }).branchId === selectedBranch));
+    }
+  }, [selectedBranch, allInvoices]);
 
   const now = new Date();
   const paidInvoices = invoices.filter((i) => i.status === "paid");
@@ -136,8 +151,21 @@ export default function OwnerAnalyticsPage() {
           <h1 className="text-2xl font-bold text-[#0A1628]">Analytics Dashboard</h1>
           <p className="text-gray-500 text-sm">Analisis mendalam kinerja klinik Prime Wellness</p>
         </div>
-        {/* Period filter */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          {/* Branch filter */}
+          {branches.length > 0 && (
+            <select
+              value={selectedBranch}
+              onChange={(e) => setSelectedBranch(e.target.value)}
+              className="border border-gray-200 rounded-lg px-3 py-1.5 text-sm bg-white"
+            >
+              <option value="all">Semua Cabang</option>
+              {branches.map((b) => (
+                <option key={b.id} value={b.id}>{b.name}</option>
+              ))}
+            </select>
+          )}
+          {/* Period filter */}
           {PERIOD_OPTIONS.map((p) => (
             <button
               key={p.value}

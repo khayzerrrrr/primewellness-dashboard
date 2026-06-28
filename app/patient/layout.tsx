@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { LayoutDashboard, Calendar, FileText, Receipt, User, Ticket } from "lucide-react";
+import { LayoutDashboard, Calendar, FileText, Receipt, User, Ticket, Gift } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NAV_ITEMS = [
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { href: "/patient/medical-records", label: "Rekam Terapi", icon: FileText },
   { href: "/patient/vouchers", label: "Voucher Sesi", icon: Ticket },
   { href: "/patient/invoices", label: "Invoice", icon: Receipt },
+  { href: "/patient/loyalty", label: "Poin Loyalty", icon: Gift },
   { href: "/patient/profile", label: "Profil", icon: User },
 ];
 

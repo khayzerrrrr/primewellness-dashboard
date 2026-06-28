@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AppointmentBadge } from "@/components/dashboard/AppointmentBadge";
 import { RatingModal } from "@/components/rating/RatingModal";
 import { LoyaltyWidget } from "@/components/loyalty/LoyaltyWidget";
+import { PatientQueueWidget } from "@/components/queue/PatientQueueWidget";
 import { useAuth } from "@/contexts/AuthContext";
 import { getAppointmentsByPatient, getInvoices } from "@/lib/firebase/firestore-service";
 import { formatDate, formatCurrency } from "@/lib/utils";
@@ -219,6 +220,11 @@ export default function PatientDashboardPage() {
           </Link>
         ))}
       </div>
+
+      {/* Queue Status Widget */}
+      {!loading && user && (
+        <PatientQueueWidget patientName={user.displayName || (user.email?.split("@")[0] ?? "")} />
+      )}
 
       {/* Loyalty Points Widget */}
       {!loading && loyaltyPoints > 0 && (

@@ -1,14 +1,22 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
-import { CreditCard, CheckCircle, XCircle, Upload, Search, Eye, MessageCircle } from "lucide-react";
+import { CreditCard, CheckCircle, XCircle, Upload, Search, Eye, MessageCircle, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { getInvoices } from "@/lib/firebase/firestore-service";
-import { updateDoc, doc, Timestamp } from "firebase/firestore";
+import { updateDoc, doc, Timestamp, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
+
+interface LoyaltyRedemption {
+  id: string;
+  patientId: string;
+  discount: number;
+  pointsUsed: number;
+  status: string;
+}
 import { useAuth } from "@/contexts/AuthContext";
 import type { Invoice } from "@/types";
 
@@ -64,6 +72,8 @@ export default function PaymentPage() {
   const [payMethod, setPayMethod] = useState("cash");
   const [proofUrl, setProofUrl] = useState("");
   const [confirming, setConfirming] = useState(false);
+  const [loyaltyRedemptions, setLoyaltyRedemptions] = useState<LoyaltyRedemption[]>([]);
+  const [selectedRedemption, setSelectedRedemption] = useState<LoyaltyRedemption | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -73,6 +83,27 @@ export default function PaymentPage() {
   };
 
   useEffect(() => { load(); }, []);
+
+  const openPaymentModal = async (inv: Invoice) => {
+    setSelectedInvoice(inv);
+    setSelectedRedemption(null);
+    if (inv.patientId) {
+      try {
+        const snap = await getDocs(query(
+          collection(db, "loyalty_redemptions"),
+          where("patientId", "==", inv.patientId),
+          where("status", "==", "active")
+        ));
+        setLoyaltyRedemptions(snap.docs.map(d => ({ id: d.id, ...d.data() } as LoyaltyRedemption)));
+      } catch { setLoyaltyRedemptions([]); }
+    }
+  };
+
+  const discountedTotal = selectedInvoice
+    ? selectedRedemption
+      ? Math.round(selectedInvoice.total * (1 - selectedRedemption.discount / 100))
+      : selectedInvoice.total
+    : 0;
 
   const handleConfirmPayment = async () => {
     if (!selectedInvoice) return;
@@ -84,10 +115,17 @@ export default function PaymentPage() {
         paidAt: Timestamp.now(),
         confirmedBy: user?.uid,
         proofUrl: proofUrl || null,
+        loyaltyDiscount: selectedRedemption ? selectedRedemption.discount : 0,
+        finalTotal: discountedTotal,
       });
+      if (selectedRedemption) {
+        await updateDoc(doc(db, "loyalty_redemptions", selectedRedemption.id), { status: "used", usedAt: Timestamp.now() });
+      }
       setSelectedInvoice(null);
       setProofUrl("");
       setPayMethod("cash");
+      setSelectedRedemption(null);
+      setLoyaltyRedemptions([]);
       await load();
     } catch { /* ignore */ }
     setConfirming(false);
@@ -225,7 +263,7 @@ export default function PaymentPage() {
                               <Button
                                 size="sm"
                                 className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-7"
-                                onClick={() => setSelectedInvoice(inv)}
+                                onClick={() => openPaymentModal(inv)}
                               >
                                 Konfirmasi
                               </Button>
@@ -266,7 +304,7 @@ export default function PaymentPage() {
                         <Button
                           size="sm"
                           className="bg-[#0A1628] hover:bg-[#1B3A6B] text-white text-xs h-8"
-                          onClick={() => setSelectedInvoice(inv)}
+                          onClick={() => openPaymentModal(inv)}
                         >
                           Konfirmasi Pembayaran
                         </Button>
@@ -292,8 +330,43 @@ export default function PaymentPage() {
                 <p className="text-xs text-gray-500 mb-1">Invoice</p>
                 <p className="font-mono font-bold text-[#0A1628]">{selectedInvoice.invoiceNumber}</p>
                 <p className="font-medium text-slate-800 mt-2">{selectedInvoice.patientName}</p>
-                <p className="text-2xl font-bold text-green-700 mt-2">{formatCurrency(selectedInvoice.total)}</p>
+                {selectedRedemption ? (
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-400 line-through">{formatCurrency(selectedInvoice.total)}</p>
+                    <p className="text-2xl font-bold text-green-700">{formatCurrency(discountedTotal)}</p>
+                    <p className="text-xs text-amber-600">Diskon loyalty {selectedRedemption.discount}% diterapkan</p>
+                  </div>
+                ) : (
+                  <p className="text-2xl font-bold text-green-700 mt-2">{formatCurrency(selectedInvoice.total)}</p>
+                )}
               </div>
+
+              {/* Loyalty Discount */}
+              {loyaltyRedemptions.length > 0 && (
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Star className="w-4 h-4 text-amber-500" />
+                    <p className="text-sm font-medium text-amber-800">Diskon Loyalty Tersedia</p>
+                  </div>
+                  <div className="space-y-2">
+                    {loyaltyRedemptions.map((r) => (
+                      <button
+                        key={r.id}
+                        onClick={() => setSelectedRedemption(selectedRedemption?.id === r.id ? null : r)}
+                        className={`w-full text-left p-2.5 rounded-lg border text-sm transition-colors ${
+                          selectedRedemption?.id === r.id
+                            ? "border-amber-500 bg-amber-100 text-amber-800"
+                            : "border-amber-200 bg-white text-gray-700 hover:border-amber-300"
+                        }`}
+                      >
+                        <span className="font-medium">Diskon {r.discount}%</span>
+                        <span className="text-xs text-gray-500 ml-2">({r.pointsUsed} poin ditukarkan)</span>
+                        {selectedRedemption?.id === r.id && <span className="ml-2 text-amber-600 font-bold">✓ Diterapkan</span>}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-2">Metode Pembayaran</label>

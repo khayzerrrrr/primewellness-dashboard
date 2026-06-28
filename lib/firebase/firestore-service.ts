@@ -910,7 +910,7 @@ export async function getCommissionRate(): Promise<number> {
   }
 }
 
-/** Update appointment to "completed" AND auto-create commission */
+/** Update appointment to "completed" AND auto-create commission AND award loyalty points */
 export async function completeAppointmentWithCommission(
   appointmentId: string,
   appointment: {
@@ -920,6 +920,7 @@ export async function completeAppointmentWithCommission(
     serviceName: string;
     servicePrice: number;
     date: Date;
+    patientId?: string;
   }
 ) {
   await updateDoc(doc(db, FIRESTORE_COLLECTIONS.appointments, appointmentId), {
@@ -935,4 +936,10 @@ export async function completeAppointmentWithCommission(
     servicePrice: appointment.servicePrice,
     sessionDate: appointment.date instanceof Date ? appointment.date : new Date(),
   });
+  if (appointment.patientId) {
+    try {
+      const { addLoyaltyPoints } = await import("@/lib/loyalty");
+      await addLoyaltyPoints(appointment.patientId, 100, `Sesi selesai: ${appointment.serviceName}`);
+    } catch { /* loyalty award is best-effort */ }
+  }
 }
