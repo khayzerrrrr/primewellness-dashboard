@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
 import { PWARegister } from "@/components/PWARegister";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -72,6 +73,7 @@ export default async function RootLayout({
                 <PWARegister />
                 {children}
                 <Toaster richColors position="top-right" />
+                <SpeedInsights />
               </LanguageProvider>
             </AuthProvider>
           </ThemeProvider>
